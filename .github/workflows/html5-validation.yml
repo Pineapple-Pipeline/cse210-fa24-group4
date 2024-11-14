@@ -11,9 +11,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: HTML5Validator
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: src/
+          log_level: DEBUG
