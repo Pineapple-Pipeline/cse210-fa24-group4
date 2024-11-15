@@ -83,15 +83,5 @@
 
 
 ### Key Takeaways/Backlog
-- **Action Items by 11/07/24**
-  - More user stories (Assigned to: Hailey)
-  - Testing tech stack decision
-  - Rework the Gantt timeline to Github
-- **Action Items for Next Sprint:**
-  - Finalize the feature choices (TA Kashish accepts that we have 4 features, instead of 5)
-  - Develop CI/CD pipeline
-    - Linters?
-    - Jest
-    - Github
-  - Refine design to high-fidelity
-  - Code style/coding practices
+- CI/CD pipeline
+- update sprint meetings folder
