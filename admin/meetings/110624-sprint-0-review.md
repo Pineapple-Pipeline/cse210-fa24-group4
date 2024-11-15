@@ -16,6 +16,20 @@
 - Testing framework decision: Jest
   - Briefly talked about: designing a tester  
   - Briefly talked about: Architectural Decision Records (ADRs)
+-  Sprint notes structure
+  - Two docs: LAUNCH (sprint objectives) and REVIEW (sprint retrospective notes)
+- Discussed what we have achieved:
+  - CI/CD pipeline draft
+    - folder structure [proposed by Yunhao]
+    - Decision: standard linting
+    - Decision: NOT preparing for open-source
+  - Hi-fidelity design, iteration 1
+- Decisions:
+  - Testing: Jest
+  - Tools: HTML, CSS, JS
+  - IDE: VsCode
+  - Linter: ESLint
+  - Scrum master: Hailey (meeting notes, maintaining meeting structures, progress tracking)
 
 
 ### Demos and Media/ Design
