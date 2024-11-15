@@ -24,6 +24,9 @@
   ![JSON Formatter   Validater](https://github.com/user-attachments/assets/a20e5148-6869-4293-bb76-cde2635e3a89)
   ![Landing Page - Windows Open - Supports Reorganizing Windows](https://github.com/user-attachments/assets/09fb0441-6814-415e-8e84-866d67041477)
 
+### Preliminary UI/UX design
+[UI design first look](https://www.figma.com/design/3ih44WsGIx62IKSIrP5QG3/DashStack---Free-Admin-Dashboard-UI-Kit---Admin-%26-Dashboard-Ui-Kit---Admin-Dashboard-(Community)?node-id=0-1&node-type=canvas&t=TBWBzzjDW69nEbPV-0)
+
 
 ### Key Takeaways/Backlog
 - **Action Items by 11/07/24**
