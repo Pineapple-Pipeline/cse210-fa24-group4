@@ -8,20 +8,6 @@
 - **Attendees:** All team members
 
 ### Accomplishments
-- Sprint notes structure
-  - Two docs: LAUNCH (sprint objectives) and REVIEW (sprint retrospective notes)
-- Discussed what we have achieved:
-  - CI/CD pipeline draft
-    - folder structure [proposed by Yunhao]
-    - Decision: standard linting
-    - Decision: NOT preparing for open-source
-  - Hi-fidelity design, iteration 1
-- Decisions:
-  - Testing: Jest
-  - Tools: HTML, CSS, JS
-  - IDE: VsCode
-  - Linter: ESLint
-  - Scrum master: Hailey (meeting notes, maintaining meeting structures, progress tracking)
   - File structure:
     - Debated Samyak and Yunhao's design of the file structure
       - Samyak: cohesive, React-like, fewer files to maintain, less setup
