@@ -2,46 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Starter Page</title>
-    <style>
-        /* Add any custom styles here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header, footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-        }
-        main {
-            padding: 1em;
-        }
-    </style>
+    <title>Basic Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="sidebar-title">Dev Toolkit</div>
+            <button id="json-formatter-button" class="tool-button">JSON Formatter</button>
+            <button class="tool-button">Regex Tester</button>
+            <button class="tool-button">URL Encoder/Decoder</button>
+        </div>
+        <div class="content-area">
+            <dialog id="json-formatter" class="tool-window">
+                <header class="tool-header">
+                    <h3>JSON Formatter</h3>
+                    <button onclick="this.closest('dialog').close()">&times;</button>
+                </header>
+                <section class="tool-content">
+                    <textarea placeholder="Paste your JSON Here"></textarea>
+                </section>
+            </dialog>
+        </div>
+    </div>
 
-    <header>
-        <h1>Welcome to My Starter Page</h1>
-    </header>
+    <script>
+        // Select the dialog and button using proper IDs
+        const dialog = document.getElementById("json-formatter");
+        const jsonFormatterButton = document.getElementById("json-formatter-button");
 
-    <main>
-        <h2>About This Page</h2>
-        <p>This is a simple HTML starter template. Customize it as you like!</p>
-        <button onclick="formatJSON()">Format JSON</button>
-        <pre id="jsonOutput"></pre>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 My Starter Page</p>
-    </footer>
-
-    <!-- Link to the JSON Formatter JavaScript file -->
-    <script src="json-formatter.js"></script>
+        // Add click event listener to open the dialog
+        jsonFormatterButton.addEventListener("click", () => {
+            dialog.showModal();
+        });
+    </script>
 </body>
 </html>
