@@ -1,4 +1,4 @@
-name: HTML5 Validation
+name: Super-Linter
 
 on:
   push:
@@ -7,15 +7,18 @@ on:
       - main
 
 jobs:
-  validate-html:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: HTML5Validator
-        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
-        with:
-          root: src/
-          log_level: INFO
+      - name: Run ESLint on JavaScript and HTML files
+        uses: super-linter/super-linter@v7.2.0
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_JS: true
+          VALIDATE_HTML: true
+          FILTER_REGEX_INCLUDE: "src/.*\\.(js|html)$" # Modify path if needed
