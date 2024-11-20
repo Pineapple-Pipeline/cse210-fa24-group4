@@ -41,3 +41,7 @@
 - Plans for Before Video Check-in [20 min]
 
 #### Slack Time [20 min]
+
+### Demos and Media
+1. [Demo] (https://cse210-fa24-group4.github.io/cse210-fa24-group4/src/index.html)
+   <img width="1492" alt="image" src="https://github.com/user-attachments/assets/73035f3b-a00e-442f-8816-04a6fa3f8185">
