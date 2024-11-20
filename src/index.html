@@ -14,27 +14,32 @@
             <button class="tool-button">URL Encoder/Decoder</button>
         </div>
         <div class="content-area">
-            <dialog id="json-formatter" class="tool-window">
+            <section id="json-formatter-tool" class="tool-panel">
                 <header class="tool-header">
                     <h3>JSON Formatter</h3>
-                    <button onclick="this.closest('dialog').close()">&times;</button>
+                    <button class="close-btn">×</button>
                 </header>
-                <section class="tool-content">
-                    <textarea placeholder="Paste your JSON Here"></textarea>
-                </section>
-            </dialog>
+                <main class="tool-content">
+                    <textarea class="input-area" placeholder="Paste your JSON here"></textarea>
+                    <button class="format-btn">Format JSON</button>
+                    <textarea class="output-area" readonly></textarea>
+                </main>
+                <script>
+                    const jsonFormatter = document.querySelector('#json-formatter-button');
+                    const jsonFormatterTool = document.querySelector('#json-formatter-tool');
+
+                    jsonFormatter.addEventListener('click', function() {
+                        jsonFormatterTool.style.display = 'block';
+                    });
+
+                    // Add close button functionality
+                    const closeBtn = jsonFormatterTool.querySelector('.close-btn');
+                    closeBtn.addEventListener('click', function() {
+                        jsonFormatterTool.style.display = 'none';
+                    });
+                </script>
+            </section>
         </div>
     </div>
-
-    <script>
-        // Select the dialog and button using proper IDs
-        const dialog = document.getElementById("json-formatter");
-        const jsonFormatterButton = document.getElementById("json-formatter-button");
-
-        // Add click event listener to open the dialog
-        jsonFormatterButton.addEventListener("click", () => {
-            dialog.showModal();
-        });
-    </script>
 </body>
 </html>
