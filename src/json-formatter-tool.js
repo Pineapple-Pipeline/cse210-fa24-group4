@@ -1,3 +1,5 @@
+import { dragElement } from "./draggable.js";
+
 class JsonFormatterTool extends HTMLElement {
     constructor() {
         super();
@@ -8,16 +10,27 @@ class JsonFormatterTool extends HTMLElement {
             <style>
             .tool-panel {
                 display: none;  /* Hidden by default */
+<<<<<<< HEAD
                 position: fixed;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+=======
+                position: absolute;
+                top: 20px;
+                left: 20px;
+>>>>>>> 49a45d9 (Made the component draggable)
                 width: 600px;
                 background: #f9f9f9;
                 border-radius: 8px;
+<<<<<<< HEAD
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
                 z-index: 1000;
                 padding: 20px;
+=======
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                z-index:999;
+>>>>>>> 49a45d9 (Made the component draggable)
             }
             
             .tool-header {
@@ -164,7 +177,8 @@ class JsonFormatterTool extends HTMLElement {
         this.uploadBtn = this.shadowRoot.querySelector('.upload-btn');
         this.inputArea = this.shadowRoot.querySelector('.input-area');
         this.outputArea = this.shadowRoot.querySelector('.output-area');
-
+        
+        dragElement(this.toolPanel);
         // Bind event listeners
         this.closeBtn.addEventListener('click', () => this.hide());
         this.formatBtn.addEventListener('click', () => this.formatJson());
