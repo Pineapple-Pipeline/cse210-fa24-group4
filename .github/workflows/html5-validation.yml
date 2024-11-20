@@ -18,3 +18,13 @@ jobs:
         with:
           root: src/
           log_level: INFO
+
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ESLint
+        run: eslint src/ --ext .js
