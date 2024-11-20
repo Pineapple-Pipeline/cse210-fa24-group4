@@ -85,9 +85,6 @@ body, html {
     width: 100%;
 }
 
-.section-1 {
-    border: .25rem solid black;
-}
 
 .tool-button {
     display: block;
@@ -126,10 +123,11 @@ body, html {
 }
 
 .content-area {
-    flex-grow: 1;
-    background-color: #ecf0f1;
-    padding: 20px;
-    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
 }
 
 .content-title {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Basic Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <script src="json-formatter-tool.js"></script>
 </head>
 <body>
     <div class="dashboard">
@@ -14,33 +15,20 @@
             <button class="tool-button">URL Encoder/Decoder</button>
         </div>
         <div class="content-area">
-            <section id="json-formatter-tool" class="tool-panel">
-                <header class="tool-header">
-                    <h3>JSON Formatter</h3>
-                    <button class="close-btn">×</button>
-                </header>
-                <section class="tool-content">
-                    <textarea class="input-area" placeholder="Paste your JSON here" id="jsonInput"></textarea>
-                    <button class="format-btn" id="formatButton">Format JSON</button>
-                    <textarea class="output-area" readonly id="jsonOutput"></textarea>
-                </section>
-                <script>
-                    const jsonFormatter = document.querySelector('#json-formatter-button');
-                    const jsonFormatterTool = document.querySelector('#json-formatter-tool');
-
-                    jsonFormatter.addEventListener('click', function() {
-                        jsonFormatterTool.style.display = 'block';
-                    });
-
-                    // Add close button functionality
-                    const closeBtn = jsonFormatterTool.querySelector('.close-btn');
-                    closeBtn.addEventListener('click', function() {
-                        jsonFormatterTool.style.display = 'none';
-                    });
-                </script>
-                <script src="json-formatter.js"></script>
-            </section>
+            <json-formatter-tool></json-formatter-tool>
         </div>
     </div>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const formatterButton = document.getElementById('json-formatter-button');
+        formatterButton.addEventListener('click', () => {
+            const formatter = document.querySelector('json-formatter-tool');
+            if (formatter) {
+                formatter.show();
+            }
+        });
+    });
+</script>
 </html>
