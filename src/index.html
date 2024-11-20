@@ -19,11 +19,11 @@
                     <h3>JSON Formatter</h3>
                     <button class="close-btn">×</button>
                 </header>
-                <main class="tool-content">
-                    <textarea class="input-area" placeholder="Paste your JSON here"></textarea>
-                    <button class="format-btn">Format JSON</button>
-                    <textarea class="output-area" readonly></textarea>
-                </main>
+                <section class="tool-content">
+                    <textarea class="input-area" placeholder="Paste your JSON here" id="jsonInput"></textarea>
+                    <button class="format-btn" id="formatButton">Format JSON</button>
+                    <textarea class="output-area" readonly id="jsonOutput"></textarea>
+                </section>
                 <script>
                     const jsonFormatter = document.querySelector('#json-formatter-button');
                     const jsonFormatterTool = document.querySelector('#json-formatter-tool');
@@ -38,6 +38,7 @@
                         jsonFormatterTool.style.display = 'none';
                     });
                 </script>
+                <script src="json-formatter.js"></script>
             </section>
         </div>
     </div>
