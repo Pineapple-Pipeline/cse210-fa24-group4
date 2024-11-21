@@ -42,6 +42,32 @@
 
 #### Slack Time [20 min]
 
+### Accomplishments
+- CI/CD is currently broken; efforts are ongoing to avoid using npm and likely implement ESLint soon.
+- Unit testing does not exist yet.
+- Initiated modularization in the playground:
+  - Set up a runnable page with a side panel and basic JSON formatter functionality.
+  - Integrated `json-formatter-tool.js` for handling formatting tasks.
+  - Samyak conducted a local demo and discussed mobile dropdown and flexibility.
+- Established code style and practices:
+  - Created four markdown templates for issues: coding issue, non-coding issue, feature, and bug report.
+  - Pull requests are directed to the playground branch.
+- Entered ADR documentation, pending further discussion.
+- TA emphasized the need for consistent naming conventions:
+  - Completed Sprint 1 review of weekly progress.
+  - Conducted Sprint 1 retrospective led by Samyak.
+  - Prepared for Sprint 2 launch with planning and task allocation.
+- Conducted retro:
+  - Identified challenges such as limited contributions, unclear tasks, and experimentation by team members.
+  - Scheduled a code review to align everyone on the current codebase and structure, with plans to reorganize the team by tomorrow.
+  - Addressed issues with last-minute meeting scheduling by introducing open office hours.
+  - Noted the current implementation does not fully align with the Figma design:
+    - Acknowledged design changes may occur but stressed adherence to the design for Sprint 2.
+    - Agreed to consolidate the team design on Friday.
+
+
+
 ### Demos and Media
 1. [Demo] (https://cse210-fa24-group4.github.io/cse210-fa24-group4/src/index.html)
    <img width="1492" alt="image" src="https://github.com/user-attachments/assets/73035f3b-a00e-442f-8816-04a6fa3f8185">
+
