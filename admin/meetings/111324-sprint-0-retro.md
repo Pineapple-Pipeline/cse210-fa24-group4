@@ -13,5 +13,3 @@
 - Communication channels were not fully established, leading to some information gaps
   
 ---
-
-*Sprint 0 Retrospective on November 20, 2024*
