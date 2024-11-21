@@ -17,10 +17,9 @@
   - Samyak raised that it’s not strictly necessary.
 
 #### Design
-- **Mobile**:
-  - Implemented dropdown functionality.
-  - Decided NOT to implement click-and-drag for now.
-  - Removed the close button and planned to redesign the Figma display.
+- Mobile: Implemented dropdown functionality.
+- Decided NOT to implement click-and-drag for now.
+- Removed the close button and planned to redesign the Figma display.
 - **Future Considerations**:
   - Postponed light/dark mode implementation.
   - Decided to remove "Format JSON" button and make it on-change (not for this sprint).
