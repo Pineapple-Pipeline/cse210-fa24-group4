@@ -1,9 +1,12 @@
-name: HTML5 Validation
+name: Linting
 
 on:
   push:
     branches:
       - playground
+  pull_request:
+    branches:
+      - main
 
 jobs:
   validate-html:
@@ -13,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: HTML5Validator
+      - name: Validate HTML
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: src/
@@ -26,5 +29,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+        
+      - name: Initialize npm
+        run: npm init -y
+
+      - name: Install ESLint
+        run: npm install eslint
+
       - name: ESLint
-        run: eslint src/ --ext .js
+        run: npx eslint src/** --config ./config/eslint.config.mjs --no-warn-ignored
