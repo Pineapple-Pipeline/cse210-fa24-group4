@@ -72,3 +72,4 @@
    - We need to think BIG before we split the team. We don't need to implement this on this sprint but these are the things to consider, to avoid large code refactors later. Features he mentioned as examples:
      - A settings page that can be updated later to control things (Light/Dark color theme, etc.)
      - Multi-lingual support (no hard code of labels, instead load it through a function to read label files)
+

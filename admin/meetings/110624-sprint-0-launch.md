@@ -9,16 +9,12 @@
 - **Sprint Number:** 0
 - **Duration:** 60 minutes
 - **Attendees:** All team members
-
-### Goals
-
+  
+### Goals of Sprint 0
 - Address comments and suggestions from TA Kashish
 - Explore how to run sprint meetings
-
-### Agenda
-
-1. Opening and welcome
-2. Settle on Sprint timeline
-3. Decide on testing framework
-4. Decide on code style
-5. Decide on features and feature prioritization
+-  Settle on Sprint timeline
+-   Decide on testing framework
+-   decide on code style
+-   decide on features and feature prioritization
+-   make basic designs of UI
