@@ -1,20 +1,23 @@
 ## Sprint 0 Review Meeting
+
 ### Date
 - **Date of Meeting:** 11/13/24
 
 ### Meeting Details
+
 - **Sprint Number:** 0
 - **Duration:** 30 minutes
 - **Attendees:** All team members
 
 ### Accomplishments
+
 - Sprint timeline:
   - Sprint 0 Nov 6 - 13
   - Sprint 1 Nov 13 - 20
   - Sprint 2 Nov 20 - 4 [Thanksgiving]
   - Sprint 3 Nov 4 - 8 [wrap-up]
 - Testing framework decision: Jest
-  - Briefly talked about: designing a tester  
+  - Briefly talked about: designing a tester
   - Briefly talked about: Architectural Decision Records (ADRs)
 -  Sprint notes structure
   - Two docs: LAUNCH (sprint objectives) and REVIEW (sprint retrospective notes)

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Basic Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <script type="module" src="index.js"></script>
+    <script type="module" src="json-formatter/json-formatter-tool.js"></script>
+    <script
+      type="module"
+      src="url-encoder-decoder/url-encoder-decoder-tool.js"
+    ></script>
+    <script
+      type="module"
+      src="unix-timestamp-converter/unix-timestamp-converter-tool.js"
+    ></script>
+  </head>
+  <body>
+    <div class="dashboard">
+      <div id="side-bar" class="sidebar">
+        <div class="sidebar-content">
+          <div class="sidebar-title">Dev Toolkit</div>
+          <button id="json-formatter-button" class="tool-button">
+            JSON Formatter
+          </button>
+          <button id="url-encoder-decoder-button" class="tool-button">
+            URL Encoder/Decoder
+          </button>
+          <button id="unix-timestamp-converter-button" class="tool-button">
+            Unix Timestamp Converter
+          </button>
+        </div>
+      </div>
+      <div class="toggle-btn" id="toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="content-area"></div>
+    </div>
+  </body>
+</html>

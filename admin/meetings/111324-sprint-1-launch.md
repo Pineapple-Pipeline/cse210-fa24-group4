@@ -1,14 +1,17 @@
 ## Sprint 1 Launch Meeting
 
 ### Date
+
 - **Date of Meeting:** 11/13/24
 
 ### Meeting Details
+
 - **Sprint Number:** 1
 - **Duration:** 60 minutes
 - **Attendees:** All team members
-  
+
 ### Goals
+
 - Align understanding of documentation and sprint practices
 - Aim at starting to code this week
 
@@ -16,6 +19,7 @@
 1. Add sprint meeting notes to repo
 2. Discuss sprint notes
 3. Decide on file/folder structure
+
    - Decide how we do CI/CD
    - Option 1:
      - /src
@@ -36,8 +40,6 @@
      - Cons:
        - Frontend will need to work on the single html file (it will make things complex on git)
        - More difficult to add new functions (if use iframe it’s just one line of code)
-
-
 
 4. Discuss design
 5. Decide on CI/CD

@@ -1,9 +1,11 @@
 ## Sprint 0 Launch Meeting
 
 ### Date
+
 - **Date of Meeting:** 11/06/24
 
 ### Meeting Details
+
 - **Sprint Number:** 0
 - **Duration:** 60 minutes
 - **Attendees:** All team members
