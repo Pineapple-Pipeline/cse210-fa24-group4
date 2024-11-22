@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - playground
+      - main
   pull_request:
     branches:
       - main

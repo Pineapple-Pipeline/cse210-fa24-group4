@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - playground
+      - main
 
 jobs:
   build:
