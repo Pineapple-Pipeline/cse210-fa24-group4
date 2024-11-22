@@ -1,15 +1,16 @@
-name: Test and Coverage
+name: Coverage Report
 
 on:
   push:
     branches:
-      - "**"
+      - playground
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  test:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,17 +19,23 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v4.1.0
-        with:
-          node-version: 16
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
+      - name: Run tests with coverage
         run: npm test -- --coverage
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: coverage/
+      - name: Deploy coverage to gh-pages
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          mkdir coverage-html
+          mv coverage/lcov-report/* coverage-html/
+          cd coverage-html
+          git init
+          git add .
+          git commit -m "Deploy coverage report for branch ${{ github.ref_name }}"
+          git branch -M gh-pages
+          git remote add origin https://github.com/${{ github.repository }}
+          git push -f origin gh-pages
