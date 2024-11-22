@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - playground
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+
+      - name: Build JSDocs
+        uses: andstor/jsdoc-action@v1.2.1
+        with:
+          source_dir: ./src
+          recurse: true
+          template: minami
+          output_dir: ./_site/docs
+          front_page: README.md
+
+      - name: Move Source Files
+        run: mv src/* ./_site
+
+      - name: Upload static files as artifacts
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

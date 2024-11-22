@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  validate-html:
+  html:
     runs-on: ubuntu-latest
 
     steps:
