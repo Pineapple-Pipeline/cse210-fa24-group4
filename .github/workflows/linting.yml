@@ -40,3 +40,19 @@ jobs:
 
       - name: ESLint
         run: npx eslint src/** --config ./config/eslint.config.mjs --no-warn-ignored
+
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+
+      - name: Install Prettier
+        run: npm install prettier
+
+      - name: Prettier
+        run: npx prettier --check src/**
