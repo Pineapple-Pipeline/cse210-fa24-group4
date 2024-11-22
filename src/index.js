@@ -5,7 +5,7 @@
  */
 const loadFeatureComponent = (componentName, contentArea) => {
   // Clear any existing content in the content area
-  contentArea.innerHTML = '';
+  contentArea.innerHTML = "";
 
   // Create the new feature component
   const newFeature = document.createElement(componentName);
@@ -27,7 +27,7 @@ const initializeFeatureButtons = (featureComponents, contentArea) => {
     const button = document.getElementById(buttonId);
 
     if (button) {
-      button.addEventListener('click', () => {
+      button.addEventListener("click", () => {
         loadFeatureComponent(featureComponents[buttonId], contentArea);
       });
     }
@@ -38,8 +38,8 @@ const initializeFeatureButtons = (featureComponents, contentArea) => {
  * Toggles the 'active' class on the sidebar element to show or hide it.
  */
 const toggleSidebar = () => {
-  const sideBar = document.getElementById('side-bar');
-  sideBar.classList.toggle('active');
+  const sideBar = document.getElementById("side-bar");
+  sideBar.classList.toggle("active");
 };
 
 /**
@@ -47,9 +47,9 @@ const toggleSidebar = () => {
  * that calls the toggleSidebar function when the button is clicked.
  */
 const initializeSidebarToggleButton = () => {
-  const toggleBtn = document.getElementById('toggle-btn');
+  const toggleBtn = document.getElementById("toggle-btn");
   if (toggleBtn) {
-    toggleBtn.addEventListener('click', toggleSidebar);
+    toggleBtn.addEventListener("click", toggleSidebar);
   }
 };
 
@@ -60,13 +60,13 @@ const initializeSidebarToggleButton = () => {
  * sets up the sidebar toggle button to show or hide the sidebar.
  */
 const initializeApp = () => {
-  const contentArea = document.querySelector('.content-area');
+  const contentArea = document.querySelector(".content-area");
 
   // Define each feature's component
   const featureComponents = {
-    'json-formatter-button': 'json-formatter-tool',
-    'url-encoder-decoder-button': 'url-encoder-decoder-tool',
-    'unix-timestamp-converter-button': 'unix-timestamp-converter-tool',
+    "json-formatter-button": "json-formatter-tool",
+    "url-encoder-decoder-button": "url-encoder-decoder-tool",
+    "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
     // Add other features and their corresponding component tags here
   };
 
@@ -78,5 +78,5 @@ const initializeApp = () => {
 };
 
 // Initialize the application when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initializeApp);
+document.addEventListener("DOMContentLoaded", initializeApp);
 module.exports = initializeApp;

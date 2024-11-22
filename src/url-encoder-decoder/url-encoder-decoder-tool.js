@@ -23,7 +23,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
         `;
 
     // Store references to elements
-    this.toolPanel = this.querySelector('.tool-panel');
+    this.toolPanel = this.querySelector(".tool-panel");
     // this.formatBtn = this.querySelector('.encode-decode-btn');
     // this.inputArea = this.querySelector('.input-area');
     // this.outputArea = this.querySelector('.output-area');
@@ -40,4 +40,4 @@ class UrlEncoderDecoderTool extends HTMLElement {
 }
 
 // Register the custom element
-customElements.define('url-encoder-decoder-tool', UrlEncoderDecoderTool);
+customElements.define("url-encoder-decoder-tool", UrlEncoderDecoderTool);

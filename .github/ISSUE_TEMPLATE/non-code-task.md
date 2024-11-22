@@ -1,19 +1,19 @@
 ---
 name: Non-coding Task
 about: Describe what task needs to get done
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
 
 **Description**
-*A clear and concise description of what needs doing.*
+_A clear and concise description of what needs doing._
 
 **Steps to finish**
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 **Additional Context**
-*Any relevant notes, requests, or other details.*
+_Any relevant notes, requests, or other details._

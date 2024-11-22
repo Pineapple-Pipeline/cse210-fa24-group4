@@ -31,7 +31,7 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v4.1.0
-        
+
       - name: Initialize npm
         run: npm init -y
 

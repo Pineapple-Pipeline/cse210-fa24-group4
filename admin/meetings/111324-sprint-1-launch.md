@@ -1,21 +1,26 @@
 ## Sprint 1 Launch Meeting
 
 ### Date
+
 - **Date of Meeting:** 11/13/24
 
 ### Meeting Details
+
 - **Sprint Number:** 1
 - **Duration:** 60 minutes
 - **Attendees:** All team members
-  
+
 ### Goals
+
 - Align understanding of documentation and sprint practices
 - Aim at starting to code this week
 
 ### Agenda
+
 1. Opening and welcome
 2. Discuss sprint notes
 3. Decide on file/folder structure
+
    - Decide how we do CI/CD
    - Option 1:
      - /src
@@ -37,14 +42,13 @@
        - Frontend will need to work on the single html file (it will make things complex on git)
        - More difficult to add new functions (if use iframe it’s just one line of code)
 
-
-
 4. Discuss design
 5. Decide on CI/CD
 6. Decide on the separation of tasks
 7. Decide on documentation convention
 
 ### Interim Notes
+
 1. 11/10/24 Major Interim Meeting
    - Attendees: Adrian, Laura, Nikhil, Tim, Anusha, Hailey
    - Tasks:
@@ -56,7 +60,7 @@
        - Linting
        - Doc Generation
        - Code Quality
-     - For later: e2e testing 
+     - For later: e2e testing
    - CI/CD:
      ![image](https://github.com/user-attachments/assets/6a3e357b-c14c-4d59-8543-e48c20d099e5)
    - Linting and code style enforcement (may happen in pipeline and/or in editor)
@@ -83,4 +87,3 @@
      - GitHub Actions
    - Packaging & Minification:
      - [Guideline] Optimize code for production with packaging and minification where appropriate.
-

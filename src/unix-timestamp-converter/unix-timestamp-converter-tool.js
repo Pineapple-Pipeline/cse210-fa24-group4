@@ -23,7 +23,7 @@ class UnixTimestampConverterTool extends HTMLElement {
           `;
 
     // Store references to elements
-    this.toolPanel = this.querySelector('.tool-panel');
+    this.toolPanel = this.querySelector(".tool-panel");
     // this.formatBtn = this.querySelector('.encode-decode-btn');
     // this.inputArea = this.querySelector('.input-area');
     // this.outputArea = this.querySelector('.output-area');
@@ -41,6 +41,6 @@ class UnixTimestampConverterTool extends HTMLElement {
 
 // Register the custom element
 customElements.define(
-  'unix-timestamp-converter-tool',
-  UnixTimestampConverterTool
+  "unix-timestamp-converter-tool",
+  UnixTimestampConverterTool,
 );

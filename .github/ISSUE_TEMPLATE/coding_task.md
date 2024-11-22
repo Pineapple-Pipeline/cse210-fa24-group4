@@ -1,10 +1,9 @@
 ---
 name: Coding Task
 about: A code related task that needs to get done
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
 
 **Description**
@@ -14,6 +13,7 @@ Describe the task from a concise, overhead viewpoint.
 Why is this change necessary?
 
 **What steps need to be taken?**
+
 1.
 2.
 3.

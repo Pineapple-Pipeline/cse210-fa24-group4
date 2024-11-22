@@ -6,9 +6,9 @@ Our group needed to decide on the best approach for creating a web-based develop
 
 ## Considered Options
 
-* Greenfield Development
+- Greenfield Development
   - Building the toolkit from scratch, allowing for full control over architecture and features
-* Brownfield Development
+- Brownfield Development
   - Starting with an existing repository, adding and modifying features to meet our toolkit requirements.
 
 ## Decision Outcome

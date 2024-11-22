@@ -1,6 +1,6 @@
-const initializeApp = require('./index');
+const initializeApp = require("./index");
 
-describe('initializeApp', () => {
+describe("initializeApp", () => {
   let contentArea;
   let jsonButton;
   let urlButton;
@@ -34,41 +34,41 @@ describe('initializeApp', () => {
             </div>
         `;
 
-    contentArea = document.querySelector('.content-area');
-    jsonButton = document.getElementById('json-formatter-button');
-    urlButton = document.getElementById('url-encoder-decoder-button');
-    unixButton = document.getElementById('unix-timestamp-converter-button');
-    toggleBtn = document.getElementById('toggle-btn');
-    sideBar = document.getElementById('side-bar');
+    contentArea = document.querySelector(".content-area");
+    jsonButton = document.getElementById("json-formatter-button");
+    urlButton = document.getElementById("url-encoder-decoder-button");
+    unixButton = document.getElementById("unix-timestamp-converter-button");
+    toggleBtn = document.getElementById("toggle-btn");
+    sideBar = document.getElementById("side-bar");
 
     initializeApp();
   });
 
-  test('should load JSON Formatter component when JSON button is clicked', () => {
+  test("should load JSON Formatter component when JSON button is clicked", () => {
     jsonButton.click();
     expect(contentArea.innerHTML).toContain(
-      '<json-formatter-tool></json-formatter-tool>'
+      "<json-formatter-tool></json-formatter-tool>",
     );
   });
 
-  test('should load URL Encoder/Decoder component when URL button is clicked', () => {
+  test("should load URL Encoder/Decoder component when URL button is clicked", () => {
     urlButton.click();
     expect(contentArea.innerHTML).toContain(
-      '<url-encoder-decoder-tool></url-encoder-decoder-tool>'
+      "<url-encoder-decoder-tool></url-encoder-decoder-tool>",
     );
   });
 
-  test('should load Unix Timestamp Converter component when Unix button is clicked', () => {
+  test("should load Unix Timestamp Converter component when Unix button is clicked", () => {
     unixButton.click();
     expect(contentArea.innerHTML).toContain(
-      '<unix-timestamp-converter-tool></unix-timestamp-converter-tool>'
+      "<unix-timestamp-converter-tool></unix-timestamp-converter-tool>",
     );
   });
 
-  test('should toggle sidebar visibility when toggle button is clicked', () => {
+  test("should toggle sidebar visibility when toggle button is clicked", () => {
     toggleBtn.click();
-    expect(sideBar.classList.contains('active')).toBe(true);
+    expect(sideBar.classList.contains("active")).toBe(true);
     toggleBtn.click();
-    expect(sideBar.classList.contains('active')).toBe(false);
+    expect(sideBar.classList.contains("active")).toBe(false);
   });
 });
