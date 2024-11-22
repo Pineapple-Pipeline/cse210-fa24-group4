@@ -1,0 +1,160 @@
+:root {
+  --font-size-desktop: 1em;
+  --font-size-mobile: 0.75em;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Dashboard Container */
+.dashboard {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: brown;
+  /* border-radius: 10px; */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* Sidebar */
+.sidebar {
+  position: relative;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  background-color: #061524;
+  padding: 20px;
+  color: white;
+  border-right: 1mm solid black; /* Adjust the color as needed */
+  transition: all 0.3s ease;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn span {
+  width: 30px;
+  height: 5px;
+  border-radius: 5px;
+  background: #fff;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Sidebar collapsed state */
+.sidebar.active {
+  width: 0;
+  padding: 0;
+}
+.sidebar.active .sidebar-content {
+  display: none;
+}
+
+.sidebar.active .toggle-btn {
+  left: 20px;
+}
+
+.sidebar-title {
+  font-size: calc(var(--font-size-desktop) * 1.2);
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tool-button {
+  flex: 1;
+  max-height: 50px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgb(6, 33, 42);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: calc(var(--font-size-desktop) * 1);
+  transition: background-color 0.3s ease;
+}
+
+.tool-button:hover {
+  background-color: #0a5568;
+}
+
+/* Content Area */
+.content-area {
+  flex-grow: 1; /* Take up the remaining space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #103356;
+  padding-inline: 50px;
+  transition: margin-left 0.3s ease;
+}
+
+.content-area > * {
+  width: 100%;
+  height: 100%;
+  flex: 1; /* Ensure child components stretch to fill the area */
+  display: flex; /* Allow child components to use flex layouts if needed */
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .tool-button {
+    font-size: calc(var(--font-size-mobile) * 1); /* Mobile font size */
+  }
+
+  .sidebar-title {
+    font-size: calc(var(--font-size-mobile) * 1.2); /* Mobile font size */
+  }
+  /* Sidebar collapsed state */
+  .sidebar.active {
+    width: 100%;
+    height: 0;
+  }
+
+  .toggle-btn {
+    right: 10px;
+  }
+
+  .dashboard {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: auto;
+    border-right: none;
+    border-bottom: 1mm solid black;
+  }
+
+  .tool-button {
+    margin: 5px 0;
+  }
+  .toggle-btn span {
+    width: 20px;
+    height: 3px;
+    margin-top: 3px;
+  }
+}
