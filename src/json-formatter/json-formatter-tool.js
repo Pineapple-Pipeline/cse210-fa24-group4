@@ -42,19 +42,19 @@ class JsonFormatterTool extends HTMLElement {
       `;
 
     // Store references to elements
-    this.toolPanel = this.querySelector('.tool-panel');
-    this.formatBtn = this.querySelector('.format-btn');
-    this.inputArea = this.querySelector('.input-area');
-    this.outputArea = this.querySelector('.output-area');
-    this.copyBtn = this.querySelector('.copy-btn');
-    this.downloadBtn = this.querySelector('.download-btn');
-    this.uploadBtn = this.querySelector('.upload-btn');
+    this.toolPanel = this.querySelector(".tool-panel");
+    this.formatBtn = this.querySelector(".format-btn");
+    this.inputArea = this.querySelector(".input-area");
+    this.outputArea = this.querySelector(".output-area");
+    this.copyBtn = this.querySelector(".copy-btn");
+    this.downloadBtn = this.querySelector(".download-btn");
+    this.uploadBtn = this.querySelector(".upload-btn");
 
     // Bind event listeners
-    this.formatBtn.addEventListener('click', this.formatJson);
-    this.copyBtn.addEventListener('click', this.copyToClipboard.bind(this));
-    this.downloadBtn.addEventListener('click', this.downloadJson.bind(this));
-    this.uploadBtn.addEventListener('change', this.handleFileUpload.bind(this));
+    this.formatBtn.addEventListener("click", this.formatJson);
+    this.copyBtn.addEventListener("click", this.copyToClipboard.bind(this));
+    this.downloadBtn.addEventListener("click", this.downloadJson.bind(this));
+    this.uploadBtn.addEventListener("change", this.handleFileUpload.bind(this));
   }
 
   /**
@@ -78,26 +78,30 @@ class JsonFormatterTool extends HTMLElement {
    */
   disconnectedCallback() {
     // Clean up event listeners when the element is removed from the DOM
-    if (this.formatBtn) this.formatBtn.removeEventListener('click', this.formatJson);
-    if (this.copyBtn) this.copyBtn.removeEventListener('click', this.copyToClipboard);
-    if (this.downloadBtn) this.downloadBtn.removeEventListener('click', this.downloadJson);
-    if (this.uploadBtn) this.uploadBtn.removeEventListener('change', this.handleFileUpload);
+    if (this.formatBtn)
+      this.formatBtn.removeEventListener("click", this.formatJson);
+    if (this.copyBtn)
+      this.copyBtn.removeEventListener("click", this.copyToClipboard);
+    if (this.downloadBtn)
+      this.downloadBtn.removeEventListener("click", this.downloadJson);
+    if (this.uploadBtn)
+      this.uploadBtn.removeEventListener("change", this.handleFileUpload);
   }
   copyToClipboard() {
     const output = this.outputArea.value;
     if (output) {
       navigator.clipboard
         .writeText(output)
-        .then(() => alert('Formatted JSON copied to clipboard!'))
-        .catch(() => alert('Failed to copy JSON to clipboard.'));
+        .then(() => alert("Formatted JSON copied to clipboard!"))
+        .catch(() => alert("Failed to copy JSON to clipboard."));
     } else {
-      alert('Nothing to copy!');
+      alert("Nothing to copy!");
     }
   }
 
   handleFileUpload(event) {
     const file = event.target.files[0];
-    if (file && file.type === 'application/json') {
+    if (file && file.type === "application/json") {
       const reader = new FileReader();
       reader.onload = (e) => {
         try {
@@ -109,25 +113,25 @@ class JsonFormatterTool extends HTMLElement {
       };
       reader.readAsText(file);
     } else {
-      alert('Please upload a valid JSON file.');
+      alert("Please upload a valid JSON file.");
     }
   }
 
   downloadJson() {
     const formattedJson = this.outputArea.value;
     if (formattedJson) {
-      const blob = new Blob([formattedJson], { type: 'application/json' });
+      const blob = new Blob([formattedJson], { type: "application/json" });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
-      a.download = 'formatted.json';
+      a.download = "formatted.json";
       a.click();
       URL.revokeObjectURL(url);
     } else {
-      alert('There is no formatted JSON to download.');
+      alert("There is no formatted JSON to download.");
     }
   }
 }
 
 // Register the custom element
-customElements.define('json-formatter-tool', JsonFormatterTool);
+customElements.define("json-formatter-tool", JsonFormatterTool);

@@ -2,7 +2,7 @@
   "scripts": {
     "start": "live-server --port=3000 --open=src/index.html",
     "test": "jest --coverage",
-    "lint": "eslint src/** --config config/eslint.config.mjs"    
+    "lint": "eslint src/** --config config/eslint.config.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
