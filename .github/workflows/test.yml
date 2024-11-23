@@ -34,8 +34,8 @@ jobs:
           mv coverage/lcov-report/* coverage-html/
           cd coverage-html
           git init
+          git checkout -b gh-pages
           git add .
           git commit -m "Deploy coverage report for branch ${{ github.ref_name }}"
-          git branch -M gh-pages
           git remote add origin https://github.com/${{ github.repository }}
-          git push -f origin gh-pages
+          git push -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
