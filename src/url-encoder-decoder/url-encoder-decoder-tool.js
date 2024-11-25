@@ -55,7 +55,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
         "(\\:\\d+)?(\\/[-a-zA-Z\\d%_.~+]*)*" + // Port and path
         "(\\?[;&a-zA-Z\\d%_.~+=-]*)?" + // Query string
         "(\\#[-a-zA-Z\\d_]*)?$", // Fragment locator
-      "i"
+      "i",
     );
     return !!urlPattern.test(url); // Test if the input matches the pattern
   }
