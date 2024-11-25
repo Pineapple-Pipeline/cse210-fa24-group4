@@ -20,7 +20,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
             <hr />
             <section class="tool-content">
               <div class="tool-row">
-                <textarea class="input-area" placeholder="Enter text here"></textarea>
+                <textarea class="input-area" placeholder="Paste your URL here"></textarea>
                 <textarea class="output-area" placeholder=" " readonly></textarea>
               </div>
               <div class="tool-buttons">
@@ -55,7 +55,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
         "(\\:\\d+)?(\\/[-a-zA-Z\\d%_.~+]*)*" + // Port and path
         "(\\?[;&a-zA-Z\\d%_.~+=-]*)?" + // Query string
         "(\\#[-a-zA-Z\\d_]*)?$", // Fragment locator
-      "i"
+      "i",
     );
     return !!urlPattern.test(url); // Test if the input matches the pattern
   }
