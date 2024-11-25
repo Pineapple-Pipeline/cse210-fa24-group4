@@ -6,11 +6,16 @@ on:
       - main
   pull_request:
     branches:
+      - playground
       - main
 
 jobs:
   deploy-coverage-report:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write  
+      pages: write 
 
     steps:
       # Step 1: Checkout the repository
