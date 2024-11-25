@@ -26,16 +26,10 @@ jobs:
       - name: Run tests with coverage
         run: npm test -- --coverage
 
-      - name: Deploy coverage to gh-pages
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          mkdir coverage-html
-          mv coverage/lcov-report/* coverage-html/
-          cd coverage-html
-          git init
-          git checkout -b gh-pages
-          git add .
-          git commit -m "Deploy coverage report for branch ${{ github.ref_name }}"
-          git remote add origin https://github.com/${{ github.repository }}
-          git push -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }} # Required for private repositories
+          flags: unittests
+          name: Node.js Coverage
