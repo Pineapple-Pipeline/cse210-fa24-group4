@@ -1,9 +1,11 @@
+/* Tool panel with padding around its content */
 .tool-panel {
   display: flex;
   flex: 1;
   width: 100%;
   height: 90%;
   margin: 20px auto;
+  padding: 20px;
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -25,37 +27,44 @@
   border-bottom: 1px solid #ddd;
 }
 
-/* Tool content styling */
-.tool-content {
-  flex: 1;
+/* Input and output text areas side by side */
+.tool-row {
   display: flex;
-  flex-direction: column;
-  padding: 20px;
-  background-color: #f9f9f9;
-  color: #333333;
-  gap: 20px;
+  gap: 40px;
+  flex: 1;
+  margin-top: 20px;
 }
 
-/* Input and output text areas */
-/* .input-area,
+.input-area,
 .output-area {
   flex: 1;
-  padding: 10px;
+  height: 400px;
+  padding: 15px;
   border: 1px solid #dddddd;
   border-radius: 4px;
   font-family: monospace;
   font-size: calc(var(--font-size-desktop) * 1);
-  resize: vertical;
-} */
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  resize: none; /* Disable resizing */
+}
 
 /* Read-only style for output area */
-/* .output-area[readonly] {
+.output-area[readonly] {
   background-color: #e9e9e9;
-} */
+}
 
-/* Format button styling */
-/* .format-btn {
-  align-self: center;
+/* Button container styling */
+.tool-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+/* Encode, Decode, and Clear button styling */
+.tool-buttons button {
   padding: 10px 20px;
   background-color: #061524;
   color: #ffffff;
@@ -63,20 +72,49 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: calc(var(--font-size-desktop) * 1);
+  font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
-} */
+  text-transform: uppercase;
+}
 
-/* .format-btn:hover {
+/* Button hover and active effects */
+.tool-buttons button:hover {
   background-color: #34495e;
   transform: scale(1.05);
-} */
+}
+
+.tool-buttons button:active {
+  background-color: #22313f;
+  transform: scale(0.95);
+}
 
 @media (max-width: 600px) {
+  .tool-row {
+    gap: 15px; /* Compact spacing for mobile devices */
+  }
   .tool-panel {
-    font-size: var(--font-size-mobile); /* Mobile font size */
+    font-size: var(--font-size-mobile);
+    /* Mobile font size */
   }
 
   .tool-header {
-    font-size: var(--font-size-mobile); /* Mobile font size */
+    font-size: var(--font-size-mobile);
+    /* Mobile font size */
+  }
+
+  .input-area,
+  .output-area {
+    height: 300px; /* Smaller height for compact devices */
+    font-size: calc(0.9em + 0.3vw); /* Smaller font size */
+  }
+
+  .tool-buttons {
+    gap: 10px; /* Adjust spacing for buttons */
+    margin-top: 20px; /* Less top margin */
+  }
+
+  .tool-buttons button {
+    font-size: calc(0.9em + 0.4vw); /* Scale button size for mobile */
+    padding: 8px 15px; /* Compact padding */
   }
 }
