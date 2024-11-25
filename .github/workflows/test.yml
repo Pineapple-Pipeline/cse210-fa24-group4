@@ -45,4 +45,4 @@ jobs:
           git add .
           git commit -m "Deploy coverage report for branch ${{ github.ref_name }}"
           git remote add origin https://github.com/${{ github.repository }}
-          git push -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+          git push -f "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
