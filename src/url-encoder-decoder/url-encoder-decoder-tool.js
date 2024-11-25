@@ -20,7 +20,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
             <hr />
             <section class="tool-content">
               <div class="tool-row">
-                <textarea class="input-area" placeholder="Enter text here"></textarea>
+                <textarea class="input-area" placeholder="Paste your URL here"></textarea>
                 <textarea class="output-area" placeholder=" " readonly></textarea>
               </div>
               <div class="tool-buttons">
