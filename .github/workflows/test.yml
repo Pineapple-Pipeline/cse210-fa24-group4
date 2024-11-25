@@ -1,4 +1,4 @@
-name: Deploy Coverage Report
+name: Coverage Report
 
 on:
   push:
@@ -10,39 +10,26 @@ on:
       - main
 
 jobs:
-  deploy-coverage:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4.1.0
-        with:
-          node-version: '18'
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run tests and generate coverage report
       - name: Run tests with coverage
         run: npm test -- --coverage
 
-      # Step 5: Deploy coverage to GitHub Pages
-      - name: Deploy coverage to gh-pages
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          mkdir coverage-html
-          mv coverage/lcov-report/* coverage-html/
-          cd coverage-html
-          git init
-          git checkout -b gh-pages
-          git add .
-          git commit -m "Deploy coverage report for branch ${{ github.ref_name }}"
-          git remote add origin https://github.com/${{ github.repository }}
-          git push -f "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }
+          flags: unittests
+          name: Node.js Coverage
