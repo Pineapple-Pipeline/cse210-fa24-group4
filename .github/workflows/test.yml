@@ -30,6 +30,6 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           files: ./coverage/lcov.info
-          token: ${{ secrets.CODECOV_TOKEN }
+          token: ${{ secrets.CODECOV_TOKEN }}
           flags: unittests
           name: Node.js Coverage
