@@ -46,48 +46,27 @@ class UrlEncoderDecoderTool extends HTMLElement {
     this.clearBtn.addEventListener("click", () => this.clearAreas());
   }
 
-  // Method to validate a URL
-  isValidUrl(url) {
-    const urlPattern = new RegExp(
-      "^(https?:\\/\\/)?" + // Validate the protocol (http or https, optional)
-        "((([a-zA-Z\\d]([a-zA-Z\\d-]*[a-zA-Z\\d])*)\\.)+[a-zA-Z]{2,}|" + // Domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR IPv4 address
-        "(\\:\\d+)?(\\/[-a-zA-Z\\d%_.~+]*)*" + // Port and path
-        "(\\?[;&a-zA-Z\\d%_.~+=-]*)?" + // Query string
-        "(\\#[-a-zA-Z\\d_]*)?$", // Fragment locator
-      "i",
-    );
-    return !!urlPattern.test(url); // Test if the input matches the pattern
-  }
-
   // Method to encode URL
   encodeUrl() {
-    const inputText = this.inputArea.value;
-    if (inputText.trim() === "") {
+    const inputText = this.inputArea.value.trim(); // Trim whitespace from the input
+    if (inputText === "") {
       this.outputArea.value = "Please enter text to encode.";
       return;
     }
-
-    if (!this.isValidUrl(inputText)) {
-      this.outputArea.value =
-        "Invalid URL. Please enter a proper URL to encode.";
-      return;
-    }
-
-    this.outputArea.value = encodeURIComponent(inputText);
+    this.outputArea.value = encodeURIComponent(inputText); // Encode the input
   }
 
   // Method to decode URL
   decodeUrl() {
-    const inputText = this.inputArea.value;
-    if (inputText.trim() === "") {
+    const inputText = this.inputArea.value.trim(); // Trim whitespace from the input
+    if (inputText === "") {
       this.outputArea.value = "Please enter text to decode.";
       return;
     }
     try {
-      this.outputArea.value = decodeURIComponent(inputText);
+      this.outputArea.value = decodeURIComponent(inputText); // Decode the input
     } catch (error) {
-      this.outputArea.value = `Error: ${error.message}`;
+      this.outputArea.value = `Error: ${error.message}`; // Handle decoding errors
     }
   }
 
