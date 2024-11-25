@@ -50,3 +50,7 @@ jobs:
           git commit -m "Deploy coverage report for branch ${{ github.ref_name }}"
           git remote add origin https://github.com/${{ github.repository }}
           git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
+    
+      - name: Output Coverage URL
+        run: |
+          echo "Coverage report is available at: https://<username>.github.io/<repository-name>/coverage-html/index.html"
