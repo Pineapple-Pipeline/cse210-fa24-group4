@@ -1,56 +1,33 @@
-name: Deploy Coverage Report to GitHub Pages
+name: Test and Upload Coverage Report
 
 on:
   push:
     branches:
       - main
+      - playground
   pull_request:
     branches:
-      - playground
       - main
 
 jobs:
-  deploy-coverage-report:
+  run-tests:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write  
-      pages: write 
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup Node.js
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run tests with coverage
       - name: Run tests with coverage
         run: npm test -- --coverage
 
-      # Step 5: Deploy coverage to GitHub Pages
-      - name: Deploy coverage to GitHub Pages
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          mkdir coverage-html
-          mv coverage/lcov-report/* coverage-html/
-          cd coverage-html
-          git init
-          git checkout -b gh-pages
-          git add .
-          git commit -m "Deploy coverage report for branch ${{ github.ref_name }}"
-          git remote add origin https://github.com/${{ github.repository }}
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
-    
-      - name: Output Coverage URL
-        run: |
-          echo "Coverage report is available at: https://<username>.github.io/<repository-name>/coverage-html/index.html"
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/lcov-report/
