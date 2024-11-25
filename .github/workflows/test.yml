@@ -1,16 +1,16 @@
-name: Test and Upload Coverage Report
+name: Coverage Report
 
 on:
   push:
     branches:
-      - main
       - playground
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  run-tests:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,8 +26,10 @@ jobs:
       - name: Run tests with coverage
         run: npm test -- --coverage
 
-      - name: Upload coverage report as artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
         with:
-          name: coverage-report
-          path: coverage/lcov-report/
+          files: ./coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
+          name: Node.js Coverage
