@@ -62,5 +62,5 @@ class UnixTimestampConverterTool extends HTMLElement {
 // Register the custom element
 customElements.define(
   "unix-timestamp-converter-tool",
-  UnixTimestampConverterTool
+  UnixTimestampConverterTool,
 );
