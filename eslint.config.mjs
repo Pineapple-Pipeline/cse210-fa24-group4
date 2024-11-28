@@ -13,7 +13,7 @@ export default [
   },
   pluginJs.configs.recommended,
   {
-    files: ['**/__tests__/**/*.js', '**/*.test.js'], // Apply to test files
+    files: ['**/*.test.js'], // Apply to test files
     plugins: { jest: jestPlugin }, // Add Jest plugin
     languageOptions: { globals: globals.jest }, // Jest globals
     rules: {

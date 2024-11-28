@@ -19,6 +19,9 @@
     "prettier": "^3.3.3"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "/e2e-tests/"
+    ]
   }
 }
