@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-// const { process } = require('process');
+const { process } = require('process');
 
 test.describe('JSON Formatter tool', () => {
   const testCases = [
@@ -60,10 +60,9 @@ test.describe('JSON Formatter tool', () => {
   for (const testCase of testCases) {
     test(`should format ${testCase.name} correctly`, async ({ page }) => {
       // Navigate to the page
-      //const baseUrl = process?.env?.TEST_BASE_URL || 'http://127.0.0.1:3000/src/index.html';
-      await page.goto(
-        'https://cse210-fa24-group4.github.io/cse210-fa24-group4/'
-      );
+      const baseUrl =
+        process?.env?.TEST_BASE_URL || 'http://127.0.0.1:3000/src/index.html';
+      await page.goto(baseUrl);
 
       // Wait for the JSON Formatter tool to be loaded
       await page.waitForSelector('#json-formatter-button');
