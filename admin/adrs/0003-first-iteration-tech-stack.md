@@ -6,9 +6,9 @@ For the first iteration, we need a core tech stack to consistently work with.
 
 ## Considered Options
 
-* Core Techs
+- Core Techs
   - The most basic technologies. HTML, CSS, JS
-* Additional, specialized techs
+- Additional, specialized techs
   - Like react, npm, angular, etc.
 
 ## Decision Outcome

@@ -9,6 +9,9 @@ class JsonFormatterTool extends HTMLElement {
     this.formatBtn = null;
     this.inputArea = null;
     this.outputArea = null;
+    this.copyBtn = null;
+    this.downloadBtn = null;
+    this.uploadBtn = null;
   }
 
   /**
@@ -19,18 +22,23 @@ class JsonFormatterTool extends HTMLElement {
   connectedCallback() {
     // Set up the HTML structure when the element is added to the DOM
     this.innerHTML = `
-        <link rel="stylesheet" href="json-formatter/json-formatter-tool.css"> 
-        <section class="tool-panel">
-          <header class="tool-header">
-            <h3>JSON Formatter</h3>
-          </header>
-          <hr />
-          <section class="tool-content">
-            <textarea class="input-area" placeholder="Paste your JSON here"></textarea>
-            <button class="format-btn">Format</button>
-            <textarea class="output-area" readonly></textarea>
-          </section>
+      <link rel="stylesheet" href="json-formatter/json-formatter-tool.css"> 
+      <section class="tool-panel">
+        <header class="tool-header">
+          <h3>JSON Formatter</h3>
+        </header>
+        <hr />
+        <section class="tool-content">
+          <input type="file" class="upload-btn" accept=".json" aria-label="Upload JSON File" />
+          <textarea class="input-area" placeholder="Paste your JSON here"></textarea>
+          <button class="format-btn">Format</button>
+          <textarea class="output-area" readonly></textarea>
+          <div align="center" class="button-group">
+            <button class="copy-btn">Copy to Clipboard</button>
+            <button class="download-btn">Download Formatted JSON</button>
+          </div> 
         </section>
+      </section>
       `;
 
     // Store references to elements
@@ -38,9 +46,15 @@ class JsonFormatterTool extends HTMLElement {
     this.formatBtn = this.querySelector(".format-btn");
     this.inputArea = this.querySelector(".input-area");
     this.outputArea = this.querySelector(".output-area");
+    this.copyBtn = this.querySelector(".copy-btn");
+    this.downloadBtn = this.querySelector(".download-btn");
+    this.uploadBtn = this.querySelector(".upload-btn");
 
     // Bind event listeners
-    this.formatBtn.addEventListener("click", () => this.formatJson());
+    this.formatBtn.addEventListener("click", this.formatJson);
+    this.copyBtn.addEventListener("click", this.copyToClipboard.bind(this));
+    this.downloadBtn.addEventListener("click", this.downloadJson.bind(this));
+    this.uploadBtn.addEventListener("change", this.handleFileUpload.bind(this));
   }
 
   /**
@@ -66,6 +80,56 @@ class JsonFormatterTool extends HTMLElement {
     // Clean up event listeners when the element is removed from the DOM
     if (this.formatBtn)
       this.formatBtn.removeEventListener("click", this.formatJson);
+    if (this.copyBtn)
+      this.copyBtn.removeEventListener("click", this.copyToClipboard);
+    if (this.downloadBtn)
+      this.downloadBtn.removeEventListener("click", this.downloadJson);
+    if (this.uploadBtn)
+      this.uploadBtn.removeEventListener("change", this.handleFileUpload);
+  }
+  copyToClipboard() {
+    const output = this.outputArea.value;
+    if (output) {
+      navigator.clipboard
+        .writeText(output)
+        .then(() => alert("Formatted JSON copied to clipboard!"))
+        .catch(() => alert("Failed to copy JSON to clipboard."));
+    } else {
+      alert("Nothing to copy!");
+    }
+  }
+
+  handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (file && file.type === "application/json") {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const jsonContent = JSON.parse(e.target.result);
+          this.inputArea.value = JSON.stringify(jsonContent, null, 2);
+        } catch (error) {
+          this.inputArea.value = `Error reading file: ${error.message}`;
+        }
+      };
+      reader.readAsText(file);
+    } else {
+      alert("Please upload a valid JSON file.");
+    }
+  }
+
+  downloadJson() {
+    const formattedJson = this.outputArea.value;
+    if (formattedJson) {
+      const blob = new Blob([formattedJson], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "formatted.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    } else {
+      alert("There is no formatted JSON to download.");
+    }
   }
 }
 

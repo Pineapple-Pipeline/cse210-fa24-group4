@@ -47,7 +47,7 @@
   border-radius: 4px;
   font-family: monospace;
   font-size: calc(var(--font-size-desktop) * 1);
-  resize: vertical;
+  resize: none;
 }
 
 /* Read-only style for output area */
@@ -75,12 +75,74 @@
   transform: scale(1.05);
 }
 
+.upload-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #061524;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: calc(var(--font-size-desktop) * 1);
+  transition: background 0.3s ease;
+  min-width: 100px;
+  text-align: center;
+  max-width: 250px;
+}
+
+.upload-btn:hover {
+  background-color: #34495e;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  /* Add space between buttons */
+}
+
+.copy-btn,
+.download-btn {
+  align-self: center;
+  padding: 10px 30px;
+  background-color: #061524;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: calc(var(--font-size-desktop) * 1);
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.copy-btn:hover,
+.download-btn:hover {
+  background-color: #34495e;
+  transform: scale(1.05);
+}
+
+.copy-btn:active,
+.download-btn:active {
+  transform: scale(0.98);
+}
+
 @media (max-width: 600px) {
   .tool-panel {
-    font-size: var(--font-size-mobile); /* Mobile font size */
+    font-size: var(--font-size-mobile);
+    /* Mobile font size */
   }
 
   .tool-header {
-    font-size: var(--font-size-mobile); /* Mobile font size */
+    font-size: var(--font-size-mobile);
+    /* Mobile font size */
+  }
+
+  .button-group {
+    flex-direction: column;
+    /* Stack buttons vertically on smaller screens */
+    gap: 10px;
+    /* Adjust spacing for mobile view */
   }
 }
