@@ -5,6 +5,7 @@ on:
     branches:
       - playground
       - main
+      - E2E-testing
 
 jobs:
   build:

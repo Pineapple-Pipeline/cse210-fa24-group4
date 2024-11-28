@@ -34,13 +34,13 @@ class JsonFormatterTool extends HTMLElement {
       `;
 
     // Store references to elements
-    this.toolPanel = this.querySelector(".tool-panel");
-    this.formatBtn = this.querySelector(".format-btn");
-    this.inputArea = this.querySelector(".input-area");
-    this.outputArea = this.querySelector(".output-area");
+    this.toolPanel = this.querySelector('.tool-panel');
+    this.formatBtn = this.querySelector('.format-btn');
+    this.inputArea = this.querySelector('.input-area');
+    this.outputArea = this.querySelector('.output-area');
 
     // Bind event listeners
-    this.formatBtn.addEventListener("click", () => this.formatJson());
+    this.formatBtn.addEventListener('click', () => this.formatJson());
   }
 
   /**
@@ -65,9 +65,9 @@ class JsonFormatterTool extends HTMLElement {
   disconnectedCallback() {
     // Clean up event listeners when the element is removed from the DOM
     if (this.formatBtn)
-      this.formatBtn.removeEventListener("click", this.formatJson);
+      this.formatBtn.removeEventListener('click', this.formatJson);
   }
 }
 
 // Register the custom element
-customElements.define("json-formatter-tool", JsonFormatterTool);
+customElements.define('json-formatter-tool', JsonFormatterTool);
