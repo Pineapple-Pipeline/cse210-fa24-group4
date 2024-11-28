@@ -24,6 +24,9 @@ jobs:
       - name: Set TEST_BASE_URL
         run: echo "TEST_BASE_URL=https://cse210-fa24-group4.github.io/cse210-fa24-group4/" >> $GITHUB_ENV
 
+      - name: Verify TEST_BASE_URL
+        run: echo "TEST_BASE_URL is $TEST_BASE_URL"
+
       - name: Run Playwright tests
         run: npx playwright test
 
