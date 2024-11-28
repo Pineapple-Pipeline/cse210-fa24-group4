@@ -60,10 +60,7 @@ test.describe('JSON Formatter tool', () => {
     test(`should format ${testCase.name} correctly`, async ({ page }) => {
       // Navigate to the page
       //await page.goto('http://127.0.0.1:3000/src/index.html');
-      //console.log('baseUrl:', process.env.TEST_BASE_URL);
-      await page.goto(
-        'https://cse210-fa24-group4.github.io/cse210-fa24-group4/'
-      );
+      await page.goto('./');
 
       // Wait for the JSON Formatter tool to be loaded
       await page.waitForSelector('#json-formatter-button');
