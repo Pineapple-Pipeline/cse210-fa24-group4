@@ -27,11 +27,11 @@ jobs:
       - name: Verify TEST_BASE_URL
         run: echo "TEST_BASE_URL is $TEST_BASE_URL"
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      # - name: Run Playwright tests
+      #   run: npx playwright test
 
       - name: Run Playwright tests and generate JSON report
-      run: PLAYWRIGHT_JSON_OUTPUT_NAME=results.json npx playwright test --reporter=json
+        run: PLAYWRIGHT_JSON_OUTPUT_NAME=results.json npx playwright test --reporter=json
 
       - name: Upload Playwright report summary
         uses: daun/playwright-report-summary@v3
