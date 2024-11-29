@@ -6,10 +6,10 @@ For the first iteration, we need at least 1 tool to provide.
 
 ## Considered Options
 
-* Regex Tester
-* JSON formatter
-* JSON validator
-* URL encoder/decoder
+- Regex Tester
+- JSON formatter
+- JSON validator
+- URL encoder/decoder
 
 ## Decision Outcome
 

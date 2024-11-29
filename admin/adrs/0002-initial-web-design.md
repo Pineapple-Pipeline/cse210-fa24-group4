@@ -6,11 +6,11 @@ For the project, we need a core idea of the web design before we can create our 
 
 ## Considered Options
 
-* Slider + Toolbox
+- Slider + Toolbox
   - A slider on the left with a list of all of the tools, and a toolbox that takes up the right where the tools pop up.
-* Slider + "Sandbox" toolbox
+- Slider + "Sandbox" toolbox
   - The same slider design, but a toolbox where each tool is a window that can be moved, resized, etc.
-* Ugly
+- Ugly
   - A crude and simple design, one that we can change later and evolve based on our needs.
 
 ## Decision Outcome

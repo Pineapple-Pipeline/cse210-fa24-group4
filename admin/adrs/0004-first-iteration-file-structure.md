@@ -6,11 +6,11 @@ For the first iteration, we wanted to determine the core file structure so that 
 
 ## Considered Options
 
-* "Angular" Structure
+- "Angular" Structure
   - Storing the components and tools in individual folders with their own specialized html, css, js files.
-* "React" Structure
+- "React" Structure
   - Storing most of the work in a core few files, with the individual components only having their own js/css files for individual functionality/appearance.
-* Simple Structure
+- Simple Structure
   - A barebones folder structure, with everything in a few html, css, and js files in a src folder.
 
 ## Decision Outcome

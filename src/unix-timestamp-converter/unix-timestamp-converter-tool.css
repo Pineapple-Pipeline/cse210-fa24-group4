@@ -43,7 +43,7 @@
   border-radius: 4px;
   font-family: monospace;
   font-size: calc(var(--font-size-desktop) * 1);
-  resize: vertical;
+  resize: none;
 }
 
 /* Read-only style for output area */

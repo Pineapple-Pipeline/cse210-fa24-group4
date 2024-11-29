@@ -16,6 +16,7 @@
 - Aim at starting to code this week
 
 ### Agendas/Planning for sprint 1
+
 1. Add sprint meeting notes to repo
 2. Discuss sprint notes
 3. Decide on file/folder structure

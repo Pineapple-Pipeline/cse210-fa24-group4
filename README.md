@@ -57,6 +57,23 @@ npm run format
 
 This command will format the codebase using the defined formatting rules. -->
 
+## Running End-to-End Tests
+
+To run the end-to-end tests, use the following commands:
+
+1. For a headless run:
+
+   ```sh
+   npx playwright test
+
+   ```
+
+2. For a user-rich version of the run:
+
+   ```sh
+      npx playwright test --ui
+   ```
+
 ## Contributing
 
 1. Fork the repository.
@@ -64,6 +81,9 @@ This command will format the codebase using the defined formatting rules. -->
    ```sh
    git checkout -b feature-branch
    ```
+
+````
+
 3. Make your changes and commit them:
    ```sh
    git commit -m "Description of changes"
@@ -77,3 +97,4 @@ This command will format the codebase using the defined formatting rules. -->
 ## License
 
 This project is licensed under the MIT License.
+````

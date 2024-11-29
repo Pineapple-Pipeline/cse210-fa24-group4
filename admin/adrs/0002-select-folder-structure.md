@@ -6,12 +6,12 @@ Our group needed to decide on what file structure to use to start working on our
 
 ## Considered Options
 
-* IFrame Design
+- IFrame Design
   - Creating an Iframe for every component of our toolkit
   - Similar to an Angular JS folder structure
   - Very Modular
-  - Easy to compartmentalize 
-* React-like Design
+  - Easy to compartmentalize
+- React-like Design
   - No separate HTML files, included in JS
   - Cohesive and fewer files to maintain
   - Less Setup
