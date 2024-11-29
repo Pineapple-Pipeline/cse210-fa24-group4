@@ -3,7 +3,6 @@ const { defineConfig, devices } = require('@playwright/test');
 const process = require('process');
 require('dotenv').config();
 
-//console.log('baseUrl:', process.env.TEST_BASE_URL);
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
