@@ -53,7 +53,16 @@ class UrlEncoderDecoderTool extends HTMLElement {
       this.outputArea.value = "Please enter text to encode.";
       return;
     }
-    this.outputArea.value = encodeURIComponent(inputText); // Encode the input
+    const expression =
+      /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+    const fullUrlRegex = new RegExp(expression);
+
+    if (inputText.match(fullUrlRegex)) {
+      // Mathes Regex for full URI
+      this.outputArea.value = encodeURI(inputText); // Encode the input
+    } else {
+      this.outputArea.value = encodeURIComponent(inputText); // Encode the input as a component
+    }
   }
 
   // Method to decode URL
@@ -63,8 +72,18 @@ class UrlEncoderDecoderTool extends HTMLElement {
       this.outputArea.value = "Please enter text to decode.";
       return;
     }
+    const expression =
+      /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+    const fullUrlRegex = new RegExp(expression);
+
     try {
-      this.outputArea.value = decodeURIComponent(inputText); // Decode the input
+      const decodedText = decodeURI(inputText);
+      if (inputText.match(fullUrlRegex)) {
+        // Check if it is a component or full URL
+        this.outputArea.value = decodedText; // Print full decoded input
+      } else {
+        this.outputArea.value = decodeURIComponent(inputText); // Decode the input as a component
+      }
     } catch (error) {
       this.outputArea.value = `Error: ${error.message}`; // Handle decoding errors
     }
