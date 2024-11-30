@@ -49,7 +49,7 @@ test("should indicate error on invalid JSON",()=>{
     inputArea.value = '{"name": "Dylan Lukes", "age": 30';
     formatBtn.click();
 
-    // Check that the output area contains formatted JSON
+    // Check that the output area shows the error
     expect(outputArea.value).toMatch(/Error/);
 })
 

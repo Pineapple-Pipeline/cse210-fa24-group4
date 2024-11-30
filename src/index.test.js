@@ -40,27 +40,28 @@ describe("initializeApp", () => {
     unixButton = document.getElementById("unix-timestamp-converter-button");
     toggleBtn = document.getElementById("toggle-btn");
     sideBar = document.getElementById("side-bar");
+
     initializeApp();
   });
 
   test("should load JSON Formatter component when JSON button is clicked", () => {
     jsonButton.click();
     expect(contentArea.innerHTML).toContain(
-      "<json-formatter-tool></json-formatter-tool>"
+      "<json-formatter-tool></json-formatter-tool>",
     );
   });
 
   test("should load URL Encoder/Decoder component when URL button is clicked", () => {
     urlButton.click();
     expect(contentArea.innerHTML).toContain(
-      "<url-encoder-decoder-tool></url-encoder-decoder-tool>"
+      "<url-encoder-decoder-tool></url-encoder-decoder-tool>",
     );
   });
 
   test("should load Unix Timestamp Converter component when Unix button is clicked", () => {
     unixButton.click();
     expect(contentArea.innerHTML).toContain(
-      "<unix-timestamp-converter-tool></unix-timestamp-converter-tool>"
+      "<unix-timestamp-converter-tool></unix-timestamp-converter-tool>",
     );
   });
 
