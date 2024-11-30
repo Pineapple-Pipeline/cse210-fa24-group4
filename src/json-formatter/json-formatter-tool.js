@@ -51,8 +51,10 @@ class JsonFormatterTool extends HTMLElement {
   formatJson = () => {
     try {
       const input = this.inputArea.value;
-      const parsed = JSON.parse(input);
-      this.outputArea.value = JSON.stringify(parsed, null, 2);
+      if (input!=''){
+        const parsed = JSON.parse(input);
+        this.outputArea.value = JSON.stringify(parsed, null, 2);
+      }
     } catch (error) {
       this.outputArea.value = `Error: ${error.message}`;
     }
