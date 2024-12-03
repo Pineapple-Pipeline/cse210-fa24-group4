@@ -6,6 +6,7 @@ on:
       - playground
       - main
       - E2E-testing
+      - frontend
   pull_request:
     branches:
       - main

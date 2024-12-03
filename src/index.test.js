@@ -1,12 +1,103 @@
-const initializeApp = require("./index");
+const {
+  initializeApp,
+  initializeFeatureButtons,
+  initializeSidebarToggleButton,
+} = require("./index");
+
+describe("initializeSidebarToggleButton", () => {
+  let toggleBtn;
+  let sideBar;
+
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <div class="dashboard">
+        <div id="side-bar" class="sidebar">
+          <div class="sidebar-content">
+            <div class="sidebar-title">Dev Toolkit</div>
+          </div>
+        </div>
+        <div class="toggle-btn" id="toggle-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="content-area"></div>
+      </div>
+    `;
+
+    toggleBtn = document.getElementById("toggle-btn");
+    sideBar = document.getElementById("side-bar");
+
+    initializeSidebarToggleButton();
+  });
+
+  test("should toggle sidebar visibility when toggle button is clicked", () => {
+    toggleBtn.click();
+    expect(sideBar.classList.contains("active")).toBe(true);
+    toggleBtn.click();
+    expect(sideBar.classList.contains("active")).toBe(false);
+  });
+
+  test("should log an error if toggle button is not found", () => {
+    console.error = jest.fn();
+
+    document.body.innerHTML = `
+      <div class="dashboard">
+        <div id="side-bar" class="sidebar">
+          <div class="sidebar-content">
+            <div class="sidebar-title">Dev Toolkit</div>
+          </div>
+        </div>
+        <div class="content-area"></div>
+      </div>
+    `;
+
+    initializeSidebarToggleButton();
+    expect(console.error).toHaveBeenCalledWith("Toggle button not found.");
+  });
+});
+
+describe("initializeFeatureButtons", () => {
+  let contentArea;
+
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <div class="dashboard">
+        <div id="side-bar" class="sidebar">
+          <div class="sidebar-content">
+            <div class="sidebar-title">Dev Toolkit</div>
+            <button id="json-formatter-button" class="tool-button">
+              JSON Formatter
+            </button>
+          </div>
+        </div>
+        <div class="content-area"></div>
+      </div>
+    `;
+
+    contentArea = document.querySelector(".content-area");
+  });
+
+  test("should log an error if a button is not found", () => {
+    console.error = jest.fn();
+
+    const featureComponents = {
+      "json-formatter-button": "json-formatter-tool",
+      "url-encoder-decoder-button": "url-encoder-decoder-tool",
+    };
+
+    initializeFeatureButtons(featureComponents, contentArea);
+    expect(console.error).toHaveBeenCalledWith(
+      "Button with ID url-encoder-decoder-button not found.",
+    );
+  });
+});
 
 describe("initializeApp", () => {
   let contentArea;
   let jsonButton;
   let urlButton;
   let unixButton;
-  let toggleBtn;
-  let sideBar;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -38,10 +129,12 @@ describe("initializeApp", () => {
     jsonButton = document.getElementById("json-formatter-button");
     urlButton = document.getElementById("url-encoder-decoder-button");
     unixButton = document.getElementById("unix-timestamp-converter-button");
-    toggleBtn = document.getElementById("toggle-btn");
-    sideBar = document.getElementById("side-bar");
-
-    initializeApp();
+    const featureComponents = {
+      "json-formatter-button": "json-formatter-tool",
+      "url-encoder-decoder-button": "url-encoder-decoder-tool",
+      "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
+    };
+    initializeApp(featureComponents);
   });
 
   test("should load JSON Formatter component when JSON button is clicked", () => {
@@ -63,12 +156,5 @@ describe("initializeApp", () => {
     expect(contentArea.innerHTML).toContain(
       "<unix-timestamp-converter-tool></unix-timestamp-converter-tool>",
     );
-  });
-
-  test("should toggle sidebar visibility when toggle button is clicked", () => {
-    toggleBtn.click();
-    expect(sideBar.classList.contains("active")).toBe(true);
-    toggleBtn.click();
-    expect(sideBar.classList.contains("active")).toBe(false);
   });
 });

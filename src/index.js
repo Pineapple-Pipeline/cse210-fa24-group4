@@ -30,6 +30,8 @@ const initializeFeatureButtons = (featureComponents, contentArea) => {
       button.addEventListener("click", () => {
         loadFeatureComponent(featureComponents[buttonId], contentArea);
       });
+    } else {
+      console.error(`Button with ID ${buttonId} not found.`);
     }
   }
 };
@@ -50,6 +52,8 @@ const initializeSidebarToggleButton = () => {
   const toggleBtn = document.getElementById("toggle-btn");
   if (toggleBtn) {
     toggleBtn.addEventListener("click", toggleSidebar);
+  } else {
+    console.error("Toggle button not found.");
   }
 };
 
@@ -59,16 +63,17 @@ const initializeSidebarToggleButton = () => {
  * buttons to load their respective components into the content area and also
  * sets up the sidebar toggle button to show or hide the sidebar.
  */
-const initializeApp = () => {
+
+const featureComponents = {
+  "json-formatter-button": "json-formatter-tool",
+  "url-encoder-decoder-button": "url-encoder-decoder-tool",
+  "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
+  // Add other features and their corresponding component tags here
+};
+const initializeApp = (featureComponents) => {
   const contentArea = document.querySelector(".content-area");
 
   // Define each feature's component
-  const featureComponents = {
-    "json-formatter-button": "json-formatter-tool",
-    "url-encoder-decoder-button": "url-encoder-decoder-tool",
-    "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
-    // Add other features and their corresponding component tags here
-  };
 
   // Initialize the feature buttons
   initializeFeatureButtons(featureComponents, contentArea);
@@ -78,5 +83,9 @@ const initializeApp = () => {
 };
 
 // Initialize the application when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initializeApp);
-module.exports = initializeApp;
+document.addEventListener("DOMContentLoaded", initializeApp(featureComponents));
+module.exports = {
+  initializeApp,
+  initializeFeatureButtons,
+  initializeSidebarToggleButton,
+};
