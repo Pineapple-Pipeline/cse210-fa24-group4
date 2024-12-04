@@ -14,7 +14,7 @@ describe("UnixTimestampConverterTool", () => {
 
     // Get references to elements inside the custom element
     unixTimestampConverterTool = document.querySelector(
-      "unix-timestamp-converter-tool"
+      "unix-timestamp-converter-tool",
     );
     inputArea = unixTimestampConverterTool.querySelector(".input-area");
     outputArea = unixTimestampConverterTool.querySelector(".output-area");

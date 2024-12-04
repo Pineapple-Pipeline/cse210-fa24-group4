@@ -57,8 +57,6 @@ class UnixTimestampConverterTool extends HTMLElement {
         this.outputArea.value = date.toUTCString();
       } else if (format == "iso") {
         this.outputArea.value = date.toISOString();
-      } else {
-        throw new Error("Unsupported format");
       }
     } catch (error) {
       this.outputArea.value = `Error: ${error.message}`;
@@ -77,5 +75,5 @@ class UnixTimestampConverterTool extends HTMLElement {
 // Register the custom element
 customElements.define(
   "unix-timestamp-converter-tool",
-  UnixTimestampConverterTool
+  UnixTimestampConverterTool,
 );
