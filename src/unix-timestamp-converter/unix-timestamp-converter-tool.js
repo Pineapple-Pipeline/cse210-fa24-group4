@@ -2,7 +2,8 @@ class UnixTimestampConverterTool extends HTMLElement {
   constructor() {
     super();
     this.toolPanel = null;
-    this.convertBtn = null;
+    this.convertUtcBtn = null;
+    this.convertIsoBtn = null;
     this.inputArea = null;
     this.outputArea = null;
   }
@@ -13,12 +14,15 @@ class UnixTimestampConverterTool extends HTMLElement {
             <link rel="stylesheet" href="unix-timestamp-converter/unix-timestamp-converter-tool.css"> 
             <section class="tool-panel">
               <header class="tool-header">
-                <h3>UNIX to UTC</h3>
+                <h3>UNIX Timestamp Converter</h3>
               </header>
               <hr />
               <section class="tool-content">
                 <textarea class="input-area" placeholder="Paste your UNIX timestamp here"></textarea>
-                <button class="convert-btn">Convert</button>
+                <div class="button-group">
+                    <button class="convert-utc-btn">Convert to UTC</button>
+                    <button class="convert-iso-btn">Convert to ISO</button>
+                </div>
                 <textarea class="output-area" readonly></textarea>
               </section>
             </section>
@@ -26,16 +30,17 @@ class UnixTimestampConverterTool extends HTMLElement {
 
     // Store references to elements
     this.toolPanel = this.querySelector(".tool-panel");
-    this.convertBtn = this.querySelector(".convert-btn");
+    this.convertUtcBtn = this.querySelector(".convert-utc-btn");
+    this.convertIsoBtn = this.querySelector(".convert-iso-btn");
     this.inputArea = this.querySelector(".input-area");
     this.outputArea = this.querySelector(".output-area");
 
     // Bind event listeners
-    this.convertBtn.addEventListener("click", () => this.convertUNIX());
+    this.convertUtcBtn.addEventListener("click", () => this.convertTime("utc"));
+    this.convertIsoBtn.addEventListener("click", () => this.convertTime("iso"));
   }
 
-  // how is the documentation getting added with JSDocs? Is this on push to main?
-  convertUNIX = () => {
+  convertTime = (format) => {
     try {
       const input = this.inputArea.value;
       const unixTimestamp = parseInt(input, 10);
@@ -46,7 +51,13 @@ class UnixTimestampConverterTool extends HTMLElement {
       }
 
       const date = new Date(unixTimestamp * 1000);
-      this.outputArea.value = date.toUTCString();
+
+      // output based on format inputted
+      if (format == "utc") {
+        this.outputArea.value = date.toUTCString();
+      } else if (format == "iso") {
+        this.outputArea.value = date.toISOString();
+      }
     } catch (error) {
       this.outputArea.value = `Error: ${error.message}`;
     }
@@ -54,8 +65,10 @@ class UnixTimestampConverterTool extends HTMLElement {
 
   disconnectedCallback() {
     // Clean up event listeners when the element is removed from the DOM
-    if (this.convertBtn)
-      this.convertBtn.removeEventListener("click", this.convertUNIX);
+    if (this.convertUtcBtn)
+      this.convertUtcBtn.removeEventListener("click", this.convertTime);
+    if (this.convertIsoBtn)
+      this.convertIsoBtn.removeEventListener("click", this.convertTime);
   }
 }
 
