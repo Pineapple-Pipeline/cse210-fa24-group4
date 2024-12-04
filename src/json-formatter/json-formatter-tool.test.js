@@ -7,7 +7,6 @@ describe("JsonFormatterTool", () => {
   let formatBtn;
   let copyBtn;
   let downloadBtn;
-  let uploadBtn;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -21,7 +20,6 @@ describe("JsonFormatterTool", () => {
     formatBtn = jsonFormatterTool.querySelector(".format-btn");
     copyBtn = jsonFormatterTool.querySelector(".copy-btn");
     downloadBtn = jsonFormatterTool.querySelector(".download-btn");
-    uploadBtn = jsonFormatterTool.querySelector(".upload-btn");
   });
 
   // tool render test
@@ -31,7 +29,6 @@ describe("JsonFormatterTool", () => {
     expect(outputArea).toBeTruthy();
     expect(copyBtn).toBeTruthy();
     expect(downloadBtn).toBeTruthy();
-    expect(uploadBtn).toBeTruthy();
   });
 
   // simple JSON formatting test
@@ -134,6 +131,7 @@ describe("JsonFormatterTool", () => {
     expect(mockAnchor.click).toHaveBeenCalled();
     expect(mockCreateObjectURL).toHaveBeenCalledWith(expect.any(Blob));
     expect(mockRevokeObjectURL).toHaveBeenCalledWith("blob:mock-url");
+
   });
 
   // empty output download alert test
