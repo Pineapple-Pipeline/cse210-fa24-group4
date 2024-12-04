@@ -39,7 +39,7 @@ describe("JsonFormatterTool", () => {
 
     // Check that the output area contains formatted JSON
     expect(outputArea.value).toBe(
-      '{\n  "name": "Dylan Lukes",\n  "age": 30\n}'
+      '{\n  "name": "Dylan Lukes",\n  "age": 30\n}',
     );
   });
 
@@ -50,7 +50,7 @@ describe("JsonFormatterTool", () => {
     formatBtn.click();
 
     expect(outputArea.value).toBe(
-      '{\n  "id": 12345,\n  "name": "John Doe",\n  "email": "johndoe@example.com",\n  "address": {\n    "street": "123 Main St",\n    "city": "Somewhere",\n    "zipcode": 12345\n  },\n  "phones": [\n    {\n      "type": "mobile",\n      "number": "123-456-7890"\n    },\n    {\n      "type": "home",\n      "number": "098-765-4321"\n    }\n  ],\n  "preferences": {\n    "contactMethod": "email",\n    "newsletter": true\n  }\n}'
+      '{\n  "id": 12345,\n  "name": "John Doe",\n  "email": "johndoe@example.com",\n  "address": {\n    "street": "123 Main St",\n    "city": "Somewhere",\n    "zipcode": 12345\n  },\n  "phones": [\n    {\n      "type": "mobile",\n      "number": "123-456-7890"\n    },\n    {\n      "type": "home",\n      "number": "098-765-4321"\n    }\n  ],\n  "preferences": {\n    "contactMethod": "email",\n    "newsletter": true\n  }\n}',
     );
   });
 
@@ -88,11 +88,12 @@ describe("JsonFormatterTool", () => {
     outputArea.value = '{\n  "name": "Dylan Lukes",\n  "age": 30\n}';
     await copyBtn.click();
     expect(clipboardMock).toHaveBeenCalledWith(
-      '{\n  "name": "Dylan Lukes",\n  "age": 30\n}'
+      '{\n  "name": "Dylan Lukes",\n  "age": 30\n}',
     );
-    expect(alertMock).toHaveBeenCalledWith("Formatted JSON copied to clipboard!");
+    expect(alertMock).toHaveBeenCalledWith(
+      "Formatted JSON copied to clipboard!",
+    );
   });
-
 
   // empty output copy alert test
   test("should alert when copying with no formatted JSON", () => {
@@ -131,7 +132,6 @@ describe("JsonFormatterTool", () => {
     expect(mockAnchor.click).toHaveBeenCalled();
     expect(mockCreateObjectURL).toHaveBeenCalledWith(expect.any(Blob));
     expect(mockRevokeObjectURL).toHaveBeenCalledWith("blob:mock-url");
-
   });
 
   // empty output download alert test
@@ -140,7 +140,7 @@ describe("JsonFormatterTool", () => {
     outputArea.value = "";
     downloadBtn.click();
     expect(alertMock).toHaveBeenCalledWith(
-      "There is no formatted JSON to download."
+      "There is no formatted JSON to download.",
     );
   });
 
@@ -150,7 +150,7 @@ describe("JsonFormatterTool", () => {
     jsonFormatterTool.remove();
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       "click",
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 });
