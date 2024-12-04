@@ -44,7 +44,7 @@ describe("JsonFormatterTool", () => {
   });
 
   // complex JSON formatting test
-  test("should format JSON correctly when valid JSON is entered", () => {
+  test("should format a more complex json input correctly when valid JSON is entered", () => {
     inputArea.value =
       '{ "id":12345,"name":"John Doe", "email": "johndoe@example.com" , "address" : { "street":"123 Main St","city": "Somewhere" , "zipcode":12345} ,"phones" :[ { "type" : "mobile","number" :"123-456-7890" },{ "type": "home" , "number":"098-765-4321"} ], "preferences" : {"contactMethod" :"email", "newsletter":true}}';
     formatBtn.click();
