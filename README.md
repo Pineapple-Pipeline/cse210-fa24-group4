@@ -1,5 +1,7 @@
 # cse210-fa24-group4
 
+This is a simple yet efficient browser based developer tool-kit that provides developers access to the most commonly used developer tools for whatever project the user is working on. The web-app is written in vanilla JS, HTML, and CSS, providing smooth, fast responses, without a backend for security, and speed. Each component is modular, and is not dependent on any other tool available in the tool-kit.
+
 ## Project Setup
 
 1. Clone the repository:
@@ -57,6 +59,23 @@ npm run format
 
 This command will format the codebase using the defined formatting rules. -->
 
+## Running End-to-End Tests
+
+To run the end-to-end tests, use the following commands:
+
+1. For a headless run:
+
+   ```sh
+   npx playwright test
+
+   ```
+
+2. For a user-rich version of the run:
+
+   ```sh
+      npx playwright test --ui
+   ```
+
 ## Contributing
 
 1. Fork the repository.
@@ -64,6 +83,9 @@ This command will format the codebase using the defined formatting rules. -->
    ```sh
    git checkout -b feature-branch
    ```
+
+````
+
 3. Make your changes and commit them:
    ```sh
    git commit -m "Description of changes"
@@ -77,3 +99,4 @@ This command will format the codebase using the defined formatting rules. -->
 ## License
 
 This project is licensed under the MIT License.
+````
