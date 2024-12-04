@@ -53,6 +53,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
       this.outputArea.value = "Please enter text to encode.";
       return;
     }
+
     this.outputArea.value = encodeURIComponent(inputText); // Encode the input
   }
 
@@ -63,6 +64,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
       this.outputArea.value = "Please enter text to decode.";
       return;
     }
+
     try {
       this.outputArea.value = decodeURIComponent(inputText); // Decode the input
     } catch (error) {
