@@ -54,11 +54,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
       return;
     }
 
-    try {
-      this.outputArea.value = encodeURIComponent(inputText); // Encode the input
-    } catch (error) {
-      this.outputArea.value = `Error: ${error.message}`; // Handle decoding errors
-    }
+    this.outputArea.value = encodeURIComponent(inputText); // Encode the input
   }
 
   // Method to decode URL
