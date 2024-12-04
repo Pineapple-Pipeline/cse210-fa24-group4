@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 require("./url-encoder-decoder-tool");
 
 describe("UrlEncoderDecoder", () => {
