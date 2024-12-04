@@ -1,4 +1,4 @@
-require("./url-encoder-decoder");
+require("./url-encoder-decoder-tool");
 
 describe("UrlEncoderDecoder", () => {
   let urlEncoderDecoder;
