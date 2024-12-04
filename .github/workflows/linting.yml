@@ -3,9 +3,12 @@ name: Linting
 on:
   push:
     branches:
-      - playground
       - main
       - E2E-testing
+      - JSON-formatter
+      - complete-url-encoder-decoder
+      - unix-timestamp-converter
+      - frontend
   pull_request:
     branches:
       - main
