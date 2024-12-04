@@ -15,5 +15,8 @@
   },
   "jest": {
     "testEnvironment": "jsdom"
+  },
+  "dependencies": {
+    "prettier": "^3.4.2"
   }
 }
