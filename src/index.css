@@ -1,6 +1,33 @@
 :root {
   --font-size-desktop: 1em;
   --font-size-mobile: 0.75em;
+
+  /* Light Theme Variables */
+  --bg-color: #f4f4f4;
+  --text-color: #ebe7e7;
+  --inverse-color: #0e0101;
+  --sidebar-bg: #e2e5e7;
+  --button-bg: rgb(6, 33, 42);
+  --button-hover-bg: #0a5568;
+  --border-color: #050000;
+
+  /* Dark Theme Variables */
+  --dark-bg-color: #1a1a1a;
+  --dark-text-color: #0e0101;
+  --dark-sidebar-bg: #010a11;
+  --dark-button-bg: #e1e7ee;
+  --dark-button-hover-bg: #021a20;
+  --dark-border-color: #ebe7e7;
+}
+
+[data-theme="dark"] {
+  --bg-color: var(--dark-bg-color);
+  --text-color: var(--dark-text-color);
+  --inverse-color: #ebe7e7;
+  --sidebar-bg: var(--dark-sidebar-bg);
+  --button-bg: var(--dark-button-bg);
+  --button-hover-bg: var(--dark-button-hover-bg);
+  --border-color: var(--dark-border-color);
 }
 
 html,
@@ -8,8 +35,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,9 +58,11 @@ body {
 .sidebar {
   position: relative;
   width: 250px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #061524;
+  justify-content: space-between;
+  background-color: var(--sidebar-bg);
   padding: 20px;
   color: white;
   border-right: 1mm solid black; /* Adjust the color as needed */
@@ -44,6 +73,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: var(--inverse-color);
 }
 
 .toggle-btn {
@@ -58,7 +88,7 @@ body {
   width: 30px;
   height: 5px;
   border-radius: 5px;
-  background: #fff;
+  background: var(--inverse-color);
   display: block;
   margin-top: 4px;
 }
@@ -80,7 +110,23 @@ body {
   font-size: calc(var(--font-size-desktop) * 1.2);
   font-weight: bold;
   margin-bottom: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: inherit;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.2);
 }
 
 .tool-button {
@@ -88,8 +134,8 @@ body {
   max-height: 50px;
   margin: 10px 0;
   padding: 10px;
-  background-color: rgb(6, 33, 42);
-  color: white;
+  background-color: var(--button-bg);
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -99,7 +145,8 @@ body {
 }
 
 .tool-button:hover {
-  background-color: #0a5568;
+  background-color: var(--button-hover-bg);
+  color: var(--inverse-color);
 }
 
 /* Content Area */
@@ -156,5 +203,9 @@ body {
     width: 20px;
     height: 3px;
     margin-top: 3px;
+  }
+  .theme-toggle {
+    font-size: calc(var(--font-size-mobile) * 1);
+    padding: 8px 15px;
   }
 }
