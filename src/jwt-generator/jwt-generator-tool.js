@@ -12,7 +12,7 @@ class JWTGeneratorTool extends HTMLElement {
     this.secretKeyArea = null;
     this.outputArea = null;
     this.copyBtn = null;
-}
+  }
 
   /**
    * Called when the element is added to the DOM.
@@ -54,70 +54,86 @@ class JWTGeneratorTool extends HTMLElement {
     this.copyBtn.addEventListener("click", this.copyToClipboard.bind(this));
   }
 
+  /* The `generateJWT` function is an asynchronous arrow function defined within the `JWTGeneratorTool`
+  class. It is responsible for generating a JSON Web Token (JWT) based on the input provided in the
+  header, payload, and secret key areas of the tool.*/
   generateJWT = async () => {
     try {
+      // Check if any field is empty before parsing
+      const headerValue = this.headerArea.value.trim();
+      const payloadValue = this.payloadArea.value.trim();
+      const secretKeyValue = this.secretKeyArea.value.trim();
+      if (!headerValue || !payloadValue || !secretKeyValue) {
+        this.outputArea.value =
+          "Error: Header, Payload, and Secret Key must not be empty.";
+        this.outputArea.classList.add("error");
+        this.copyBtn.disabled = true;
+        return;
+      }
+
       // Parse the header and payload JSON
       const header = JSON.parse(this.headerArea.value);
       const payload = JSON.parse(this.payloadArea.value);
       const secretKey = this.secretKeyArea.value;
-  
+
       // Base64Url encode header and payload
       const encodedHeader = btoa(JSON.stringify(header))
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=/g, '');
-      
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=/g, "");
+
       const encodedPayload = btoa(JSON.stringify(payload))
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=/g, '');
-  
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=/g, "");
+
       // Create signature input
       const signatureInput = `${encodedHeader}.${encodedPayload}`;
-  
+
       // Convert secret key to Uint8Array
       const keyData = new TextEncoder().encode(secretKey);
-  
+
       // Import the secret key
       const key = await crypto.subtle.importKey(
-        'raw',
+        "raw",
         keyData,
-        { name: 'HMAC', hash: 'SHA-256' },
+        { name: "HMAC", hash: "SHA-256" },
         false,
-        ['sign']
+        ["sign"]
       );
-  
+
       // Generate signature
       const signature = await crypto.subtle.sign(
-        'HMAC',
+        "HMAC",
         key,
         new TextEncoder().encode(signatureInput)
       );
-  
+
       // Convert signature to base64url
-      const encodedSignature = btoa(String.fromCharCode(...new Uint8Array(signature)))
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=/g, '');
-  
+      const encodedSignature = btoa(
+        String.fromCharCode(...new Uint8Array(signature))
+      )
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=/g, "");
+
       // Combine all parts to create the final JWT
       const jwt = `${encodedHeader}.${encodedPayload}.${encodedSignature}`;
-  
+
       // Update output area
       this.outputArea.value = jwt;
-      this.outputArea.classList.remove('error');
+      this.outputArea.classList.remove("error");
       this.copyBtn.disabled = false;
-  
     } catch (error) {
       // Handle errors
       this.outputArea.value = `Error: ${error.message}`;
-      this.outputArea.classList.add('error');
+      this.outputArea.classList.add("error");
       this.copyBtn.disabled = true;
     }
   };
 
   disconnectedCallback() {
-    if(this.generateBtn)
+    if (this.generateBtn)
       this.generateBtn.removeEventListener("click", this.formatJson);
   }
 
