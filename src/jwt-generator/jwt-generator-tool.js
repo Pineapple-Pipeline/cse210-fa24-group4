@@ -99,19 +99,19 @@ class JWTGeneratorTool extends HTMLElement {
         keyData,
         { name: "HMAC", hash: "SHA-256" },
         false,
-        ["sign"]
+        ["sign"],
       );
 
       // Generate signature
       const signature = await crypto.subtle.sign(
         "HMAC",
         key,
-        new TextEncoder().encode(signatureInput)
+        new TextEncoder().encode(signatureInput),
       );
 
       // Convert signature to base64url
       const encodedSignature = btoa(
-        String.fromCharCode(...new Uint8Array(signature))
+        String.fromCharCode(...new Uint8Array(signature)),
       )
         .replace(/\+/g, "-")
         .replace(/\//g, "_")
@@ -134,7 +134,7 @@ class JWTGeneratorTool extends HTMLElement {
 
   disconnectedCallback() {
     if (this.generateBtn)
-      this.generateBtn.removeEventListener("click", this.formatJson);
+      this.generateBtn.removeEventListener("click", this.generateJWT);
   }
 
   copyToClipboard() {

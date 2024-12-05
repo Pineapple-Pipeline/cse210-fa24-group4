@@ -46,7 +46,7 @@ describe("JWTGeneratorTool", () => {
 
   // invalid header input test
   test("Should indicate error on invalid header", () => {
-    headeArea = "";
+    headerArea = "";
     payloadArea =
       '{\n  "sub": "1234567890",\n  "name": "Test User",\n  "email": "test@example.com",\n  "role": "admin",\n  "iat": 1701705600,\n  "exp": 1701709200\n}';
     secretKeyArea = "your-super-secret-key-here-min-32-chars";
@@ -59,7 +59,7 @@ describe("JWTGeneratorTool", () => {
 
   // invalid payload input test
   test("Should indicate error on invalid payload", () => {
-    headeArea = '{\n  "alg": "HS256",\n  "typ": "JWT"\n}';
+    headerArea = '{\n  "alg": "HS256",\n  "typ": "JWT"\n}';
     payloadArea =
       '{\n  "sub": "1234567890",\n  "name": "Test User",\n  "email": "test@example.com",\n  "role": "admin",\n  "iat": 1701705600,\n  "exp": 1701709200\n}';
     secretKeyArea = "";
@@ -72,13 +72,34 @@ describe("JWTGeneratorTool", () => {
 
   // invalid secret key input test
   test("Should indicate error on invalid secret key", () => {
-    headeArea = '{\n  "alg": "HS256",\n  "typ": "JWT"\n}';
+    headerArea = '{\n  "alg": "HS256",\n  "typ": "JWT"\n}';
     payloadArea = "";
     secretKeyArea = "your-super-secret-key-here-min-32-chars";
     generateBtn.click();
 
     expect(outputArea.value).toMatch(
       "Error: Header, Payload, and Secret Key must not be empty."
+    );
+  });
+
+  // empty output copy alert test
+  test("should alert when copying with no formatted JSON", () => {
+    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+    outputArea.value = "";
+    copyBtn.click();
+    expect(alertMock).toHaveBeenCalledWith("Nothing to copy!");
+  });
+
+  // JS cleanup on close test
+  test("Should handle cleanup correctly when disconnected", () => {
+    const removeEventListenerSpy = jest.spyOn(
+      generateBtn,
+      "removeEventListener"
+    );
+    jwtGeneratorTool.remove();
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      "click",
+      expect.any(Function)
     );
   });
 });
