@@ -53,7 +53,7 @@ describe("JWTGeneratorTool", () => {
     generateBtn.click();
 
     expect(outputArea.value).toMatch(
-      "Error: Header, Payload, and Secret Key must not be empty."
+      "Error: Header, Payload, and Secret Key must not be empty.",
     );
   });
 
@@ -66,7 +66,7 @@ describe("JWTGeneratorTool", () => {
     generateBtn.click();
 
     expect(outputArea.value).toMatch(
-      "Error: Header, Payload, and Secret Key must not be empty."
+      "Error: Header, Payload, and Secret Key must not be empty.",
     );
   });
 
@@ -78,7 +78,7 @@ describe("JWTGeneratorTool", () => {
     generateBtn.click();
 
     expect(outputArea.value).toMatch(
-      "Error: Header, Payload, and Secret Key must not be empty."
+      "Error: Header, Payload, and Secret Key must not be empty.",
     );
   });
 
@@ -94,12 +94,12 @@ describe("JWTGeneratorTool", () => {
   test("Should handle cleanup correctly when disconnected", () => {
     const removeEventListenerSpy = jest.spyOn(
       generateBtn,
-      "removeEventListener"
+      "removeEventListener",
     );
     jwtGeneratorTool.remove();
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       "click",
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 });
