@@ -153,6 +153,7 @@ describe("JsonFormatterTool", () => {
       expect.any(Function),
     );
   });
+
   test("Should disable the copy and download buttons on error", () => {
     inputArea.value = '{"name": "Dylan Lukes", "age": 30';
     formatBtn.click();
@@ -180,4 +181,5 @@ describe("JsonFormatterTool", () => {
     expect(copyBtn.disabled).toBe(false);
     expect(downloadBtn.disabled).toBe(false);
   });
+
 });

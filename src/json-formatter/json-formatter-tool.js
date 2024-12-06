@@ -54,6 +54,7 @@ class JsonFormatterTool extends HTMLElement {
 		this.downloadBtn.addEventListener("click", this.downloadJson.bind(this));
 	}
 
+
   /**
    * Formats the input JSON and updates the output area.
    * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
@@ -117,6 +118,7 @@ class JsonFormatterTool extends HTMLElement {
 			alert("There is no formatted JSON to download.");
 		}
 	}
+
 }
 
 // Register the custom element
