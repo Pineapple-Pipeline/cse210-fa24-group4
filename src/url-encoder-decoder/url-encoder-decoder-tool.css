@@ -1,6 +1,6 @@
-/* Tool panel with padding around its content */
+/* Tool panel container with responsive design */
 .tool-panel {
-  display: flex;
+  display: flex !important;
   flex: 1;
   width: 100%;
   height: 90%;
@@ -9,7 +9,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  overflow: auto;
+  overflow: hidden; /* Prevent scrolling */
   flex-direction: column;
 }
 
@@ -26,7 +26,7 @@
   border-bottom: 1px solid #ddd;
 }
 
-/* Tool content styling */
+/* Content area */
 .tool-content {
   flex: 1;
   display: flex;
@@ -37,18 +37,18 @@
   gap: 20px;
 }
 
-/* Input and output text areas side by side */
+/* Input and output areas side by side */
 .tool-row {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   flex: 1;
-  margin-top: 20px;
+  flex-wrap: wrap; /* Ensure wrap on smaller screens */
 }
 
 .input-area,
 .output-area {
   flex: 1;
-  height: 400px;
+  min-height: 100px; /* Adjust height for smaller screens */
   padding: 10px;
   border: 1px solid #dddddd;
   border-radius: 4px;
@@ -56,24 +56,25 @@
   font-size: calc(var(--font-size-desktop) * 1);
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  overflow: auto;
   resize: none; /* Disable resizing */
+  overflow: hidden; /* Prevent scrolling */
 }
 
-/* Read-only style for output area */
+/* Read-only styling for the output area */
 .output-area[readonly] {
   background-color: #e9e9e9;
 }
 
-/* Button container styling */
+/* Button container */
 .tool-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* Stack buttons on smaller screens */
 }
 
-/* Encode, Decode, and Clear button styling */
+/* Button styles */
 .tool-buttons button {
   padding: 10px 20px;
   background-color: #061524;
@@ -89,7 +90,6 @@
   text-transform: uppercase;
 }
 
-/* Button hover and active effects */
 .tool-buttons button:hover {
   background-color: #34495e;
   transform: scale(1.05);
@@ -100,33 +100,30 @@
   transform: scale(0.95);
 }
 
+/* Mobile styles */
 @media (max-width: 600px) {
-  .tool-row {
-    gap: 15px; /* Compact spacing for mobile devices */
-  }
   .tool-panel {
+    height: auto; /* Allow the panel to fit content */
     font-size: var(--font-size-mobile);
-    /* Mobile font size */
+    padding: 10px;
   }
 
   .tool-header {
     font-size: var(--font-size-mobile);
-    /* Mobile font size */
+  }
+
+  .tool-row {
+    flex-direction: column; /* Stack inputs vertically */
+    gap: 10px;
   }
 
   .input-area,
   .output-area {
-    height: 300px; /* Smaller height for compact devices */
-    font-size: calc(0.9em + 0.3vw); /* Smaller font size */
+    min-height: 80px;
   }
 
   .tool-buttons {
-    gap: 10px; /* Adjust spacing for buttons */
-    margin-top: 20px; /* Less top margin */
-  }
-
-  .tool-buttons button {
-    font-size: calc(0.9em + 0.4vw); /* Scale button size for mobile */
-    padding: 8px 15px; /* Compact padding */
+    flex-direction: column;
+    gap: 10px;
   }
 }
