@@ -54,22 +54,27 @@ class JsonFormatterTool extends HTMLElement {
 		this.downloadBtn.addEventListener("click", this.downloadJson.bind(this));
 	}
 
-	/**
-	 * Formats the input JSON and updates the output area.
-	 * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
-	 * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-	 */
-	formatJson = () => {
-		try {
-			const input = this.inputArea.value;
-			if (input) {
-				const parsed = JSON.parse(input);
-				this.outputArea.value = JSON.stringify(parsed, null, 2);
-			}
-		} catch (error) {
-			this.outputArea.value = `Error: ${error.message}`;
-		}
-	};
+  /**
+   * Formats the input JSON and updates the output area.
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+   */
+  formatJson = () => {
+    try {
+      const input = this.inputArea.value;
+      if (input) {
+        const parsed = JSON.parse(input);
+        this.outputArea.value = JSON.stringify(parsed, null, 2);
+        this.copyBtn.disabled = false;
+        this.downloadBtn.disabled = false;
+      }
+    } catch (error) {
+      this.outputArea.value = `Error: ${error.message}`;
+      // Disable the buttons if JSON is invalid
+      this.copyBtn.disabled = true;
+      this.downloadBtn.disabled = true;
+    }
+  };
 
 	/**
 	 * Cleans up event listeners when the element is removed from the DOM.

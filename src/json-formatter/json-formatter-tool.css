@@ -127,6 +127,11 @@
 .download-btn:active {
 	transform: scale(0.98);
 }
+.copy-btn:disabled,
+.download-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 @media (max-width: 600px) {
 	.tool-panel {
