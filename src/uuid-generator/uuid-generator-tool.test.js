@@ -65,6 +65,17 @@ describe("UUIDGeneratorTool", () => {
     expect(alertMock).toHaveBeenCalledWith("Nothing to copy!");
   });
 
+  test("Should generate a valid UUID with version 4 and RFC4122 variant", async () => {
+    // Simulate clicking the generate button
+    await generateBtn.click();
+
+    const uuid = outputArea.value.trim(); // Get the generated UUID
+
+    expect(uuid).toMatch(
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+    );
+  });
+
   // JS cleanup on close test
   test("Should handle cleanup correctly when disconnected", () => {
     const removeEventListenerSpy = jest.spyOn(
