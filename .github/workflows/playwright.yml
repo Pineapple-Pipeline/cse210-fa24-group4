@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, E2E-testing]
   pull_request:
-    branches: [main, E2E-testing]
+    branches: [E2E-testing]
 jobs:
   test:
     timeout-minutes: 60
