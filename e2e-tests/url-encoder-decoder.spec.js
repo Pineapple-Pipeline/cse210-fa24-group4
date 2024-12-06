@@ -159,7 +159,7 @@ test.describe("URL Encoder Decoder tool", () => {
       // Get the input and output areas
       const inputArea = page.locator("url-encoder-decoder-button .input-area");
       const outputArea = page.locator(
-        "url-encoder-decoder-button .output-area"
+        "url-encoder-decoder-button .output-area",
       );
 
       // Ensure both areas are empty
