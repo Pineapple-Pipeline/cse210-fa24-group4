@@ -29,7 +29,7 @@ class UrlEncoderDecoderTool extends HTMLElement {
     // Set up the HTML structure when the element is added to the DOM
     this.innerHTML = `
           <link rel="stylesheet" href="url-encoder-decoder/url-encoder-decoder-tool.css"> 
-          <section class="tool-panel">
+          <section class="tool-panel" style="display:none;">
             <header class="tool-header">
               <h3>URL Encoder/Decoder</h3>
             </header>

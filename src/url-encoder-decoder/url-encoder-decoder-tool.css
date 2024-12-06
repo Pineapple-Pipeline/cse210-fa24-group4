@@ -1,129 +1,129 @@
 /* Tool panel container with responsive design */
 .tool-panel {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  height: 90%;
-  margin: 20px auto;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  overflow: hidden; /* Prevent scrolling */
-  flex-direction: column;
+	display: flex !important;
+	flex: 1;
+	width: 100%;
+	height: 90%;
+	margin: 20px auto;
+	background: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	z-index: 1000;
+	overflow: hidden; /* Prevent scrolling */
+	flex-direction: column;
 }
 
 /* Header styling */
 .tool-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background-color: #061524;
-  color: #ffffff;
-  font-size: calc(var(--font-size-desktop) * 1.2);
-  font-weight: bold;
-  border-bottom: 1px solid #ddd;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	background-color: #061524;
+	color: #ffffff;
+	font-size: calc(var(--font-size-desktop) * 1.2);
+	font-weight: bold;
+	border-bottom: 1px solid #ddd;
 }
 
 /* Content area */
 .tool-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  background-color: #f9f9f9;
-  color: #333333;
-  gap: 20px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	background-color: #f9f9f9;
+	color: #333333;
+	gap: 20px;
 }
 
 /* Input and output areas side by side */
 .tool-row {
-  display: flex;
-  gap: 20px;
-  flex: 1;
-  flex-wrap: wrap; /* Ensure wrap on smaller screens */
+	display: flex;
+	gap: 20px;
+	flex: 1;
+	flex-wrap: wrap; /* Ensure wrap on smaller screens */
 }
 
 .input-area,
 .output-area {
-  flex: 1;
-  min-height: 100px; /* Adjust height for smaller screens */
-  padding: 10px;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  font-family: monospace;
-  font-size: calc(var(--font-size-desktop) * 1);
-  background-color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  resize: none; /* Disable resizing */
-  overflow: hidden; /* Prevent scrolling */
+	flex: 1;
+	min-height: 100px; /* Adjust height for smaller screens */
+	padding: 10px;
+	border: 1px solid #dddddd;
+	border-radius: 4px;
+	font-family: monospace;
+	font-size: calc(var(--font-size-desktop) * 1);
+	background-color: #ffffff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	resize: none; /* Disable resizing */
+	overflow: hidden; /* Prevent scrolling */
 }
 
 /* Read-only styling for the output area */
 .output-area[readonly] {
-  background-color: #e9e9e9;
+	background-color: #e9e9e9;
 }
 
 /* Button container */
 .tool-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap; /* Stack buttons on smaller screens */
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 20px;
+	flex-wrap: wrap; /* Stack buttons on smaller screens */
 }
 
 /* Button styles */
 .tool-buttons button {
-  padding: 10px 20px;
-  background-color: #061524;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: calc(var(--font-size-desktop) * 1);
-  font-weight: bold;
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease;
-  text-transform: uppercase;
+	padding: 10px 20px;
+	background-color: #061524;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: calc(var(--font-size-desktop) * 1);
+	font-weight: bold;
+	transition:
+		background-color 0.3s ease,
+		transform 0.2s ease;
+	text-transform: uppercase;
 }
 
 .tool-buttons button:hover {
-  background-color: #34495e;
-  transform: scale(1.05);
+	background-color: #34495e;
+	transform: scale(1.05);
 }
 
 .tool-buttons button:active {
-  background-color: #22313f;
-  transform: scale(0.95);
+	background-color: #22313f;
+	transform: scale(0.95);
 }
 
 /* Mobile styles */
 @media (max-width: 600px) {
-  .tool-panel {
-    height: auto; /* Allow the panel to fit content */
-    font-size: var(--font-size-mobile);
-    padding: 10px;
-  }
+	.tool-panel {
+		height: auto; /* Allow the panel to fit content */
+		font-size: var(--font-size-mobile);
+		padding: 10px;
+	}
 
-  .tool-header {
-    font-size: var(--font-size-mobile);
-  }
+	.tool-header {
+		font-size: var(--font-size-mobile);
+	}
 
-  .tool-row {
-    flex-direction: column; /* Stack inputs vertically */
-    gap: 10px;
-  }
+	.tool-row {
+		flex-direction: column; /* Stack inputs vertically */
+		gap: 10px;
+	}
 
-  .input-area,
-  .output-area {
-    min-height: 80px;
-  }
+	.input-area,
+	.output-area {
+		min-height: 80px;
+	}
 
-  .tool-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
+	.tool-buttons {
+		flex-direction: column;
+		gap: 10px;
+	}
 }
