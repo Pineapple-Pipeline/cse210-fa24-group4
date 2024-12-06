@@ -68,6 +68,7 @@ const initializeApp = () => {
     "url-encoder-decoder-button": "url-encoder-decoder-tool",
     "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
     "jwt-generator-button": "jwt-generator-tool",
+    "uuid-generator-button": "uuid-generator-tool",
     // Add other features and their corresponding component tags here
   };
 

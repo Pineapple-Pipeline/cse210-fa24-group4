@@ -1,7 +1,6 @@
 class JWTGeneratorTool extends HTMLElement {
   /**
-   * Initializes a new instance of JsonFormatterTool.
-   * Sets up initial properties for toolPanel, formatBtn, inputArea, and outputArea as null.
+   * Initializes a new instance of JWT Generator Tool.
    */
   constructor() {
     super();
