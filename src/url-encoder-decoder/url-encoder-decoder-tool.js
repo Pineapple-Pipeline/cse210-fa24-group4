@@ -1,19 +1,19 @@
 class UrlEncoderDecoderTool extends HTMLElement {
-  constructor() {
-    super();
-    this.toolPanel = null;
-    this.encodeBtn = null;
-    this.decodeBtn = null;
-    this.clearBtn = null;
-    this.inputArea = null;
-    this.outputArea = null;
-  }
+	constructor() {
+		super();
+		this.toolPanel = null;
+		this.encodeBtn = null;
+		this.decodeBtn = null;
+		this.clearBtn = null;
+		this.inputArea = null;
+		this.outputArea = null;
+	}
 
-  connectedCallback() {
-    // Set up the HTML structure when the element is added to the DOM
-    this.innerHTML = `
+	connectedCallback() {
+		// Set up the HTML structure when the element is added to the DOM
+		this.innerHTML = `
           <link rel="stylesheet" href="url-encoder-decoder/url-encoder-decoder-tool.css"> 
-          <section class="tool-panel">
+          <section class="tool-panel" style="display:none;">
             <header class="tool-header">
               <h3>URL Encoder/Decoder</h3>
             </header>
@@ -32,58 +32,58 @@ class UrlEncoderDecoderTool extends HTMLElement {
           </section>
         `;
 
-    // Store references to elements
-    this.toolPanel = this.querySelector(".tool-panel");
-    this.encodeBtn = this.querySelector(".encode-btn");
-    this.decodeBtn = this.querySelector(".decode-btn");
-    this.clearBtn = this.querySelector(".clear-btn");
-    this.inputArea = this.querySelector(".input-area");
-    this.outputArea = this.querySelector(".output-area");
+		// Store references to elements
+		this.toolPanel = this.querySelector(".tool-panel");
+		this.encodeBtn = this.querySelector(".encode-btn");
+		this.decodeBtn = this.querySelector(".decode-btn");
+		this.clearBtn = this.querySelector(".clear-btn");
+		this.inputArea = this.querySelector(".input-area");
+		this.outputArea = this.querySelector(".output-area");
 
-    // Bind event listeners
-    this.encodeBtn.addEventListener("click", () => this.encodeUrl());
-    this.decodeBtn.addEventListener("click", () => this.decodeUrl());
-    this.clearBtn.addEventListener("click", () => this.clearAreas());
-  }
+		// Bind event listeners
+		this.encodeBtn.addEventListener("click", () => this.encodeUrl());
+		this.decodeBtn.addEventListener("click", () => this.decodeUrl());
+		this.clearBtn.addEventListener("click", () => this.clearAreas());
+	}
 
-  // Method to encode URL
-  encodeUrl() {
-    const inputText = this.inputArea.value.trim(); // Trim whitespace from the input
-    if (inputText === "") {
-      this.outputArea.value = "Please enter text to encode.";
-      return;
-    }
+	// Method to encode URL
+	encodeUrl() {
+		const inputText = this.inputArea.value.trim(); // Trim whitespace from the input
+		if (inputText === "") {
+			this.outputArea.value = "Please enter text to encode.";
+			return;
+		}
 
-    this.outputArea.value = encodeURIComponent(inputText); // Encode the input
-  }
+		this.outputArea.value = encodeURIComponent(inputText); // Encode the input
+	}
 
-  // Method to decode URL
-  decodeUrl() {
-    const inputText = this.inputArea.value.trim(); // Trim whitespace from the input
-    if (inputText === "") {
-      this.outputArea.value = "Please enter text to decode.";
-      return;
-    }
+	// Method to decode URL
+	decodeUrl() {
+		const inputText = this.inputArea.value.trim(); // Trim whitespace from the input
+		if (inputText === "") {
+			this.outputArea.value = "Please enter text to decode.";
+			return;
+		}
 
-    try {
-      this.outputArea.value = decodeURIComponent(inputText); // Decode the input
-    } catch (error) {
-      this.outputArea.value = `Error: ${error.message}`; // Handle decoding errors
-    }
-  }
+		try {
+			this.outputArea.value = decodeURIComponent(inputText); // Decode the input
+		} catch (error) {
+			this.outputArea.value = `Error: ${error.message}`; // Handle decoding errors
+		}
+	}
 
-  // Method to clear both input and output areas
-  clearAreas() {
-    this.inputArea.value = "";
-    this.outputArea.value = "";
-  }
+	// Method to clear both input and output areas
+	clearAreas() {
+		this.inputArea.value = "";
+		this.outputArea.value = "";
+	}
 
-  disconnectedCallback() {
-    // Clean up event listeners when the element is removed from the DOM
-    this.encodeBtn.removeEventListener("click", () => this.encodeUrl());
-    this.decodeBtn.removeEventListener("click", () => this.decodeUrl());
-    this.clearBtn.removeEventListener("click", () => this.clearAreas());
-  }
+	disconnectedCallback() {
+		// Clean up event listeners when the element is removed from the DOM
+		this.encodeBtn.removeEventListener("click", () => this.encodeUrl());
+		this.decodeBtn.removeEventListener("click", () => this.decodeUrl());
+		this.clearBtn.removeEventListener("click", () => this.clearAreas());
+	}
 }
 
 // Register the custom element
