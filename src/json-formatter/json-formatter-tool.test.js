@@ -181,5 +181,4 @@ describe("JsonFormatterTool", () => {
     expect(copyBtn.disabled).toBe(false);
     expect(downloadBtn.disabled).toBe(false);
   });
-
 });
