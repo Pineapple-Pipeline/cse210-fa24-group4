@@ -52,7 +52,7 @@ describe("UUIDGeneratorTool", () => {
     outputArea.value = "5fa63246-a09e-4e82-853b-c38450d39d08";
     await copyBtn.click();
     expect(clipboardMock).toHaveBeenCalledWith(
-      "5fa63246-a09e-4e82-853b-c38450d39d08"
+      "5fa63246-a09e-4e82-853b-c38450d39d08",
     );
     expect(alertMock).toHaveBeenCalledWith("UUID copied to clipboard!");
   });
@@ -69,12 +69,12 @@ describe("UUIDGeneratorTool", () => {
   test("Should handle cleanup correctly when disconnected", () => {
     const removeEventListenerSpy = jest.spyOn(
       generateBtn,
-      "removeEventListener"
+      "removeEventListener",
     );
     uuidGeneratorTool.remove();
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       "click",
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 });
