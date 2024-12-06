@@ -58,7 +58,7 @@ describe("UrlEncoderDecoder", () => {
 
     // Check that the output area contains encoded URL
     expect(outputArea.value).toBe(
-      "https%3A%2F%2Fwww.w3schools.com%2Fjsref%2Ftryit.asp%3Ffilename%3Dtryjsref_encodeuricomponent"
+      "https%3A%2F%2Fwww.w3schools.com%2Fjsref%2Ftryit.asp%3Ffilename%3Dtryjsref_encodeuricomponent",
     );
   });
 
@@ -73,7 +73,7 @@ describe("UrlEncoderDecoder", () => {
 
     // Check that the output area contains decoded URL
     expect(outputArea.value).toBe(
-      "https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_encodeuricomponent"
+      "https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_encodeuricomponent",
     );
   });
 
@@ -115,7 +115,7 @@ describe("UrlEncoderDecoder", () => {
 
     // Confirm output area is full
     expect(outputArea.value).toBe(
-      "https%3A%2F%2Fwww.w3schools.com%2Fjsref%2Ftryit.asp%3Ffilename%3Dtryjsref_encodeuricomponent"
+      "https%3A%2F%2Fwww.w3schools.com%2Fjsref%2Ftryit.asp%3Ffilename%3Dtryjsref_encodeuricomponent",
     );
 
     // Use Clear button
