@@ -6,7 +6,8 @@
   width: 100%;
   height: 90%;
   margin: 20px auto;
-  background: var(--bg-color); /* Light/Dark mode background */
+  background: var(--tool-bg-color); /* Light/Dark mode background */
+  border: 1px solid black;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   z-index: 1000;
@@ -20,11 +21,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background-color: #061524; /* Dark mode background */
-  color: #ffffff;
+  background-color: var(--tool-bg-color); /* Dark mode background */
+  color: var(--text-color);
   font-size: calc(var(--font-size-desktop) * 1.2);
   font-weight: bold;
-  border-bottom: 1px solid var(--border-color); /* Border color for light/dark mode */
+  border-bottom: 1px solid black; /* Border color for light/dark mode */
 }
 
 /* Tool content styling */
@@ -43,19 +44,19 @@
 .output-area {
   flex: 1;
   padding: 10px;
-  border: 1px solid var(--border-color); /* Light/Dark mode border color */
+  border: 1px solid black; /* Light/Dark mode border color */
   border-radius: 4px;
   font-family: monospace;
   font-size: calc(var(--font-size-desktop) * 1);
   resize: none;
-  background-color: var(--input-bg); /* Light/Dark mode background */
+  background-color: var(--tool-bg-color); /* Light/Dark mode background */
   color: var(--inverse-color); /* Light/Dark mode text color */
 }
 
 /* Read-only style for output area */
 .output-area[readonly] {
   background-color: var(
-    --readonly-bg
+    --tool-bg-color
   ); /* Light/Dark mode read-only background */
 }
 
@@ -139,6 +140,10 @@
 .copy-btn:active,
 .download-btn:active {
   transform: scale(0.98);
+}
+
+textarea::placeholder {
+  color: var(--text-color);
 }
 
 @media (max-width: 600px) {
