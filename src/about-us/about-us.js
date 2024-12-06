@@ -37,4 +37,4 @@ class AboutUs extends HTMLElement {
 }
 
 // Register the custom element
-customElements.define('about-us', AboutUs);
+customElements.define("about-us", AboutUs);
