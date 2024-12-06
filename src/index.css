@@ -83,6 +83,12 @@ body {
   text-align: center;
 }
 
+.sidebar-title:hover {
+  color: #0a5568;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
 .tool-button {
   flex: 1;
   max-height: 50px;

@@ -1,15 +1,31 @@
 /**
- * Loads a new feature component into the content area, clearing any existing content first.
- * @param {string} componentName - The name of the custom element to load.
- * @param {HTMLElement} contentArea - The element to load the feature component into.
+ * Loads a custom element into the specified content area. The function clears any
+ * existing content and attempts to create and append a new feature component based on
+ * the provided component name. If the component is not defined, an error message is
+ * displayed in the content area.
+ *
+ * @param {string} componentName - The name of the custom element to be loaded.
+ * @param {HTMLElement} contentArea - The DOM element where the custom element should be loaded.
  */
 const loadFeatureComponent = (componentName, contentArea) => {
   // Clear any existing content in the content area
-  contentArea.innerHTML = "";
+  try {
+    // Clear any existing content in the content area
+    contentArea.innerHTML = '';
 
-  // Create the new feature component
-  const newFeature = document.createElement(componentName);
-  contentArea.appendChild(newFeature);
+    // Create the new feature component
+    const newFeature = document.createElement(componentName);
+
+    //Check if the custom element is defined
+    if (!customElements.get(componentName)) {
+      throw new Error(`Component ${componentName} is not defined.`);
+    }
+
+    contentArea.appendChild(newFeature);
+  } catch (error) {
+    console.error('Error loading feature component:', error);
+    contentArea.innerHTML = `<div class="error-message">Failed to load component: ${componentName}</div>`;
+  }
 };
 
 /**
@@ -27,7 +43,7 @@ const initializeFeatureButtons = (featureComponents, contentArea) => {
     const button = document.getElementById(buttonId);
 
     if (button) {
-      button.addEventListener("click", () => {
+      button.addEventListener('click', () => {
         loadFeatureComponent(featureComponents[buttonId], contentArea);
       });
     } else {
@@ -40,8 +56,8 @@ const initializeFeatureButtons = (featureComponents, contentArea) => {
  * Toggles the 'active' class on the sidebar element to show or hide it.
  */
 const toggleSidebar = () => {
-  const sideBar = document.getElementById("side-bar");
-  sideBar.classList.toggle("active");
+  const sideBar = document.getElementById('side-bar');
+  sideBar.classList.toggle('active');
 };
 
 /**
@@ -49,11 +65,11 @@ const toggleSidebar = () => {
  * that calls the toggleSidebar function when the button is clicked.
  */
 const initializeSidebarToggleButton = () => {
-  const toggleBtn = document.getElementById("toggle-btn");
+  const toggleBtn = document.getElementById('toggle-btn');
   if (toggleBtn) {
-    toggleBtn.addEventListener("click", toggleSidebar);
+    toggleBtn.addEventListener('click', toggleSidebar);
   } else {
-    console.error("Toggle button not found.");
+    console.error('Toggle button not found.');
   }
 };
 
@@ -65,13 +81,14 @@ const initializeSidebarToggleButton = () => {
  */
 
 const featureComponents = {
-  "json-formatter-button": "json-formatter-tool",
-  "url-encoder-decoder-button": "url-encoder-decoder-tool",
-  "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
+  'json-formatter-button': 'json-formatter-tool',
+  'url-encoder-decoder-button': 'url-encoder-decoder-tool',
+  'unix-timestamp-converter-button': 'unix-timestamp-converter-tool',
+  'home-button': 'about-us',
   // Add other features and their corresponding component tags here
 };
 const initializeApp = (featureComponents) => {
-  const contentArea = document.querySelector(".content-area");
+  const contentArea = document.querySelector('.content-area');
 
   // Define each feature's component
 
@@ -80,12 +97,20 @@ const initializeApp = (featureComponents) => {
 
   // Initialize the sidebar toggle button
   initializeSidebarToggleButton();
+
+  window.addEventListener('load', () => {
+    loadFeatureComponent('about-us', contentArea);
+  });
 };
 
 // Initialize the application when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initializeApp(featureComponents));
-module.exports = {
-  initializeApp,
-  initializeFeatureButtons,
-  initializeSidebarToggleButton,
-};
+document.addEventListener('DOMContentLoaded', initializeApp(featureComponents));
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    initializeApp,
+    initializeFeatureButtons,
+    initializeSidebarToggleButton,
+    loadFeatureComponent,
+  };
+}
