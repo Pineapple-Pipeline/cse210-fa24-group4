@@ -2,22 +2,27 @@
   --font-size-desktop: 1em;
   --font-size-mobile: 0.75em;
 
-  /* Light Theme Variables */
-  --bg-color: #f4f4f4;
-  --text-color: #ebe7e7;
-  --inverse-color: #0e0101;
-  --sidebar-bg: #e2e5e7;
-  --button-bg: rgb(6, 33, 42);
-  --button-hover-bg: #0a5568;
-  --border-color: #050000;
+  /* Light Theme */
+  --bg-color: #fafafa;
+  --text-color: #2d3748;
+  --sidebar-bg: #e4e5f1;
+  --button-bg: #d2d3db;
+  --button-text: #1a202c;
+  --button-hover-bg: #cbd5e0; 
+  --border-color: #e2e8f0; 
+  --tool-bg-color: #e4e5f1;
+  --text-area-color: #fafafa;
 
-  /* Dark Theme Variables */
-  --dark-bg-color: #1a1a1a;
-  --dark-text-color: #0e0101;
-  --dark-sidebar-bg: #010a11;
-  --dark-button-bg: #e1e7ee;
-  --dark-button-hover-bg: #021a20;
-  --dark-border-color: #ebe7e7;
+  /* Dark Theme */
+  --dark-bg-color: #1a202c;
+  --dark-text-color: #f7fafc;
+  --dark-sidebar-bg: #2d3748;
+  --dark-button-bg: #4a5568;
+  --dark-button-text: #f7fafc;
+  --dark-button-hover-bg: #718096;
+  --dark-border-color: #4a5568;
+  --dark-tool-bg-color: #2d3748;
+  --dark-text-area-color: #4a5568;
 }
 
 [data-theme="dark"] {
@@ -28,6 +33,8 @@
   --button-bg: var(--dark-button-bg);
   --button-hover-bg: var(--dark-button-hover-bg);
   --border-color: var(--dark-border-color);
+  --tool-bg-color: var(--dark-tool-bg-color);
+  --text-area-color: var(--dark-text-area-color);
 }
 
 html,
@@ -88,7 +95,7 @@ body {
   width: 30px;
   height: 5px;
   border-radius: 5px;
-  background: var(--inverse-color);
+  background: var(--text-color);
   display: block;
   margin-top: 4px;
 }
@@ -107,6 +114,7 @@ body {
 }
 
 .sidebar-title {
+  color: var(--text-color);
   font-size: calc(var(--font-size-desktop) * 1.2);
   font-weight: bold;
   margin-bottom: 20px;
@@ -120,8 +128,7 @@ body {
   background: none;
   border: none;
   font-size: 2em;
-  color: inherit;
-  padding: 0;
+  color: var(--text-color);
   transition: transform 0.2s ease;
 }
 
@@ -155,7 +162,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #103356;
+  background-color: var(--bg-color);
   padding-inline: 50px;
   transition: margin-left 0.3s ease;
 }

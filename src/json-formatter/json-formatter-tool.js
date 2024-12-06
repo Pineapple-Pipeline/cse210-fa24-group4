@@ -27,7 +27,6 @@ class JsonFormatterTool extends HTMLElement {
         <header class="tool-header">
           <h3>JSON Formatter</h3>
         </header>
-        <hr />
         <section class="tool-content">
           <textarea class="input-area" placeholder="Paste your JSON here"></textarea>
           <button class="format-btn">Format</button>
