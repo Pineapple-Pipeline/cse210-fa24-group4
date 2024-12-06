@@ -2,25 +2,25 @@
   --font-size-desktop: 1em;
   --font-size-mobile: 0.75em;
 
-/* Light Theme */
---bg-color: #fafafa;
---text-color: #2e3047;
---sidebar-bg: #e4e5f1;
---button-bg: #9394a5;
---button-text: #1a202c;
---button-hover-bg: #cbd5e0;
---border-color: #e2e8f0;
---tool-bg-color: #e4e5f1;
+  /* Light Theme */
+  --bg-color: #fafafa;
+  --text-color: #2e3047;
+  --sidebar-bg: #e4e5f1;
+  --button-bg: #9394a5;
+  --button-text: #1a202c;
+  --button-hover-bg: #cbd5e0;
+  --border-color: #e2e8f0;
+  --tool-bg-color: #e4e5f1;
 
-/* Dark Theme */
---dark-bg-color: #1a202c;
---dark-text-color: #f7fafc;
---dark-sidebar-bg: #2d3748;
---dark-button-bg: #4a5568;
---dark-button-text: #f7fafc;
---dark-button-hover-bg: #718096;
---dark-border-color: #4a5568;
---dark-tool-bg-color: #2d3748;
+  /* Dark Theme */
+  --dark-bg-color: #1a202c;
+  --dark-text-color: #f7fafc;
+  --dark-sidebar-bg: #2d3748;
+  --dark-button-bg: #4a5568;
+  --dark-button-text: #f7fafc;
+  --dark-button-hover-bg: #718096;
+  --dark-border-color: #4a5568;
+  --dark-tool-bg-color: #2d3748;
 }
 
 [data-theme="dark"] {

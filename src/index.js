@@ -63,6 +63,7 @@ const initializeDarkMode = () => {
   // Check for saved theme in localStorage
   const savedTheme = localStorage.getItem("theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
+  themeToggle.textContent = savedTheme === "dark" ? "☀" : "⏾";
 
   // Add click event listener to toggle theme
   themeToggle.addEventListener("click", () => {
@@ -70,7 +71,7 @@ const initializeDarkMode = () => {
     const newTheme = currentTheme === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-    themeToggle.textContent = newTheme === "dark" ? "L" : "D";
+    themeToggle.textContent = newTheme === "dark" ? "☀" : "⏾";
   });
 };
 
