@@ -31,7 +31,9 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-color: var(--tool-bg-color); /* Light/Dark mode content background */
+  background-color: var(
+    --tool-bg-color
+  ); /* Light/Dark mode content background */
   color: var(--text-color);
   gap: 20px;
 }
