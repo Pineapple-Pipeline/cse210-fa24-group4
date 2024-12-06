@@ -22,8 +22,8 @@ class JsonFormatterTool extends HTMLElement {
   connectedCallback() {
     // Set up the HTML structure when the element is added to the DOM
     this.innerHTML = `
-      <link rel="stylesheet" href="json-formatter/json-formatter-tool.css"> 
-      <section class="tool-panel">
+      <link rel="stylesheet" href="json-formatter/json-formatter-tool.css" > 
+      <section class="tool-panel" style="display:none;">
         <header class="tool-header">
           <h3>JSON Formatter</h3>
         </header>
@@ -65,9 +65,14 @@ class JsonFormatterTool extends HTMLElement {
       if (input) {
         const parsed = JSON.parse(input);
         this.outputArea.value = JSON.stringify(parsed, null, 2);
+        this.copyBtn.disabled = false;
+        this.downloadBtn.disabled = false;
       }
     } catch (error) {
       this.outputArea.value = `Error: ${error.message}`;
+      // Disable the buttons if JSON is invalid
+      this.copyBtn.disabled = true;
+      this.downloadBtn.disabled = true;
     }
   };
 

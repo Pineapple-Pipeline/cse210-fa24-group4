@@ -1,7 +1,7 @@
 /* Container for the JSON Formatter tool */
 
 .tool-panel {
-  display: flex;
+  display: flex !important;
   flex: 1;
   width: 100%;
   height: 90%;
@@ -126,6 +126,11 @@
 .copy-btn:active,
 .download-btn:active {
   transform: scale(0.98);
+}
+.copy-btn:disabled,
+.download-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 600px) {
