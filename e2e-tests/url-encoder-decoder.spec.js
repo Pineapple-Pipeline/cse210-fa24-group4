@@ -84,13 +84,13 @@ test.describe("URL Encoder Decoder tool", () => {
       function: "encoding",
       input: 'https://example.com/space test/<>"#{}|\\^~[]',
       expect:
-        "https%3A%2F%2Fexample.com%2Fspace%20test%2F%3C%3E%22%23%7B%7D%7C%5C%5E~%5B%5D",
+        "https%3A%2F%2Fexample.com%2Fspace%20test%2F%3C%3E%22%23%7B%7D%7C%5C%5C%5E~%5B%5D",
     },
     {
       name: "URL with Unsafe Characters Decoding",
       function: "decoding",
       input:
-        "https%3A%2F%2Fexample.com%2Fspace%20test%2F%3C%3E%22%23%7B%7D%7C%5C%5E~%5B%5D",
+        "https%3A%2F%2Fexample.com%2Fspace%20test%2F%3C%3E%22%23%7B%7D%7C%5C%5C%5E~%5B%5D",
       expect: 'https://example.com/space test/<>"#{}|\\^~[]',
     },
     {
