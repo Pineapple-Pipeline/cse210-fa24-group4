@@ -63,6 +63,7 @@ const initializeDarkMode = () => {
   // Check for saved theme in localStorage
   const savedTheme = localStorage.getItem("theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
+  themeToggle.textContent = savedTheme === "dark" ? "☀" : "⏾";
 
   // Add click event listener to toggle theme
   themeToggle.addEventListener("click", () => {
@@ -70,7 +71,7 @@ const initializeDarkMode = () => {
     const newTheme = currentTheme === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-    themeToggle.textContent = newTheme === "dark" ? "𖤓" : "⏾";
+    themeToggle.textContent = newTheme === "dark" ? "☀" : "⏾";
   });
 };
 
@@ -88,6 +89,8 @@ const initializeApp = () => {
     "json-formatter-button": "json-formatter-tool",
     "url-encoder-decoder-button": "url-encoder-decoder-tool",
     "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
+    "jwt-generator-button": "jwt-generator-tool",
+    "uuid-generator-button": "uuid-generator-tool",
     // Add other features and their corresponding component tags here
   };
 

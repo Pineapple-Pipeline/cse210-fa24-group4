@@ -17,7 +17,6 @@ class UrlEncoderDecoderTool extends HTMLElement {
             <header class="tool-header">
               <h3>URL Encoder/Decoder</h3>
             </header>
-            <hr />
             <section class="tool-content">
               <div class="tool-row">
                 <textarea class="input-area" placeholder="Paste your URL here"></textarea>

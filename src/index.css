@@ -4,14 +4,13 @@
 
   /* Light Theme */
   --bg-color: #fafafa;
-  --text-color: #2d3748;
+  --text-color: #2e3047;
   --sidebar-bg: #e4e5f1;
-  --button-bg: #d2d3db;
+  --button-bg: #9394a5;
   --button-text: #1a202c;
-  --button-hover-bg: #cbd5e0; 
-  --border-color: #e2e8f0; 
+  --button-hover-bg: #cbd5e0;
+  --border-color: #e2e8f0;
   --tool-bg-color: #e4e5f1;
-  --text-area-color: #fafafa;
 
   /* Dark Theme */
   --dark-bg-color: #1a202c;
@@ -22,7 +21,6 @@
   --dark-button-hover-bg: #718096;
   --dark-border-color: #4a5568;
   --dark-tool-bg-color: #2d3748;
-  --dark-text-area-color: #4a5568;
 }
 
 [data-theme="dark"] {
@@ -34,7 +32,6 @@
   --button-hover-bg: var(--dark-button-hover-bg);
   --border-color: var(--dark-border-color);
   --tool-bg-color: var(--dark-tool-bg-color);
-  --text-area-color: var(--dark-text-area-color);
 }
 
 html,
@@ -122,6 +119,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  color: var(--text-color);
 }
 
 .theme-toggle {
@@ -130,6 +128,7 @@ body {
   font-size: 2em;
   color: var(--text-color);
   transition: transform 0.2s ease;
+  color: var(--text-color);
 }
 
 .theme-toggle:hover {
