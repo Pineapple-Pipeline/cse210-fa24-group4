@@ -7,6 +7,7 @@ describe("initializeApp", () => {
   let unixButton;
   let toggleBtn;
   let sideBar;
+  let themeButton;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -14,6 +15,7 @@ describe("initializeApp", () => {
                 <div id="side-bar" class="sidebar">
                     <div class="sidebar-content">
                         <div class="sidebar-title">Dev Toolkit</div>
+                        <button id="theme-toggle" class="theme-toggle">𖤓</button>
                         <button id="json-formatter-button" class="tool-button">
                             JSON Formatter
                         </button>
@@ -40,6 +42,7 @@ describe("initializeApp", () => {
     unixButton = document.getElementById("unix-timestamp-converter-button");
     toggleBtn = document.getElementById("toggle-btn");
     sideBar = document.getElementById("side-bar");
+    themeButton = document.getElementById("theme-toggle");
 
     initializeApp();
   });
@@ -70,5 +73,16 @@ describe("initializeApp", () => {
     expect(sideBar.classList.contains("active")).toBe(true);
     toggleBtn.click();
     expect(sideBar.classList.contains("active")).toBe(false);
+  });
+
+  test("should toggle the dark/light theme when button is clicked", () => {
+    const htmlElement = document.documentElement; // This refers to the <html> tag
+
+    // Check initial state (assuming light mode is default)
+    expect(htmlElement.getAttribute("data-theme")).toBe("light");
+    themeButton.click();
+    expect(htmlElement.getAttribute("data-theme")).toBe("dark");
+    themeButton.click();
+    expect(htmlElement.getAttribute("data-theme")).toBe("light");
   });
 });

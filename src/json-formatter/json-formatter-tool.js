@@ -22,14 +22,12 @@ class JsonFormatterTool extends HTMLElement {
   connectedCallback() {
     // Set up the HTML structure when the element is added to the DOM
     this.innerHTML = `
-      <link rel="stylesheet" href="json-formatter/json-formatter-tool.css"> 
-      <section class="tool-panel">
+      <link rel="stylesheet" href="json-formatter/json-formatter-tool.css" > 
+      <section class="tool-panel" style="display:none;">
         <header class="tool-header">
           <h3>JSON Formatter</h3>
         </header>
-        <hr />
         <section class="tool-content">
-          <input type="file" class="upload-btn" accept=".json" aria-label="Upload JSON File" />
           <textarea class="input-area" placeholder="Paste your JSON here"></textarea>
           <button class="format-btn">Format</button>
           <textarea class="output-area" readonly></textarea>
@@ -48,13 +46,11 @@ class JsonFormatterTool extends HTMLElement {
     this.outputArea = this.querySelector(".output-area");
     this.copyBtn = this.querySelector(".copy-btn");
     this.downloadBtn = this.querySelector(".download-btn");
-    this.uploadBtn = this.querySelector(".upload-btn");
 
     // Bind event listeners
     this.formatBtn.addEventListener("click", this.formatJson);
     this.copyBtn.addEventListener("click", this.copyToClipboard.bind(this));
     this.downloadBtn.addEventListener("click", this.downloadJson.bind(this));
-    this.uploadBtn.addEventListener("change", this.handleFileUpload.bind(this));
   }
 
   /**
@@ -68,9 +64,14 @@ class JsonFormatterTool extends HTMLElement {
       if (input) {
         const parsed = JSON.parse(input);
         this.outputArea.value = JSON.stringify(parsed, null, 2);
+        this.copyBtn.disabled = false;
+        this.downloadBtn.disabled = false;
       }
     } catch (error) {
       this.outputArea.value = `Error: ${error.message}`;
+      // Disable the buttons if JSON is invalid
+      this.copyBtn.disabled = true;
+      this.downloadBtn.disabled = true;
     }
   };
 
@@ -98,24 +99,6 @@ class JsonFormatterTool extends HTMLElement {
         .catch(() => alert("Failed to copy JSON to clipboard."));
     } else {
       alert("Nothing to copy!");
-    }
-  }
-
-  handleFileUpload(event) {
-    const file = event.target.files[0];
-    if (file && file.type === "application/json") {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const jsonContent = JSON.parse(e.target.result);
-          this.inputArea.value = JSON.stringify(jsonContent, null, 2);
-        } catch (error) {
-          this.inputArea.value = `Error reading file: ${error.message}`;
-        }
-      };
-      reader.readAsText(file);
-    } else {
-      alert("Please upload a valid JSON file.");
     }
   }
 

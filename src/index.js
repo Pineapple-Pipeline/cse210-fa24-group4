@@ -52,6 +52,28 @@ const initializeSidebarToggleButton = () => {
     toggleBtn.addEventListener("click", toggleSidebar);
   }
 };
+/**
+ * Initializes the theme toggle button by attaching an event listener that
+ * toggles the document's "data-theme" attribute between "light" and "dark"
+ * when clicked. The value of the attribute is also saved in localStorage.
+ */
+const initializeDarkMode = () => {
+  const themeToggle = document.getElementById("theme-toggle");
+
+  // Check for saved theme in localStorage
+  const savedTheme = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  themeToggle.textContent = savedTheme === "dark" ? "☀" : "⏾";
+
+  // Add click event listener to toggle theme
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    themeToggle.textContent = newTheme === "dark" ? "☀" : "⏾";
+  });
+};
 
 /**
  * Initializes the application by setting up the main content area and
@@ -67,6 +89,8 @@ const initializeApp = () => {
     "json-formatter-button": "json-formatter-tool",
     "url-encoder-decoder-button": "url-encoder-decoder-tool",
     "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
+    "jwt-generator-button": "jwt-generator-tool",
+    "uuid-generator-button": "uuid-generator-tool",
     // Add other features and their corresponding component tags here
   };
 
@@ -75,6 +99,9 @@ const initializeApp = () => {
 
   // Initialize the sidebar toggle button
   initializeSidebarToggleButton();
+
+  // Initialize the dark mode bcoutton
+  initializeDarkMode();
 };
 
 // Initialize the application when the DOM is fully loaded

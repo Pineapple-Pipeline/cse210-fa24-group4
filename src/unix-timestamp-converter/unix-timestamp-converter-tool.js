@@ -16,7 +16,6 @@ class UnixTimestampConverterTool extends HTMLElement {
               <header class="tool-header">
                 <h3>UNIX Timestamp Converter</h3>
               </header>
-              <hr />
               <section class="tool-content">
                 <textarea class="input-area" placeholder="Paste your UNIX timestamp here"></textarea>
                 <div class="button-group">
