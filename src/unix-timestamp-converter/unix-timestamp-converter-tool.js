@@ -1,16 +1,16 @@
 class UnixTimestampConverterTool extends HTMLElement {
-	constructor() {
-		super();
-		this.toolPanel = null;
-		this.convertUtcBtn = null;
-		this.convertIsoBtn = null;
-		this.inputArea = null;
-		this.outputArea = null;
-	}
+  constructor() {
+    super();
+    this.toolPanel = null;
+    this.convertUtcBtn = null;
+    this.convertIsoBtn = null;
+    this.inputArea = null;
+    this.outputArea = null;
+  }
 
-	connectedCallback() {
-		// Set up the HTML structure when the element is added to the DOM
-		this.innerHTML = `
+  connectedCallback() {
+    // Set up the HTML structure when the element is added to the DOM
+    this.innerHTML = `
             <link rel="stylesheet" href="unix-timestamp-converter/unix-timestamp-converter-tool.css"> 
             <section class="tool-panel" style="display:none;">
               <header class="tool-header">
@@ -27,52 +27,52 @@ class UnixTimestampConverterTool extends HTMLElement {
             </section>
           `;
 
-		// Store references to elements
-		this.toolPanel = this.querySelector(".tool-panel");
-		this.convertUtcBtn = this.querySelector(".convert-utc-btn");
-		this.convertIsoBtn = this.querySelector(".convert-iso-btn");
-		this.inputArea = this.querySelector(".input-area");
-		this.outputArea = this.querySelector(".output-area");
+    // Store references to elements
+    this.toolPanel = this.querySelector(".tool-panel");
+    this.convertUtcBtn = this.querySelector(".convert-utc-btn");
+    this.convertIsoBtn = this.querySelector(".convert-iso-btn");
+    this.inputArea = this.querySelector(".input-area");
+    this.outputArea = this.querySelector(".output-area");
 
-		// Bind event listeners
-		this.convertUtcBtn.addEventListener("click", () => this.convertTime("utc"));
-		this.convertIsoBtn.addEventListener("click", () => this.convertTime("iso"));
-	}
+    // Bind event listeners
+    this.convertUtcBtn.addEventListener("click", () => this.convertTime("utc"));
+    this.convertIsoBtn.addEventListener("click", () => this.convertTime("iso"));
+  }
 
-	convertTime = (format) => {
-		try {
-			const input = this.inputArea.value;
-			const unixTimestamp = parseInt(input, 10);
+  convertTime = (format) => {
+    try {
+      const input = this.inputArea.value;
+      const unixTimestamp = parseInt(input, 10);
 
-			// More specific error handling
-			if (isNaN(unixTimestamp)) {
-				throw new Error("Invalid Unix timestamp");
-			}
+      // More specific error handling
+      if (isNaN(unixTimestamp)) {
+        throw new Error("Invalid Unix timestamp");
+      }
 
-			const date = new Date(unixTimestamp * 1000);
+      const date = new Date(unixTimestamp * 1000);
 
-			// output based on format inputted
-			if (format == "utc") {
-				this.outputArea.value = date.toUTCString();
-			} else if (format == "iso") {
-				this.outputArea.value = date.toISOString();
-			}
-		} catch (error) {
-			this.outputArea.value = `Error: ${error.message}`;
-		}
-	};
+      // output based on format inputted
+      if (format == "utc") {
+        this.outputArea.value = date.toUTCString();
+      } else if (format == "iso") {
+        this.outputArea.value = date.toISOString();
+      }
+    } catch (error) {
+      this.outputArea.value = `Error: ${error.message}`;
+    }
+  };
 
-	disconnectedCallback() {
-		// Clean up event listeners when the element is removed from the DOM
-		if (this.convertUtcBtn)
-			this.convertUtcBtn.removeEventListener("click", this.convertTime);
-		if (this.convertIsoBtn)
-			this.convertIsoBtn.removeEventListener("click", this.convertTime);
-	}
+  disconnectedCallback() {
+    // Clean up event listeners when the element is removed from the DOM
+    if (this.convertUtcBtn)
+      this.convertUtcBtn.removeEventListener("click", this.convertTime);
+    if (this.convertIsoBtn)
+      this.convertIsoBtn.removeEventListener("click", this.convertTime);
+  }
 }
 
 // Register the custom element
 customElements.define(
-	"unix-timestamp-converter-tool",
-	UnixTimestampConverterTool
+  "unix-timestamp-converter-tool",
+  UnixTimestampConverterTool,
 );
