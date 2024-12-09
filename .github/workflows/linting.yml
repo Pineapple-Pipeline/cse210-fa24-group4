@@ -5,13 +5,10 @@ on:
     branches:
       - main
       - E2E-testing
-<<<<<<< HEAD
-=======
       - jwt-token-generator
       - JSON-formatter
       - complete-url-encoder-decoder
       - unix-timestamp-converter
->>>>>>> origin/main
       - frontend
   pull_request:
     branches:
