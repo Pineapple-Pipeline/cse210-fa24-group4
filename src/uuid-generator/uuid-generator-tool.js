@@ -97,12 +97,6 @@ class UUIDGeneratorTool extends HTMLElement {
         .writeText(output)
         .then(() =>
           this.showNotification(this.copyNotification, "Copied to clipboard!"),
-        )
-        .catch(() =>
-          this.showNotification(
-            this.copyNotification,
-            "Failed to copy to clipboard",
-          ),
         );
     } else {
       this.showNotification(this.copyNotification, "Nothing to copy!");
