@@ -12,7 +12,6 @@ describe("UUIDGeneratorTool", () => {
   let outputArea;
   let generateBtn;
   let copyBtn;
-  let copyNotification;
 
   beforeEach(() => {
     global.crypto = {
@@ -28,7 +27,6 @@ describe("UUIDGeneratorTool", () => {
     generateBtn = document.querySelector(".generate-btn");
     copyBtn = document.querySelector(".copy-btn");
     outputArea = document.querySelector(".output-area");
-    copyNotification = document.querySelector(".copy-btn .notification");
   });
 
   // tool render test
@@ -43,7 +41,7 @@ describe("UUIDGeneratorTool", () => {
     // Make the test async
     const showNotificationMock = jest
       .spyOn(uuidGeneratorTool, "showNotification")
-      .mockImplementation(() => { });
+      .mockImplementation(() => {});
 
     // Successful copy to clipboard
     const clipboardMock = jest.fn().mockResolvedValue();
@@ -60,7 +58,7 @@ describe("UUIDGeneratorTool", () => {
     );
     expect(showNotificationMock).toHaveBeenCalledWith(
       uuidGeneratorTool.copyNotification,
-      "Copied to clipboard!"
+      "Copied to clipboard!",
     );
   });
 
@@ -73,7 +71,7 @@ describe("UUIDGeneratorTool", () => {
     copyBtn.click();
     expect(showNotificationMock).toHaveBeenCalledWith(
       uuidGeneratorTool.copyNotification,
-      "Nothing to copy!"
+      "Nothing to copy!",
     );
   });
 

@@ -18,7 +18,6 @@ describe("JWTGeneratorTool", () => {
   let outputArea;
   let generateBtn;
   let copyBtn;
-  let copyNotification;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -33,7 +32,6 @@ describe("JWTGeneratorTool", () => {
     outputArea = document.querySelector(".output-area");
     generateBtn = document.querySelector(".generate-btn");
     copyBtn = document.querySelector(".copy-btn");
-    copyNotification = document.querySelector(".copy-btn .notification");
   });
 
   //tool render test
@@ -89,8 +87,8 @@ describe("JWTGeneratorTool", () => {
     // Mock the showNotification method
     const showNotificationMock = jest
       .spyOn(jwtGeneratorTool, "showNotification")
-      .mockImplementation(() => { });
-    
+      .mockImplementation(() => {});
+
     outputArea.value = "";
     copyBtn.click();
     expect(showNotificationMock).toHaveBeenCalledWith(

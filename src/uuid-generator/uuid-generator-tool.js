@@ -39,7 +39,7 @@ class UUIDGeneratorTool extends HTMLElement {
     this.outputArea = this.querySelector(".output-area");
     this.copyBtn = this.querySelector(".copy-btn");
     this.copyNotification = this.querySelector(
-      ".copy-btn-container .notification"
+      ".copy-btn-container .notification",
     );
 
     //Add event listeners
@@ -96,13 +96,13 @@ class UUIDGeneratorTool extends HTMLElement {
       navigator.clipboard
         .writeText(output)
         .then(() =>
-          this.showNotification(this.copyNotification, "Copied to clipboard!")
+          this.showNotification(this.copyNotification, "Copied to clipboard!"),
         )
         .catch(() =>
           this.showNotification(
             this.copyNotification,
-            "Failed to copy to clipboard"
-          )
+            "Failed to copy to clipboard",
+          ),
         );
     } else {
       this.showNotification(this.copyNotification, "Nothing to copy!");

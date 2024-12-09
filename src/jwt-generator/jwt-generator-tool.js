@@ -53,7 +53,7 @@ class JWTGeneratorTool extends HTMLElement {
     this.outputArea = this.querySelector(".output-area");
     this.copyBtn = this.querySelector(".copy-btn");
     this.copyNotification = this.querySelector(
-      ".copy-btn-container .notification"
+      ".copy-btn-container .notification",
     );
 
     // Add event listeners
@@ -73,7 +73,7 @@ class JWTGeneratorTool extends HTMLElement {
   showNotification(notification, message) {
     notification.textContent = message;
     notification.classList.add("show");
-    console.log('here');
+    console.log("here");
 
     // Hide notification after 2 seconds
     setTimeout(() => {
@@ -126,19 +126,19 @@ class JWTGeneratorTool extends HTMLElement {
         keyData,
         { name: "HMAC", hash: "SHA-256" },
         false,
-        ["sign"]
+        ["sign"],
       );
 
       // Generate signature
       const signature = await crypto.subtle.sign(
         "HMAC",
         key,
-        new TextEncoder().encode(signatureInput)
+        new TextEncoder().encode(signatureInput),
       );
 
       // Convert signature to base64url
       const encodedSignature = btoa(
-        String.fromCharCode(...new Uint8Array(signature))
+        String.fromCharCode(...new Uint8Array(signature)),
       )
         .replace(/\+/g, "-")
         .replace(/\//g, "_")
@@ -170,13 +170,13 @@ class JWTGeneratorTool extends HTMLElement {
       navigator.clipboard
         .writeText(output)
         .then(() =>
-          this.showNotification(this.copyNotification, "Copied to clipboard!")
+          this.showNotification(this.copyNotification, "Copied to clipboard!"),
         )
         .catch(() =>
           this.showNotification(
             this.copyNotification,
-            "Failed to copy to clipboard"
-          )
+            "Failed to copy to clipboard",
+          ),
         );
     } else {
       this.showNotification(this.copyNotification, "Nothing to copy!");
