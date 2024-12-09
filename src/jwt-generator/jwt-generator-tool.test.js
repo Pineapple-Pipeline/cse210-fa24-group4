@@ -18,6 +18,7 @@ describe("JWTGeneratorTool", () => {
   let outputArea;
   let generateBtn;
   let copyBtn;
+  let copyNotification;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -32,6 +33,7 @@ describe("JWTGeneratorTool", () => {
     outputArea = document.querySelector(".output-area");
     generateBtn = document.querySelector(".generate-btn");
     copyBtn = document.querySelector(".copy-btn");
+    copyNotification = document.querySelector(".download-btn .notification");
   });
 
   //tool render test
@@ -84,10 +86,17 @@ describe("JWTGeneratorTool", () => {
 
   // empty output copy alert test
   test("should alert when copying with no formatted JSON", () => {
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+    // Mock the showNotification method
+    const showNotificationMock = jest
+      .spyOn(jwtGeneratorTool, "showNotification")
+      .mockImplementation(() => { });
+    
     outputArea.value = "";
     copyBtn.click();
-    expect(alertMock).toHaveBeenCalledWith("Nothing to copy!");
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      jwtGeneratorTool.copyNotification,
+      "Nothing to copy!",
+    );
   });
 
   // JS cleanup on close test
