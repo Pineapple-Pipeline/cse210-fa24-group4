@@ -1,7 +1,7 @@
 :root {
   /* Font specifications */
-  --font-family-main: 'Roboto', sans-serif;
-  --font-family-code: 'Source Code Pro', 'Roboto', sans-serif;
+  --font-family-main: "Roboto", sans-serif;
+  --font-family-code: "Source Code Pro", "Roboto", sans-serif;
   --font-size-desktop: 1em;
   --font-size-mobile: 0.75em;
 
@@ -26,7 +26,7 @@
   --dark-tool-bg-color: #2d3748;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --bg-color: var(--dark-bg-color);
   --text-color: var(--dark-text-color);
   --inverse-color: #ebe7e7;
@@ -87,6 +87,7 @@ body {
   right: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 35px;
 }
 
 .toggle-btn span {
@@ -183,7 +184,7 @@ body {
   justify-content: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .tool-button {
     font-size: calc(var(--font-size-mobile) * 1); /* Mobile font size */
   }
