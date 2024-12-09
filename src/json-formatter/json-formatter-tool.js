@@ -11,7 +11,6 @@ class JsonFormatterTool extends HTMLElement {
     this.outputArea = null;
     this.copyBtn = null;
     this.downloadBtn = null;
-    this.uploadBtn = null;
     this.copyNotification = null;
     this.downloadNotification = null;
   }
@@ -115,8 +114,6 @@ class JsonFormatterTool extends HTMLElement {
       this.copyBtn.removeEventListener("click", this.copyToClipboard);
     if (this.downloadBtn)
       this.downloadBtn.removeEventListener("click", this.downloadJson);
-    if (this.uploadBtn)
-      this.uploadBtn.removeEventListener("change", this.handleFileUpload);
   }
 
   /**
@@ -131,12 +128,6 @@ class JsonFormatterTool extends HTMLElement {
         .then(() =>
           this.showNotification(this.copyNotification, "Copied to clipboard!"),
         )
-        .catch(() =>
-          this.showNotification(
-            this.copyNotification,
-            "Failed to copy to clipboard",
-          ),
-        );
     } else {
       this.showNotification(this.copyNotification, "Nothing to copy!");
     }
