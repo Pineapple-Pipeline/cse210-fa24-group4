@@ -63,16 +63,20 @@ describe("UUIDGeneratorTool", () => {
   });
 
   // empty output copy alert test
-  test("should alert when copying with no UUID", () => {
-    const showNotificationMock = jest
-      .spyOn(uuidGeneratorTool, "showNotification")
-      .mockImplementation(() => {});
+  test("should alert when copying with no UUID", async () => {
+    const showNotificationMock = jest.spyOn(
+      uuidGeneratorTool,
+      "showNotification",
+    );
     outputArea.value = "";
     copyBtn.click();
     expect(showNotificationMock).toHaveBeenCalledWith(
       uuidGeneratorTool.copyNotification,
       "Nothing to copy!",
     );
+
+    // Wait for timeout to complete
+    await new Promise((resolve) => setTimeout(resolve, 1100));
   });
 
   test("Should generate a valid UUID with version 4 and RFC4122 variant", async () => {
