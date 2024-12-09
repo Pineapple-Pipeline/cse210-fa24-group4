@@ -3,9 +3,13 @@ name: Coverage Report
 on:
   push:
     branches:
-      - playground
       - main
       - E2E-testing
+      - jwt-token-generator
+      - JSON-formatter
+      - complete-url-encoder-decoder
+      - unix-timestamp-converter
+      - frontend
   pull_request:
     branches:
       - main

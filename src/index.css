@@ -1,26 +1,49 @@
 :root {
   /* Font specifications */
-  --font-family-main: "Roboto", sans-serif;
-  --font-family-code: "Source Code Pro", "Roboto", sans-serif;
+  --font-family-main: 'Roboto', sans-serif;
+  --font-family-code: 'Source Code Pro', 'Roboto', sans-serif;
   --font-size-desktop: 1em;
   --font-size-mobile: 0.75em;
 
-  /* Base colors */
-  --color-base-background-main: #282a2f;
-  --color-base-background-secondary: #1a1b20;
-  --color-base-foreground-main: #ffffff;
-  --color-base-foreground-secondary: #e2e2e9;
+  /* Light Theme */
+  --bg-color: #fafafa;
+  --text-color: #2e3047;
+  --sidebar-bg: #e4e5f1;
+  --button-bg: #9394a5;
+  --button-text: #1a202c;
+  --button-hover-bg: #cbd5e0;
+  --border-color: #e2e8f0;
+  --tool-bg-color: #e4e5f1;
 
-  /* Primary colors */
+  /* Dark Theme */
+  --dark-bg-color: #1a202c;
+  --dark-text-color: #f7fafc;
+  --dark-sidebar-bg: #2d3748;
+  --dark-button-bg: #4a5568;
+  --dark-button-text: #f7fafc;
+  --dark-button-hover-bg: #718096;
+  --dark-border-color: #4a5568;
+  --dark-tool-bg-color: #2d3748;
+}
+
+[data-theme='dark'] {
+  --bg-color: var(--dark-bg-color);
+  --text-color: var(--dark-text-color);
+  --inverse-color: #ebe7e7;
+  --sidebar-bg: var(--dark-sidebar-bg);
+  --button-bg: var(--dark-button-bg);
+  --button-hover-bg: var(--dark-button-hover-bg);
+  --border-color: var(--dark-border-color);
+  --tool-bg-color: var(--dark-tool-bg-color);
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
-  background-color: var(--color-base-background-main);
-  color: var(--color-base-background-main);
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,9 +63,11 @@ body {
 .sidebar {
   position: relative;
   width: 250px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-base-background-secondary);
+  justify-content: space-between;
+  background-color: var(--sidebar-bg);
   padding: 20px;
   color: var(--color-base-foreground-main);
   transition: all 0.3s ease;
@@ -52,6 +77,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: var(--inverse-color);
 }
 
 .toggle-btn {
@@ -67,7 +93,7 @@ body {
   width: 30px;
   height: 5px;
   border-radius: 5px;
-  background: var(--color-base-foreground-main);
+  background: var(--text-color);
   display: block;
   margin-top: 4px;
 }
@@ -86,11 +112,29 @@ body {
 }
 
 .sidebar-title {
-  font-size: calc(var(--font-size-desktop) * 1.5);
+  color: var(--text-color);
+  font-size: calc(var(--font-size-desktop) * 1.2);
   font-weight: bold;
   letter-spacing: 0.8px;
   margin-bottom: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: var(--text-color);
+  transition: transform 0.2s ease;
+  color: var(--text-color);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.2);
 }
 
 .sidebar-title:hover {
@@ -103,9 +147,9 @@ body {
   flex: 1;
   max-height: 50px;
   margin: 10px 0;
-  padding: 15px;
-  background-color: var(--color-base-background-secondary);
-  color: var(--color-base-foreground-main);
+  padding: 10px;
+  background-color: var(--button-bg);
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -115,7 +159,8 @@ body {
 }
 
 .tool-button:hover {
-  background-color: var(--color-base-background-main);
+  background-color: var(--button-hover-bg);
+  color: var(--inverse-color);
 }
 
 /* Content Area */
@@ -124,7 +169,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-base-background-main);
+  background-color: var(--bg-color);
   padding-inline: 50px;
   transition: margin-left 0.3s ease;
 }
@@ -168,5 +213,9 @@ body {
     width: 20px;
     height: 3px;
     margin-top: 3px;
+  }
+  .theme-toggle {
+    font-size: calc(var(--font-size-mobile) * 1);
+    padding: 8px 15px;
   }
 }

@@ -11,7 +11,8 @@ class JsonFormatterTool extends HTMLElement {
     this.outputArea = null;
     this.copyBtn = null;
     this.downloadBtn = null;
-    this.uploadBtn = null;
+    this.copyNotification = null;
+    this.downloadNotification = null;
   }
 
   /**
@@ -22,20 +23,28 @@ class JsonFormatterTool extends HTMLElement {
   connectedCallback() {
     // Set up the HTML structure when the element is added to the DOM
     this.innerHTML = `
-      <link rel="stylesheet" href="json-formatter/json-formatter-tool.css"> 
-      <section class="tool-panel">
+      <link rel="stylesheet" href="json-formatter/json-formatter-tool.css" > 
+      <section class="tool-panel" style="display:none;">
         <header class="tool-header">
           <h3>JSON Formatter</h3>
         </header>
-        <hr />
         <section class="tool-content">
-          <input type="file" class="upload-btn" accept=".json" aria-label="Upload JSON File" />
           <textarea class="input-area" placeholder="Paste your JSON here"></textarea>
           <button class="format-btn">Format</button>
           <textarea class="output-area" readonly></textarea>
           <div align="center" class="button-group">
-            <button class="copy-btn">Copy to Clipboard</button>
-            <button class="download-btn">Download Formatted JSON</button>
+            <div class="copy-btn-container">
+              <div class="notification-wrapper">
+                <div class="notification">Copied to clipboard!</div>
+              </div>
+              <button class="copy-btn">Copy to Clipboard</button>
+            </div>
+            <div class="download-btn-container">
+              <div class="notification-wrapper">
+                <div class="notification">Downloaded file!</div>
+              </div>
+              <button class="download-btn">Download JSON File</button>
+            </div>
           </div> 
         </section>
       </section>
@@ -48,13 +57,27 @@ class JsonFormatterTool extends HTMLElement {
     this.outputArea = this.querySelector(".output-area");
     this.copyBtn = this.querySelector(".copy-btn");
     this.downloadBtn = this.querySelector(".download-btn");
-    this.uploadBtn = this.querySelector(".upload-btn");
+    this.copyNotification = this.querySelector(
+      ".copy-btn-container .notification",
+    );
+    this.downloadNotification = this.querySelector(
+      ".download-btn-container .notification",
+    );
 
     // Bind event listeners
     this.formatBtn.addEventListener("click", this.formatJson);
     this.copyBtn.addEventListener("click", this.copyToClipboard.bind(this));
     this.downloadBtn.addEventListener("click", this.downloadJson.bind(this));
-    this.uploadBtn.addEventListener("change", this.handleFileUpload.bind(this));
+  }
+
+  showNotification(notification, message) {
+    notification.textContent = message;
+    notification.classList.add("show");
+
+    // Hide notification after 2 seconds
+    setTimeout(() => {
+      notification.classList.remove("show");
+    }, 1000);
   }
 
   /**
@@ -68,9 +91,14 @@ class JsonFormatterTool extends HTMLElement {
       if (input) {
         const parsed = JSON.parse(input);
         this.outputArea.value = JSON.stringify(parsed, null, 2);
+        this.copyBtn.disabled = false;
+        this.downloadBtn.disabled = false;
       }
     } catch (error) {
       this.outputArea.value = `Error: ${error.message}`;
+      // Disable the buttons if JSON is invalid
+      this.copyBtn.disabled = true;
+      this.downloadBtn.disabled = true;
     }
   };
 
@@ -86,39 +114,29 @@ class JsonFormatterTool extends HTMLElement {
       this.copyBtn.removeEventListener("click", this.copyToClipboard);
     if (this.downloadBtn)
       this.downloadBtn.removeEventListener("click", this.downloadJson);
-    if (this.uploadBtn)
-      this.uploadBtn.removeEventListener("change", this.handleFileUpload);
   }
+
+  /**
+   * The `copyToClipboard` function copies the content of an output area to the clipboard and displays
+   * a notification based on the outcome.
+   */
   copyToClipboard() {
     const output = this.outputArea.value;
     if (output) {
       navigator.clipboard
         .writeText(output)
-        .then(() => alert("Formatted JSON copied to clipboard!"))
-        .catch(() => alert("Failed to copy JSON to clipboard."));
+        .then(() =>
+          this.showNotification(this.copyNotification, "Copied to clipboard!"),
+        );
     } else {
-      alert("Nothing to copy!");
+      this.showNotification(this.copyNotification, "Nothing to copy!");
     }
   }
 
-  handleFileUpload(event) {
-    const file = event.target.files[0];
-    if (file && file.type === "application/json") {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const jsonContent = JSON.parse(e.target.result);
-          this.inputArea.value = JSON.stringify(jsonContent, null, 2);
-        } catch (error) {
-          this.inputArea.value = `Error reading file: ${error.message}`;
-        }
-      };
-      reader.readAsText(file);
-    } else {
-      alert("Please upload a valid JSON file.");
-    }
-  }
-
+  /**
+   * The `downloadJson` function downloads a JSON file with formatted content if available, and
+   * displays a notification accordingly.
+   */
   downloadJson() {
     const formattedJson = this.outputArea.value;
     if (formattedJson) {
@@ -129,8 +147,9 @@ class JsonFormatterTool extends HTMLElement {
       a.download = "formatted.json";
       a.click();
       URL.revokeObjectURL(url);
+      this.showNotification(this.downloadNotification, "JSON file downloaded!");
     } else {
-      alert("There is no formatted JSON to download.");
+      this.showNotification(this.downloadNotification, "No JSON to download!");
     }
   }
 }
