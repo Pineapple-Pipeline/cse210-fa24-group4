@@ -127,7 +127,7 @@ class JsonFormatterTool extends HTMLElement {
         .writeText(output)
         .then(() =>
           this.showNotification(this.copyNotification, "Copied to clipboard!"),
-        )
+        );
     } else {
       this.showNotification(this.copyNotification, "Nothing to copy!");
     }
