@@ -33,7 +33,7 @@ describe("JWTGeneratorTool", () => {
     outputArea = document.querySelector(".output-area");
     generateBtn = document.querySelector(".generate-btn");
     copyBtn = document.querySelector(".copy-btn");
-    copyNotification = document.querySelector(".download-btn .notification");
+    copyNotification = document.querySelector(".copy-btn .notification");
   });
 
   //tool render test

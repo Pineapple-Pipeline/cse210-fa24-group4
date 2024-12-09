@@ -12,6 +12,7 @@ describe("UUIDGeneratorTool", () => {
   let outputArea;
   let generateBtn;
   let copyBtn;
+  let copyNotification;
 
   beforeEach(() => {
     global.crypto = {
@@ -27,6 +28,7 @@ describe("UUIDGeneratorTool", () => {
     generateBtn = document.querySelector(".generate-btn");
     copyBtn = document.querySelector(".copy-btn");
     outputArea = document.querySelector(".output-area");
+    copyNotification = document.querySelector(".copy-btn .notification");
   });
 
   // tool render test
@@ -39,7 +41,9 @@ describe("UUIDGeneratorTool", () => {
   // successful copy button test
   test("should alert a successful copy of UUID", async () => {
     // Make the test async
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+    const showNotificationMock = jest
+      .spyOn(uuidGeneratorTool, "showNotification")
+      .mockImplementation(() => { });
 
     // Successful copy to clipboard
     const clipboardMock = jest.fn().mockResolvedValue();
@@ -54,15 +58,23 @@ describe("UUIDGeneratorTool", () => {
     expect(clipboardMock).toHaveBeenCalledWith(
       "5fa63246-a09e-4e82-853b-c38450d39d08",
     );
-    expect(alertMock).toHaveBeenCalledWith("UUID copied to clipboard!");
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      uuidGeneratorTool.copyNotification,
+      "Copied to clipboard!"
+    );
   });
 
   // empty output copy alert test
   test("should alert when copying with no UUID", () => {
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+    const showNotificationMock = jest
+      .spyOn(uuidGeneratorTool, "showNotification")
+      .mockImplementation(() => {});
     outputArea.value = "";
     copyBtn.click();
-    expect(alertMock).toHaveBeenCalledWith("Nothing to copy!");
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      uuidGeneratorTool.copyNotification,
+      "Nothing to copy!"
+    );
   });
 
   test("Should generate a valid UUID with version 4 and RFC4122 variant", async () => {

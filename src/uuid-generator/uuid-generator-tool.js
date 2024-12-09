@@ -8,6 +8,7 @@ class UUIDGeneratorTool extends HTMLElement {
     this.generateBtn = null;
     this.outputArea = null;
     this.copyBtn = null;
+    this.copyNotification = null;
   }
 
   connectedCallback() {
@@ -21,7 +22,12 @@ class UUIDGeneratorTool extends HTMLElement {
                 <textarea class="output-area" readonly></textarea>
                 <div align="center" class="button-group">
                     <button class="generate-btn">Generate UUID</button>
-                    <button class="copy-btn">Copy to Clipboard</button>
+                    <div class="copy-btn-container">
+                      <div class="notification-wrapper">
+                        <div class="notification">Copied to clipboard!</div>
+                      </div>
+                      <button class="copy-btn">Copy to Clipboard</button>
+                    </div>
                 </div>
             </section>
         </section>
@@ -32,10 +38,33 @@ class UUIDGeneratorTool extends HTMLElement {
     this.generateBtn = this.querySelector(".generate-btn");
     this.outputArea = this.querySelector(".output-area");
     this.copyBtn = this.querySelector(".copy-btn");
+    this.copyNotification = this.querySelector(
+      ".copy-btn-container .notification"
+    );
 
     //Add event listeners
     this.generateBtn.addEventListener("click", this.generateUUID);
     this.copyBtn.addEventListener("click", this.copyToClipboard.bind(this));
+  }
+
+  /**
+   * The `showNotification` function displays a message in a notification element for a short period of
+   * time before hiding it.
+   * @param notification - The `notification` parameter is a reference to the HTML element that will
+   * display the notification message to the user.
+   * @param message - The `message` parameter is the text content that you want to display in the
+   * notification element. It is the message that will be set as the text content of the `notification`
+   * element when the `showNotification` function is called.
+   */
+  showNotification(notification, message) {
+    notification.textContent = message;
+    notification.classList.add("show");
+    console.log("here");
+
+    // Hide notification after 2 seconds
+    setTimeout(() => {
+      notification.classList.remove("show");
+    }, 1000);
   }
 
   generateUUID = async () => {
@@ -66,10 +95,17 @@ class UUIDGeneratorTool extends HTMLElement {
     if (output) {
       navigator.clipboard
         .writeText(output)
-        .then(() => alert("UUID copied to clipboard!"))
-        .catch(() => alert("Failed to copy UUID to clipboard."));
+        .then(() =>
+          this.showNotification(this.copyNotification, "Copied to clipboard!")
+        )
+        .catch(() =>
+          this.showNotification(
+            this.copyNotification,
+            "Failed to copy to clipboard"
+          )
+        );
     } else {
-      alert("Nothing to copy!");
+      this.showNotification(this.copyNotification, "Nothing to copy!");
     }
   }
 }
