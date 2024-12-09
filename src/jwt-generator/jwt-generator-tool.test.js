@@ -97,6 +97,33 @@ describe("JWTGeneratorTool", () => {
     );
   });
 
+  // successful copy button test
+  test("should alert a successful copy of formatted JSON", async () => {
+    // Make the test async
+    const showNotificationMock = jest
+      .spyOn(jwtGeneratorTool, "showNotification")
+      .mockImplementation(() => {});
+
+    // Successful copy to clipboard
+    const clipboardMock = jest.fn().mockResolvedValue();
+    Object.defineProperty(navigator, "clipboard", {
+      value: {
+        writeText: clipboardMock,
+      },
+      writable: true,
+    });
+    outputArea.value =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiYWRtaW4ifQ.sm58Rt7ekEMN-NBgc2As52G_DLAbZjDVnoJ3x47Bhio";
+    await copyBtn.click();
+    expect(clipboardMock).toHaveBeenCalledWith(
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiYWRtaW4ifQ.sm58Rt7ekEMN-NBgc2As52G_DLAbZjDVnoJ3x47Bhio",
+    );
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      jwtGeneratorTool.copyNotification,
+      "Copied to clipboard!",
+    );
+  });
+
   // JS cleanup on close test
   test("Should handle cleanup correctly when disconnected", () => {
     const removeEventListenerSpy = jest.spyOn(
