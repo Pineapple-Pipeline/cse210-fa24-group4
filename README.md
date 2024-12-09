@@ -2,6 +2,10 @@
 
 This is a simple yet efficient browser based developer tool-kit that provides developers access to the most commonly used developer tools for whatever project the user is working on. The web-app is written in vanilla JS, HTML, and CSS, providing smooth, fast responses, without a backend for security, and speed. Each component is modular, and is not dependent on any other tool available in the tool-kit.
 
+## JSDocs
+
+[Link to JS Docs](https://cse210-fa24-group4.github.io/cse210-fa24-group4/docs/)
+
 ## Project Setup
 
 1. Clone the repository:
