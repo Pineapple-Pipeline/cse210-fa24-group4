@@ -18,6 +18,7 @@ describe("JWTGeneratorTool", () => {
   let outputArea;
   let generateBtn;
   let copyBtn;
+  let copyNotification;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -32,6 +33,9 @@ describe("JWTGeneratorTool", () => {
     outputArea = document.querySelector(".output-area");
     generateBtn = document.querySelector(".generate-btn");
     copyBtn = document.querySelector(".copy-btn");
+    copyNotification = jwtGeneratorTool.querySelector(
+      ".copy-btn-container .notification"
+    );
   });
 
   //tool render test
@@ -42,6 +46,7 @@ describe("JWTGeneratorTool", () => {
     expect(outputArea).toBeTruthy();
     expect(generateBtn).toBeTruthy();
     expect(copyBtn).toBeTruthy();
+    expect(copyNotification).toBeTruthy();
   });
 
   // invalid header input test
@@ -53,7 +58,7 @@ describe("JWTGeneratorTool", () => {
     generateBtn.click();
 
     expect(outputArea.value).toMatch(
-      "Error: Header, Payload, and Secret Key must not be empty.",
+      "Error: Header, Payload, and Secret Key must not be empty."
     );
   });
 
@@ -66,7 +71,7 @@ describe("JWTGeneratorTool", () => {
     generateBtn.click();
 
     expect(outputArea.value).toMatch(
-      "Error: Header, Payload, and Secret Key must not be empty.",
+      "Error: Header, Payload, and Secret Key must not be empty."
     );
   });
 
@@ -78,27 +83,28 @@ describe("JWTGeneratorTool", () => {
     generateBtn.click();
 
     expect(outputArea.value).toMatch(
-      "Error: Header, Payload, and Secret Key must not be empty.",
+      "Error: Header, Payload, and Secret Key must not be empty."
     );
   });
-
+  
   // empty output copy alert test
-  test("should alert when copying with no formatted JSON", () => {
+  test("should alert when copying with no ouput", () => {
     // Mock the showNotification method
     const showNotificationMock = jest
       .spyOn(jwtGeneratorTool, "showNotification")
       .mockImplementation(() => {});
-
     outputArea.value = "";
     copyBtn.click();
+
+    // Assert that showNotification was called with the correct arguments
     expect(showNotificationMock).toHaveBeenCalledWith(
       jwtGeneratorTool.copyNotification,
-      "Nothing to copy!",
+      "Nothing to copy!"
     );
   });
 
   // successful copy button test
-  test("should alert a successful copy of formatted JSON", async () => {
+  test("should alert a successful copy", async () => {
     // Make the test async
     const showNotificationMock = jest
       .spyOn(jwtGeneratorTool, "showNotification")
@@ -116,24 +122,25 @@ describe("JWTGeneratorTool", () => {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiYWRtaW4ifQ.sm58Rt7ekEMN-NBgc2As52G_DLAbZjDVnoJ3x47Bhio";
     await copyBtn.click();
     expect(clipboardMock).toHaveBeenCalledWith(
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiYWRtaW4ifQ.sm58Rt7ekEMN-NBgc2As52G_DLAbZjDVnoJ3x47Bhio",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiYWRtaW4ifQ.sm58Rt7ekEMN-NBgc2As52G_DLAbZjDVnoJ3x47Bhio"
     );
     expect(showNotificationMock).toHaveBeenCalledWith(
       jwtGeneratorTool.copyNotification,
-      "Copied to clipboard!",
+      "Copied to clipboard!"
     );
   });
+
 
   // JS cleanup on close test
   test("Should handle cleanup correctly when disconnected", () => {
     const removeEventListenerSpy = jest.spyOn(
       generateBtn,
-      "removeEventListener",
+      "removeEventListener"
     );
     jwtGeneratorTool.remove();
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       "click",
-      expect.any(Function),
+      expect.any(Function)
     );
   });
 });
