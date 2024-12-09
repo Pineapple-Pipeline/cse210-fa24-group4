@@ -8,15 +8,15 @@ class AboutUs extends HTMLElement {
    */
   connectedCallback() {
     const teamMembers = [
-      { name: 'Nikhil Gautam', role: 'Project Manager' },
-      { name: 'Samyak Mehta', role: 'Frontend Developer' },
-      { name: 'Jake Norbie', role: 'Backend Developer' },
-      { name: 'Adrian Layer', role: 'UX Designer' },
-      { name: 'Tim Kraemer', role: 'Data Scientist' },
-      { name: 'Anusha Ravachandran', role: 'QA Engineer' },
-      { name: 'Yunhao Ziang', role: 'DevOps Engineer' },
-      { name: 'Laura Tian', role: 'Technical Writer' },
-      { name: 'Hailey Li', role: 'Product Owner' },
+      { name: "Nikhil Gautam", role: "Project Manager" },
+      { name: "Samyak Mehta", role: "Frontend Developer" },
+      { name: "Jake Norbie", role: "Backend Developer" },
+      { name: "Adrian Layer", role: "UX Designer" },
+      { name: "Tim Kraemer", role: "Data Scientist" },
+      { name: "Anusha Ravachandran", role: "QA Engineer" },
+      { name: "Yunhao Ziang", role: "DevOps Engineer" },
+      { name: "Laura Tian", role: "Technical Writer" },
+      { name: "Hailey Li", role: "Product Owner" },
     ];
 
     const teamGrid = teamMembers
@@ -26,9 +26,9 @@ class AboutUs extends HTMLElement {
             <h2>${member.name}</h2>
             <p>${member.role}</p>
           </div>
-        `
+        `,
       )
-      .join('');
+      .join("");
 
     this.innerHTML = `
       <style>
@@ -82,4 +82,4 @@ class AboutUs extends HTMLElement {
 }
 
 // Register the custom element
-customElements.define('about-us', AboutUs);
+customElements.define("about-us", AboutUs);
