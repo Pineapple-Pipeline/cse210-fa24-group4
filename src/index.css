@@ -1,4 +1,7 @@
 :root {
+  /* Font specifications */
+  --font-family-main: "Roboto", sans-serif;
+  --font-family-code: "Source Code Pro", "Roboto", sans-serif;
   --font-size-desktop: 1em;
   --font-size-mobile: 0.75em;
 
@@ -52,9 +55,7 @@ body {
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: brown;
-  /* border-radius: 10px; */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-base-background-main);
   overflow-y: auto;
 }
 
@@ -68,8 +69,7 @@ body {
   justify-content: space-between;
   background-color: var(--sidebar-bg);
   padding: 20px;
-  color: white;
-  border-right: 1mm solid black; /* Adjust the color as needed */
+  color: var(--color-base-foreground-main);
   transition: all 0.3s ease;
 }
 
@@ -82,10 +82,12 @@ body {
 
 .toggle-btn {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 16px;
+  left: 12px;
+  right: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 35px;
 }
 
 .toggle-btn span {
@@ -114,6 +116,7 @@ body {
   color: var(--text-color);
   font-size: calc(var(--font-size-desktop) * 1.2);
   font-weight: bold;
+  letter-spacing: 0.8px;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
@@ -133,6 +136,12 @@ body {
 
 .theme-toggle:hover {
   transform: scale(1.2);
+}
+
+.sidebar-title:hover {
+  color: #0a5568;
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .tool-button {
@@ -175,7 +184,7 @@ body {
   justify-content: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .tool-button {
     font-size: calc(var(--font-size-mobile) * 1); /* Mobile font size */
   }
@@ -189,17 +198,13 @@ body {
     height: 0;
   }
 
-  .toggle-btn {
-    right: 10px;
-  }
-
   .dashboard {
     flex-direction: column;
   }
   .sidebar {
     width: auto;
     border-right: none;
-    border-bottom: 1mm solid black;
+    border-bottom: 1mm solid var(--color-base-foreground-main);
   }
 
   .tool-button {
