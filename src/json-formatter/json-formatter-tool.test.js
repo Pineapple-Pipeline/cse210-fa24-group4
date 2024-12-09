@@ -7,6 +7,8 @@ describe("JsonFormatterTool", () => {
   let formatBtn;
   let copyBtn;
   let downloadBtn;
+  let copyNotification;
+  let downloadNotification;
 
   beforeEach(() => {
     document.body.innerHTML = `
