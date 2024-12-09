@@ -89,16 +89,19 @@ describe("JWTGeneratorTool", () => {
 
   // empty output copy alert test
   test("should alert when copying with no jwt", async () => {
-    const showNotificationMock = jest.spyOn(jwtGeneratorTool, "showNotification");
+    const showNotificationMock = jest.spyOn(
+      jwtGeneratorTool,
+      "showNotification",
+    );
     outputArea.value = "";
     copyBtn.click();
     expect(showNotificationMock).toHaveBeenCalledWith(
       jwtGeneratorTool.copyNotification,
-      "Nothing to copy!"
+      "Nothing to copy!",
     );
-    
+
     // Wait for timeout to complete
-    await new Promise(resolve => setTimeout(resolve, 1100));
+    await new Promise((resolve) => setTimeout(resolve, 1100));
   });
 
   // successful copy button test
