@@ -1,9 +1,10 @@
 name: Playwright Tests
 on:
-  push:
-    branches: [main, E2E-testing]
-  pull_request:
-    branches: [E2E-testing]
+  workflow_run:
+    workflows:
+      - Deploy
+    types:
+      - completed
 jobs:
   test:
     timeout-minutes: 60
