@@ -73,7 +73,6 @@ class JWTGeneratorTool extends HTMLElement {
   showNotification(notification, message) {
     notification.textContent = message;
     notification.classList.add("show");
-    console.log("here");
 
     // Hide notification after 2 seconds
     setTimeout(() => {
