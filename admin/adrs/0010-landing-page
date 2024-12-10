@@ -1,0 +1,18 @@
+# Selecting Option for Frontend Landing Page
+
+## Context and Problem Statement
+
+As a landing page is one of the most important pages a user will see when visiting the website, we needed to determine what was the best presentation for our project. Our current landing page is blank with the side collapsable menu open.
+
+## Considered Options
+
+* Empty Landing Page
+  - This is what we have currently. As a new user visiting this website, the emptiness might convey a sense of incompleteness
+* JSON Formater Tool Page
+  - The landing page would direct the user to the first tool we have on the list. The deterrent is that the user might feel annoyed about seeing this tool every time they visit the page if this tool is not what they need
+* Customized Landing Page
+  - The landing page would most likely be an introduction of our team and also a general title/description of what this website is about. This would offer the user more information about our website. The only deterrent is similar to the tool landing page in that the user would have to click an extra time for their needed tools.
+
+## Decision Outcome
+
+Chosen option: "Customized Landing Page", as it would allow us to give the user an introduction to the development team as well as a brief title/introduction of the website's purpose. This introductory page may give the user a better idea of the purpose and the use cases of our dev tool kit, which would improve UI/UX.

@@ -1,0 +1,13 @@
+# Selecting an Accessibility Tool to Prioritize for Website
+
+## Context and Problem Statement
+
+One criteria for creating a great website is to ensure that the website feels comfortable and stays accessible for all users. Since we are targetting this tool box towards developers, we want to use our knowledge to create the best user experiencce possible.
+
+## Considered Options
+
+* Dark/Light Mode
+
+## Decision Outcome
+
+Chosen option: "Dark/Light Mode" because as developers, the thing that comes to mind when thinking about accessibility is dark/light mode. The late night work sessions would further strain a developer's eyes if they were forced to use our website in light mode due to the bright lights. With this option, users can toggle their preference for improved UX.
