@@ -1,14 +1,30 @@
 require("./jwt-generator-tool");
 
 // Mock the crypto.subtle API
-const mockSign = jest.fn();
-const mockImportKey = jest.fn();
-global.crypto = {
-  subtle: {
-    importKey: mockImportKey,
-    sign: mockSign,
+Object.defineProperty(global, "crypto", {
+  value: {
+    subtle: {},
   },
-};
+  configurable: true,
+});
+
+const mockedImportKey = jest.fn().mockResolvedValue("mockedKey");
+
+Object.defineProperty(global.crypto.subtle, "importKey", {
+  value: mockedImportKey,
+  configurable: true,
+});
+
+const mockedSign = jest.fn().mockResolvedValue(Uint8Array.from([1, 2, 3]));
+
+Object.defineProperty(global.crypto.subtle, "sign", {
+  value: mockedSign,
+  configurable: true,
+});
+
+global.TextEncoder = jest.fn().mockImplementation(() => ({
+  encode: jest.fn().mockReturnValue("mockedEncodedSignature"),
+}));
 
 describe("JWTGeneratorTool", () => {
   let jwtGeneratorTool;
@@ -18,6 +34,7 @@ describe("JWTGeneratorTool", () => {
   let outputArea;
   let generateBtn;
   let copyBtn;
+  let copyNotification;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -32,6 +49,9 @@ describe("JWTGeneratorTool", () => {
     outputArea = document.querySelector(".output-area");
     generateBtn = document.querySelector(".generate-btn");
     copyBtn = document.querySelector(".copy-btn");
+    copyNotification = jwtGeneratorTool.querySelector(
+      ".copy-btn-container .notification",
+    );
   });
 
   //tool render test
@@ -42,6 +62,7 @@ describe("JWTGeneratorTool", () => {
     expect(outputArea).toBeTruthy();
     expect(generateBtn).toBeTruthy();
     expect(copyBtn).toBeTruthy();
+    expect(copyNotification).toBeTruthy();
   });
 
   // invalid header input test
@@ -83,11 +104,61 @@ describe("JWTGeneratorTool", () => {
   });
 
   // empty output copy alert test
-  test("should alert when copying with no formatted JSON", () => {
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+  test("should alert when copying with no jwt", async () => {
+    const showNotificationMock = jest.spyOn(
+      jwtGeneratorTool,
+      "showNotification",
+    );
     outputArea.value = "";
     copyBtn.click();
-    expect(alertMock).toHaveBeenCalledWith("Nothing to copy!");
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      jwtGeneratorTool.copyNotification,
+      "Nothing to copy!",
+    );
+
+    // Wait for timeout to complete
+    await new Promise((resolve) => setTimeout(resolve, 1100));
+  });
+
+  // successful copy button test
+  test("should alert a successful copy", async () => {
+    // Make the test async
+    const showNotificationMock = jest
+      .spyOn(jwtGeneratorTool, "showNotification")
+      .mockImplementation(() => {});
+
+    // Successful copy to clipboard
+    const clipboardMock = jest.fn().mockResolvedValue();
+    Object.defineProperty(navigator, "clipboard", {
+      value: {
+        writeText: clipboardMock,
+      },
+      writable: true,
+    });
+    outputArea.value =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiYWRtaW4ifQ.sm58Rt7ekEMN-NBgc2As52G_DLAbZjDVnoJ3x47Bhio";
+    await copyBtn.click();
+    expect(clipboardMock).toHaveBeenCalledWith(
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiYWRtaW4ifQ.sm58Rt7ekEMN-NBgc2As52G_DLAbZjDVnoJ3x47Bhio",
+    );
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      jwtGeneratorTool.copyNotification,
+      "Copied to clipboard!",
+    );
+  });
+
+  test("jwt generation should work as expected", async () => {
+    headerArea.value = '{"a": 5}';
+    payloadArea.value = '{"b": 10}';
+    secretKeyArea.value = "abcdedfghijklmnopqrstuvwxyz123456";
+
+    generateBtn.click();
+
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(mockedImportKey).toHaveBeenCalled(); // check if importKey was called
+    expect(mockedSign).toHaveBeenCalled(); // check if sign was called
+    expect(outputArea.value.split(".").length).toBe(3); // check if the output is a JWT with 3 parts
   });
 
   // JS cleanup on close test
