@@ -153,4 +153,32 @@ describe("JsonFormatterTool", () => {
       expect.any(Function),
     );
   });
+
+  test("Should disable the copy and download buttons on error", () => {
+    inputArea.value = '{"name": "Dylan Lukes", "age": 30';
+    formatBtn.click();
+    // Check that the output area shows the error
+    expect(outputArea.value).toMatch(/Error/);
+
+    // Check that the copy and download buttons are disabled
+    expect(copyBtn.disabled).toBe(true);
+    expect(downloadBtn.disabled).toBe(true);
+  });
+
+  test("Should enable the copy and download buttons after error when valid input is formatted", () => {
+    inputArea.value = '{"name": "Dylan Lukes", "age": 30';
+    formatBtn.click();
+    // Check that the output area shows the error
+    expect(outputArea.value).toMatch(/Error/);
+
+    // Check that the copy and download buttons are disabled
+    expect(copyBtn.disabled).toBe(true);
+    expect(downloadBtn.disabled).toBe(true);
+
+    // Check that the copy and download buttons are enabled
+    inputArea.value = '{\n  "name": "Dylan Lukes",\n  "age": 30\n}';
+    formatBtn.click();
+    expect(copyBtn.disabled).toBe(false);
+    expect(downloadBtn.disabled).toBe(false);
+  });
 });
