@@ -14,27 +14,17 @@
   --button-hover-bg: #cbd5e0;
   --border-color: #e2e8f0;
   --tool-bg-color: #e4e5f1;
-
-  /* Dark Theme */
-  --dark-bg-color: #1a202c;
-  --dark-text-color: #f7fafc;
-  --dark-sidebar-bg: #2d3748;
-  --dark-button-bg: #4a5568;
-  --dark-button-text: #f7fafc;
-  --dark-button-hover-bg: #718096;
-  --dark-border-color: #4a5568;
-  --dark-tool-bg-color: #2d3748;
 }
 
 [data-theme="dark"] {
-  --bg-color: var(--dark-bg-color);
-  --text-color: var(--dark-text-color);
+  --bg-color: #121318;
+  --text-color: #d4d5d8;
   --inverse-color: #ebe7e7;
-  --sidebar-bg: var(--dark-sidebar-bg);
-  --button-bg: var(--dark-button-bg);
-  --button-hover-bg: var(--dark-button-hover-bg);
-  --border-color: var(--dark-border-color);
-  --tool-bg-color: var(--dark-tool-bg-color);
+  --sidebar-bg: #1a202c;
+  --button-bg:  #3b3f4b;;
+  --button-hover-bg: #718096;
+  --border-color: #4a5568;
+  --tool-bg-color: #1a202c;
 }
 
 html,

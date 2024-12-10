@@ -1,11 +1,8 @@
 .about-us {
-	color: white;
-	background-color: #333;
+	color: var(--text-color);
+	background-color: var(--sidebar-bg);
 	padding: 1em;
 	border-radius: 0.5em;
-	margin: 20px auto;
-	display: flex;
-	position: absolute;
 }
 
 .about-us h1 {
@@ -27,7 +24,7 @@
 }
 
 .team-member {
-	background-color: #444;
+	background-color: var(--button-bg);
 	padding: 15px;
 	border-radius: 8px;
 	text-align: center;
