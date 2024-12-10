@@ -9,10 +9,10 @@
   --bg-color: #fafafa;
   --text-color: #2e3047;
   --sidebar-bg: #e4e5f1;
-  --button-bg: #9394a5;
+  --button-bg: #babbc4;
   --button-text: #1a202c;
   --button-hover-bg: #cbd5e0;
-  --border-color: #e2e8f0;
+  --border-color: #abadcd;
   --tool-bg-color: #e4e5f1;
 }
 
@@ -31,7 +31,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family-main);
   background-color: var(--bg-color);
   color: var(--text-color);
   display: flex;
@@ -145,6 +145,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
+  font-family: var(--font-family-main);
   font-size: calc(var(--font-size-desktop) * 1);
   transition: background-color 0.3s ease;
 }

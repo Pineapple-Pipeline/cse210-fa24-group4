@@ -46,7 +46,7 @@
   padding: 10px;
   border: 1px solid var(--border-color); /* Light/Dark mode border color */
   border-radius: 4px;
-  font-family: monospace;
+  font-family: var(--font-family-code);
   font-size: calc(var(--font-size-desktop) * 1);
   resize: none;
   background-color: var(--tool-bg-color); /* Light/Dark mode background */
