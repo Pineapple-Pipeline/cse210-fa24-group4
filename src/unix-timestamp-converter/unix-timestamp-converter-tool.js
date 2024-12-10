@@ -64,7 +64,7 @@ class UnixTimestampConverterTool extends HTMLElement {
 
   convertFromUnix = (format) => {
     try {
-      const input = this.inputArea.value;
+      const input = this.inputArea.value.trim();
       const unixTimestamp = parseInt(input, 10);
 
       // More specific error handling
@@ -87,7 +87,7 @@ class UnixTimestampConverterTool extends HTMLElement {
 
   convertToUnix = () => {
     try {
-      const input = this.inputArea.value;
+      const input = this.inputArea.value.trim();
       const date = new Date(input);
 
       // catch invalid dates and formats
@@ -97,7 +97,12 @@ class UnixTimestampConverterTool extends HTMLElement {
 
       // convert to unix timestamp
       const unixTimestamp = date.getTime() / 1000;
-      this.outputArea.value = unixTimestamp;
+
+      if (isNaN(unixTimestamp)) {
+        this.outputArea.value = "Error: Invalid date format";
+      } else {
+        this.outputArea.value = unixTimestamp;
+      }
     } catch (error) {
       this.outputArea.value = `${error.message}`;
     }
@@ -109,8 +114,7 @@ class UnixTimestampConverterTool extends HTMLElement {
     if (output) {
       navigator.clipboard
         .writeText(output)
-        .then(() => alert("Timestamp copied to clipboard!"))
-        .catch(() => alert("Failed to copy timestamp to clipboard."));
+        .then(() => alert("Timestamp copied to clipboard!"));
     } else {
       alert("Nothing to copy!");
     }
