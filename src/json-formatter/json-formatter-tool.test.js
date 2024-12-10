@@ -7,6 +7,8 @@ describe("JsonFormatterTool", () => {
   let formatBtn;
   let copyBtn;
   let downloadBtn;
+  let copyNotification;
+  let downloadNotification;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -20,6 +22,12 @@ describe("JsonFormatterTool", () => {
     formatBtn = jsonFormatterTool.querySelector(".format-btn");
     copyBtn = jsonFormatterTool.querySelector(".copy-btn");
     downloadBtn = jsonFormatterTool.querySelector(".download-btn");
+    copyNotification = jsonFormatterTool.querySelector(
+      ".copy-btn-container .notification",
+    );
+    downloadNotification = jsonFormatterTool.querySelector(
+      ".download-btn-container .notification",
+    );
   });
 
   // tool render test
@@ -29,6 +37,8 @@ describe("JsonFormatterTool", () => {
     expect(outputArea).toBeTruthy();
     expect(copyBtn).toBeTruthy();
     expect(downloadBtn).toBeTruthy();
+    expect(copyNotification).toBeTruthy();
+    expect(downloadNotification).toBeTruthy();
   });
 
   // simple JSON formatting test
@@ -75,7 +85,9 @@ describe("JsonFormatterTool", () => {
   // successful copy button test
   test("should alert a successful copy of formatted JSON", async () => {
     // Make the test async
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+    const showNotificationMock = jest
+      .spyOn(jsonFormatterTool, "showNotification")
+      .mockImplementation(() => {});
 
     // Successful copy to clipboard
     const clipboardMock = jest.fn().mockResolvedValue();
@@ -90,17 +102,26 @@ describe("JsonFormatterTool", () => {
     expect(clipboardMock).toHaveBeenCalledWith(
       '{\n  "name": "Dylan Lukes",\n  "age": 30\n}',
     );
-    expect(alertMock).toHaveBeenCalledWith(
-      "Formatted JSON copied to clipboard!",
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      jsonFormatterTool.copyNotification,
+      "Copied to clipboard!",
     );
   });
 
   // empty output copy alert test
   test("should alert when copying with no formatted JSON", () => {
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+    // Mock the showNotification method
+    const showNotificationMock = jest
+      .spyOn(jsonFormatterTool, "showNotification")
+      .mockImplementation(() => {});
     outputArea.value = "";
     copyBtn.click();
-    expect(alertMock).toHaveBeenCalledWith("Nothing to copy!");
+
+    // Assert that showNotification was called with the correct arguments
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      jsonFormatterTool.copyNotification,
+      "Nothing to copy!",
+    );
   });
 
   // successful file download test
@@ -136,11 +157,14 @@ describe("JsonFormatterTool", () => {
 
   // empty output download alert test
   test("Should alert if trying to download without formatted JSON", () => {
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+    const showNotificationMock = jest
+      .spyOn(jsonFormatterTool, "showNotification")
+      .mockImplementation(() => {});
     outputArea.value = "";
     downloadBtn.click();
-    expect(alertMock).toHaveBeenCalledWith(
-      "There is no formatted JSON to download.",
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      jsonFormatterTool.downloadNotification,
+      "No JSON to download!",
     );
   });
 
@@ -152,5 +176,33 @@ describe("JsonFormatterTool", () => {
       "click",
       expect.any(Function),
     );
+  });
+
+  test("Should disable the copy and download buttons on error", () => {
+    inputArea.value = '{"name": "Dylan Lukes", "age": 30';
+    formatBtn.click();
+    // Check that the output area shows the error
+    expect(outputArea.value).toMatch(/Error/);
+
+    // Check that the copy and download buttons are disabled
+    expect(copyBtn.disabled).toBe(true);
+    expect(downloadBtn.disabled).toBe(true);
+  });
+
+  test("Should enable the copy and download buttons after error when valid input is formatted", () => {
+    inputArea.value = '{"name": "Dylan Lukes", "age": 30';
+    formatBtn.click();
+    // Check that the output area shows the error
+    expect(outputArea.value).toMatch(/Error/);
+
+    // Check that the copy and download buttons are disabled
+    expect(copyBtn.disabled).toBe(true);
+    expect(downloadBtn.disabled).toBe(true);
+
+    // Check that the copy and download buttons are enabled
+    inputArea.value = '{\n  "name": "Dylan Lukes",\n  "age": 30\n}';
+    formatBtn.click();
+    expect(copyBtn.disabled).toBe(false);
+    expect(downloadBtn.disabled).toBe(false);
   });
 });

@@ -1,6 +1,40 @@
 :root {
+  /* Font specifications */
+  --font-family-main: "Roboto", sans-serif;
+  --font-family-code: "Source Code Pro", "Roboto", sans-serif;
   --font-size-desktop: 1em;
   --font-size-mobile: 0.75em;
+
+  /* Light Theme */
+  --bg-color: #fafafa;
+  --text-color: #2e3047;
+  --sidebar-bg: #e4e5f1;
+  --button-bg: #9394a5;
+  --button-text: #1a202c;
+  --button-hover-bg: #cbd5e0;
+  --border-color: #e2e8f0;
+  --tool-bg-color: #e4e5f1;
+
+  /* Dark Theme */
+  --dark-bg-color: #1a202c;
+  --dark-text-color: #f7fafc;
+  --dark-sidebar-bg: #2d3748;
+  --dark-button-bg: #4a5568;
+  --dark-button-text: #f7fafc;
+  --dark-button-hover-bg: #718096;
+  --dark-border-color: #4a5568;
+  --dark-tool-bg-color: #2d3748;
+}
+
+[data-theme="dark"] {
+  --bg-color: var(--dark-bg-color);
+  --text-color: var(--dark-text-color);
+  --inverse-color: #ebe7e7;
+  --sidebar-bg: var(--dark-sidebar-bg);
+  --button-bg: var(--dark-button-bg);
+  --button-hover-bg: var(--dark-button-hover-bg);
+  --border-color: var(--dark-border-color);
+  --tool-bg-color: var(--dark-tool-bg-color);
 }
 
 html,
@@ -8,8 +42,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,9 +55,7 @@ body {
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: brown;
-  /* border-radius: 10px; */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-base-background-main);
   overflow-y: auto;
 }
 
@@ -31,12 +63,13 @@ body {
 .sidebar {
   position: relative;
   width: 250px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #061524;
+  justify-content: space-between;
+  background-color: var(--sidebar-bg);
   padding: 20px;
-  color: white;
-  border-right: 1mm solid black; /* Adjust the color as needed */
+  color: var(--color-base-foreground-main);
   transition: all 0.3s ease;
 }
 
@@ -44,21 +77,24 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: var(--inverse-color);
 }
 
 .toggle-btn {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 16px;
+  left: 12px;
+  right: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 35px;
 }
 
 .toggle-btn span {
   width: 30px;
   height: 5px;
   border-radius: 5px;
-  background: #fff;
+  background: var(--text-color);
   display: block;
   margin-top: 4px;
 }
@@ -77,10 +113,35 @@ body {
 }
 
 .sidebar-title {
+  color: var(--text-color);
   font-size: calc(var(--font-size-desktop) * 1.2);
   font-weight: bold;
+  letter-spacing: 0.8px;
   margin-bottom: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: var(--text-color);
+  transition: transform 0.2s ease;
+  color: var(--text-color);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.2);
+}
+
+.sidebar-title:hover {
+  color: #0a5568;
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .tool-button {
@@ -88,8 +149,8 @@ body {
   max-height: 50px;
   margin: 10px 0;
   padding: 10px;
-  background-color: rgb(6, 33, 42);
-  color: white;
+  background-color: var(--button-bg);
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -99,7 +160,8 @@ body {
 }
 
 .tool-button:hover {
-  background-color: #0a5568;
+  background-color: var(--button-hover-bg);
+  color: var(--inverse-color);
 }
 
 /* Content Area */
@@ -108,7 +170,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #103356;
+  background-color: var(--bg-color);
   padding-inline: 50px;
   transition: margin-left 0.3s ease;
 }
@@ -122,7 +184,7 @@ body {
   justify-content: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .tool-button {
     font-size: calc(var(--font-size-mobile) * 1); /* Mobile font size */
   }
@@ -136,17 +198,13 @@ body {
     height: 0;
   }
 
-  .toggle-btn {
-    right: 10px;
-  }
-
   .dashboard {
     flex-direction: column;
   }
   .sidebar {
     width: auto;
     border-right: none;
-    border-bottom: 1mm solid black;
+    border-bottom: 1mm solid var(--color-base-foreground-main);
   }
 
   .tool-button {
@@ -156,5 +214,9 @@ body {
     width: 20px;
     height: 3px;
     margin-top: 3px;
+  }
+  .theme-toggle {
+    font-size: calc(var(--font-size-mobile) * 1);
+    padding: 8px 15px;
   }
 }
