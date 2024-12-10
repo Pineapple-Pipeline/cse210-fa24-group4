@@ -1,14 +1,30 @@
 require("./jwt-generator-tool");
 
 // Mock the crypto.subtle API
-const mockSign = jest.fn();
-const mockImportKey = jest.fn();
-global.crypto = {
-  subtle: {
-    importKey: mockImportKey,
-    sign: mockSign,
+Object.defineProperty(global, "crypto", {
+  value: {
+    subtle: {},
   },
-};
+  configurable: true,
+});
+
+const mockedImportKey = jest.fn().mockResolvedValue("mockedKey");
+
+Object.defineProperty(global.crypto.subtle, "importKey", {
+  value: mockedImportKey,
+  configurable: true,
+});
+
+const mockedSign = jest.fn().mockResolvedValue(Uint8Array.from([1, 2, 3]));
+
+Object.defineProperty(global.crypto.subtle, "sign", {
+  value: mockedSign,
+  configurable: true,
+});
+
+global.TextEncoder = jest.fn().mockImplementation(() => ({
+  encode: jest.fn().mockReturnValue("mockedEncodedSignature"),
+}));
 
 describe("JWTGeneratorTool", () => {
   let jwtGeneratorTool;
@@ -129,6 +145,20 @@ describe("JWTGeneratorTool", () => {
       jwtGeneratorTool.copyNotification,
       "Copied to clipboard!",
     );
+  });
+
+  test("jwt generation should work as expected", async () => {
+    headerArea.value = '{"a": 5}';
+    payloadArea.value = '{"b": 10}';
+    secretKeyArea.value = "abcdedfghijklmnopqrstuvwxyz123456";
+
+    generateBtn.click();
+
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(mockedImportKey).toHaveBeenCalled(); // check if importKey was called
+    expect(mockedSign).toHaveBeenCalled(); // check if sign was called
+    expect(outputArea.value.split(".").length).toBe(3); // check if the output is a JWT with 3 parts
   });
 
   // JS cleanup on close test
