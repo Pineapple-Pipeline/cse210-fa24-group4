@@ -101,25 +101,6 @@
   transform: scale(1.05);
 }
 
-.convert-iso-btn {
-  align-self: center;
-  padding: 10px 20px;
-  background-color: #061524;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: calc(var(--font-size-desktop) * 1);
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease;
-}
-
-.convert-iso-btn:hover {
-  background-color: #34495e;
-  transform: scale(1.05);
-}
-
 .button-group {
   display: flex;
   justify-content: center;

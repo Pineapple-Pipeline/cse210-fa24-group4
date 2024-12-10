@@ -21,7 +21,6 @@ class UnixTimestampConverterTool extends HTMLElement {
           <h3 class="to-tool-header">UTC/ISO to UNIX Converter</h3>
           <button class="swap-btn">⟺</button>
         </header>
-        <hr />
 
         <section class="tool-content">
           <textarea class="input-area" placeholder="Paste a timestamp in UNIX, UTC, or ISO format here"></textarea>
