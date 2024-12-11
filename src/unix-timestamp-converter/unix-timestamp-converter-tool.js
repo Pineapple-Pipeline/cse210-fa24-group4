@@ -31,13 +31,11 @@ class UnixTimestampConverterTool extends HTMLElement {
           </div>
           <button class="convert-to-unix-btn">Convert TO UNIX</button>
           <textarea class="output-area" readonly></textarea>
-          <div align="center" class="button-group">
-            <div class="copy-btn-container">
-              <div class="notification-wrapper">
-                <div class="notification">Copied to clipboard!</div>
-              </div>
-              <button class="copy-btn">Copy to Clipboard</button>
+          <div align="center" class="copy-btn-container">
+            <div class="notification-wrapper">
+              <div class="notification">Copied to clipboard!</div>
             </div>
+            <button class="copy-btn">Copy to Clipboard</button>
           </div>
         </section>
       </section>
@@ -53,16 +51,16 @@ class UnixTimestampConverterTool extends HTMLElement {
     this.inputArea = this.querySelector(".input-area");
     this.outputArea = this.querySelector(".output-area");
     this.copyNotification = this.querySelector(
-      ".copy-btn-container .notification",
+      ".copy-btn-container .notification"
     );
 
     // Bind event listeners
     this.swapBtn.addEventListener("click", () => this.swapMode());
     this.convertToUtcBtn.addEventListener("click", () =>
-      this.convertFromUnix("utc"),
+      this.convertFromUnix("utc")
     );
     this.convertToIsoBtn.addEventListener("click", () =>
-      this.convertFromUnix("iso"),
+      this.convertFromUnix("iso")
     );
     this.convertToUnixBtn.addEventListener("click", () => this.convertToUnix());
     this.copyBtn.addEventListener("click", () => this.copyToClipboard());
@@ -134,7 +132,7 @@ class UnixTimestampConverterTool extends HTMLElement {
       navigator.clipboard
         .writeText(output)
         .then(() =>
-          this.showNotification(this.copyNotification, "Copied to clipboard!"),
+          this.showNotification(this.copyNotification, "Copied to clipboard!")
         );
     } else {
       console.log("here");
@@ -148,12 +146,12 @@ class UnixTimestampConverterTool extends HTMLElement {
     if (this.convertToUtcBtn)
       this.convertToUtcBtn.removeEventListener(
         "click",
-        this.convertFromUnix("utc"),
+        this.convertFromUnix("utc")
       );
     if (this.convertToIsoBtn)
       this.convertToIsoBtn.removeEventListener(
         "click",
-        this.convertFromUnix("iso"),
+        this.convertFromUnix("iso")
       );
     if (this.convertToUnixBtn)
       this.convertToUnixBtn.removeEventListener("click", this.convertToUnix);
@@ -165,5 +163,5 @@ class UnixTimestampConverterTool extends HTMLElement {
 // Register the custom element
 customElements.define(
   "unix-timestamp-converter-tool",
-  UnixTimestampConverterTool,
+  UnixTimestampConverterTool
 );
