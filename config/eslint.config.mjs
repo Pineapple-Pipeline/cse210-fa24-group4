@@ -19,6 +19,6 @@ export default [
     rules: {
       ...jestPlugin.configs.recommended.rules, // Use Jest recommended rules
     },
-    ignores: ["src/imgs/**"]
+    ignores: ["src/imgs"]
   },
 ];

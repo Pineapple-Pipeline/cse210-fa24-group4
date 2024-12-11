@@ -217,11 +217,6 @@ describe("initializeApp", () => {
     jsonButton = document.getElementById("json-formatter-button");
     urlButton = document.getElementById("url-encoder-decoder-button");
     unixButton = document.getElementById("unix-timestamp-converter-button");
-    const featureComponents = {
-      "json-formatter-button": "json-formatter-tool",
-      "url-encoder-decoder-button": "url-encoder-decoder-tool",
-      "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
-    };
     toggleBtn = document.getElementById("toggle-btn");
     sideBar = document.getElementById("side-bar");
     themeButton = document.getElementById("theme-toggle");
