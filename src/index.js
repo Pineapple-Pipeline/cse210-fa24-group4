@@ -148,7 +148,7 @@ const initializeApp = (featureComponents) => {
 	// Initialize the sidebar toggle button
 	initializeSidebarToggleButton();
 
-	// Initialize the dark mode bcoutton
+	// Initialize the dark mode button
 	initializeDarkMode();
 };
 
