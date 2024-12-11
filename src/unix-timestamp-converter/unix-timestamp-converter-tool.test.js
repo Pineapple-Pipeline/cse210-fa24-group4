@@ -19,24 +19,24 @@ describe("UnixTimestampConverterTool", () => {
 
     // Get references to elements inside the custom element
     unixTimestampConverterTool = document.querySelector(
-      "unix-timestamp-converter-tool"
+      "unix-timestamp-converter-tool",
     );
     toolPanel = unixTimestampConverterTool.querySelector(".tool-panel");
     inputArea = unixTimestampConverterTool.querySelector(".input-area");
     outputArea = unixTimestampConverterTool.querySelector(".output-area");
     convertToUtcBtn = unixTimestampConverterTool.querySelector(
-      ".convert-to-utc-btn"
+      ".convert-to-utc-btn",
     );
     convertToIsoBtn = unixTimestampConverterTool.querySelector(
-      ".convert-to-iso-btn"
+      ".convert-to-iso-btn",
     );
     convertToUnixBtn = unixTimestampConverterTool.querySelector(
-      ".convert-to-unix-btn"
+      ".convert-to-unix-btn",
     );
     swapBtn = unixTimestampConverterTool.querySelector(".swap-btn");
     copyBtn = unixTimestampConverterTool.querySelector(".copy-btn");
     copyNotification = unixTimestampConverterTool.querySelector(
-      ".copy-btn-container .notification"
+      ".copy-btn-container .notification",
     );
   });
 
@@ -93,14 +93,12 @@ describe("UnixTimestampConverterTool", () => {
       },
       writable: true,
     });
-    outputArea.value = '99999';
+    outputArea.value = "99999";
     await copyBtn.click();
-    expect(clipboardMock).toHaveBeenCalledWith(
-      '99999'
-    );
+    expect(clipboardMock).toHaveBeenCalledWith("99999");
     expect(showNotificationMock).toHaveBeenCalledWith(
       unixTimestampConverterTool.copyNotification,
-      "Copied to clipboard!"
+      "Copied to clipboard!",
     );
   });
 
@@ -116,10 +114,9 @@ describe("UnixTimestampConverterTool", () => {
     // Assert that showNotification was called with the correct arguments
     expect(showNotificationMock).toHaveBeenCalledWith(
       unixTimestampConverterTool.copyNotification,
-      "Nothing to copy!"
+      "Nothing to copy!",
     );
   });
-
 
   test("should error out of UTC conversion when input is empty", () => {
     inputArea.value = "";
