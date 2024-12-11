@@ -1,4 +1,9 @@
 class UnixTimestampConverterTool extends HTMLElement {
+  /**
+   * Creates an instance of UnixTimestampConverterTool.
+   *
+   * @constructor
+   */
   constructor() {
     super();
     this.toolPanel = null;
@@ -13,6 +18,10 @@ class UnixTimestampConverterTool extends HTMLElement {
     this.copyNotification = null;
   }
 
+  /**
+   * Called when the element is added to the DOM.
+   * Sets up the HTML structure of the tool and stores references to elements.
+   */
   connectedCallback() {
     // Set up the HTML structure when the element is added to the DOM
     this.innerHTML = `
@@ -67,6 +76,12 @@ class UnixTimestampConverterTool extends HTMLElement {
     this.copyBtn.addEventListener("click", () => this.copyToClipboard());
   }
 
+  /**
+   * Shows the notification on top of target button
+   *
+   * @param {${2:*}} notification
+   * @param {${3:*}} message
+   */
   showNotification(notification, message) {
     notification.textContent = message;
     notification.classList.add("show");
@@ -77,10 +92,17 @@ class UnixTimestampConverterTool extends HTMLElement {
     }, 1000);
   }
 
+  /** Swaps conditional .tool-panel state */
   swapMode = () => {
     this.toolPanel.classList.toggle("swapped");
   };
 
+  /**
+   * Converts from unix timstamp to either iso or utc
+   * formats depending on format parameter
+   *
+   * @param {${2:*}} format
+   */
   convertFromUnix = (format) => {
     try {
       const input = this.inputArea.value.trim();
@@ -104,6 +126,9 @@ class UnixTimestampConverterTool extends HTMLElement {
     }
   };
 
+  /**
+   * Converts from either UTC or ISO format to Unix timestamp
+   */
   convertToUnix = () => {
     try {
       const input = this.inputArea.value.trim();
@@ -127,6 +152,9 @@ class UnixTimestampConverterTool extends HTMLElement {
     }
   };
 
+  /**
+   * Copies the output to the clipboard
+   */
   copyToClipboard() {
     const output = this.outputArea.value;
     if (output) {
@@ -141,6 +169,9 @@ class UnixTimestampConverterTool extends HTMLElement {
     }
   }
 
+  /**
+   * Cleans up event listeners when the element is removed from the DOM.
+   */
   disconnectedCallback() {
     // Clean up event listeners when the element is removed from the DOM
     if (this.swapBtn) this.swapBtn.removeEventListener("click", this.swapMode);
