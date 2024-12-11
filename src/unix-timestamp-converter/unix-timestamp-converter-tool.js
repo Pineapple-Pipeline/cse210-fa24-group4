@@ -2,51 +2,94 @@ class UnixTimestampConverterTool extends HTMLElement {
   constructor() {
     super();
     this.toolPanel = null;
-    this.convertUtcBtn = null;
-    this.convertIsoBtn = null;
+    this.swapBtn = null;
+    this.convertToUtcBtn = null;
+    this.convertToIsoBtn = null;
+    this.convertToUnixBtn = null;
+    this.copyBtn = null;
     this.inputArea = null;
     this.outputArea = null;
+    this.copyNotification = null;
   }
 
   connectedCallback() {
     // Set up the HTML structure when the element is added to the DOM
     this.innerHTML = `
-            <link rel="stylesheet" href="unix-timestamp-converter/unix-timestamp-converter-tool.css"> 
-            <section class="tool-panel" style="display:none;">
-              <header class="tool-header">
-                <h3>UNIX Timestamp Converter</h3>
-              </header>
-              <section class="tool-content">
-                <textarea class="input-area" placeholder="Paste your UNIX timestamp here"></textarea>
-                <div class="button-group">
-                    <button class="convert-utc-btn">Convert to UTC</button>
-                    <button class="convert-iso-btn">Convert to ISO</button>
-                </div>
-                <textarea class="output-area" readonly></textarea>
-              </section>
-            </section>
-          `;
+      <link rel="stylesheet" href="unix-timestamp-converter/unix-timestamp-converter-tool.css"> 
+      <section class="tool-panel">
+        <header class="tool-header">
+          <h3 class="from-tool-header">UNIX to UTC/ISO Converter</h3>
+          <h3 class="to-tool-header">UTC/ISO to UNIX Converter</h3>
+          <button class="swap-btn">⟺</button>
+        </header>
+
+        <section class="tool-content">
+          <textarea class="input-area" placeholder="Paste a timestamp in UNIX, UTC, or ISO format here"></textarea>
+          <div class="button-group">
+            <button class="convert-to-utc-btn">Convert TO UTC</button>
+            <button class="convert-to-iso-btn">Convert TO ISO</button>
+          </div>
+          <button class="convert-to-unix-btn">Convert TO UNIX</button>
+          <textarea class="output-area" readonly></textarea>
+          <div align="center" class="button-group">
+            <div class="copy-btn-container">
+              <div class="notification-wrapper">
+                <div class="notification">Copied to clipboard!</div>
+              </div>
+              <button class="copy-btn">Copy to Clipboard</button>
+            </div>
+          </div>
+        </section>
+      </section>
+    `;
 
     // Store references to elements
     this.toolPanel = this.querySelector(".tool-panel");
-    this.convertUtcBtn = this.querySelector(".convert-utc-btn");
-    this.convertIsoBtn = this.querySelector(".convert-iso-btn");
+    this.swapBtn = this.querySelector(".swap-btn");
+    this.convertToUtcBtn = this.querySelector(".convert-to-utc-btn");
+    this.convertToIsoBtn = this.querySelector(".convert-to-iso-btn");
+    this.convertToUnixBtn = this.querySelector(".convert-to-unix-btn");
+    this.copyBtn = this.querySelector(".copy-btn");
     this.inputArea = this.querySelector(".input-area");
     this.outputArea = this.querySelector(".output-area");
+    this.copyNotification = this.querySelector(
+      ".copy-btn-container .notification",
+    );
 
     // Bind event listeners
-    this.convertUtcBtn.addEventListener("click", () => this.convertTime("utc"));
-    this.convertIsoBtn.addEventListener("click", () => this.convertTime("iso"));
+    this.swapBtn.addEventListener("click", () => this.swapMode());
+    this.convertToUtcBtn.addEventListener("click", () =>
+      this.convertFromUnix("utc"),
+    );
+    this.convertToIsoBtn.addEventListener("click", () =>
+      this.convertFromUnix("iso"),
+    );
+    this.convertToUnixBtn.addEventListener("click", () => this.convertToUnix());
+    this.copyBtn.addEventListener("click", () => this.copyToClipboard());
   }
 
-  convertTime = (format) => {
+  showNotification(notification, message) {
+    notification.textContent = message;
+    notification.classList.add("show");
+
+    // Hide notification after 2 seconds
+    setTimeout(() => {
+      notification.classList.remove("show");
+    }, 1000);
+  }
+
+  swapMode = () => {
+    this.toolPanel.classList.toggle("swapped");
+  };
+
+  convertFromUnix = (format) => {
     try {
-      const input = this.inputArea.value;
+      const input = this.inputArea.value.trim();
       const unixTimestamp = parseInt(input, 10);
 
       // More specific error handling
       if (isNaN(unixTimestamp)) {
-        throw new Error("Invalid Unix timestamp");
+        throw new Error("Error: Invalid Unix timestamp");
       }
 
       const date = new Date(unixTimestamp * 1000);
@@ -58,16 +101,64 @@ class UnixTimestampConverterTool extends HTMLElement {
         this.outputArea.value = date.toISOString();
       }
     } catch (error) {
-      this.outputArea.value = `Error: ${error.message}`;
+      this.outputArea.value = `${error.message}`;
     }
   };
 
+  convertToUnix = () => {
+    try {
+      const input = this.inputArea.value.trim();
+      const date = new Date(input);
+
+      // catch invalid dates and formats
+      if (isNaN(date.getTime())) {
+        this.outputArea.value = "Error: Invalid date format";
+      }
+
+      // convert to unix timestamp
+      const unixTimestamp = date.getTime() / 1000;
+
+      if (isNaN(unixTimestamp)) {
+        this.outputArea.value = "Error: Invalid date format";
+      } else {
+        this.outputArea.value = unixTimestamp;
+      }
+    } catch (error) {
+      this.outputArea.value = `${error.message}`;
+    }
+  };
+
+  copyToClipboard() {
+    const output = this.outputArea.value;
+    if (output) {
+      navigator.clipboard
+        .writeText(output)
+        .then(() =>
+          this.showNotification(this.copyNotification, "Copied to clipboard!"),
+        );
+    } else {
+      console.log("here");
+      this.showNotification(this.copyNotification, "Nothing to copy!");
+    }
+  }
+
   disconnectedCallback() {
     // Clean up event listeners when the element is removed from the DOM
-    if (this.convertUtcBtn)
-      this.convertUtcBtn.removeEventListener("click", this.convertTime);
-    if (this.convertIsoBtn)
-      this.convertIsoBtn.removeEventListener("click", this.convertTime);
+    if (this.swapBtn) this.swapBtn.removeEventListener("click", this.swapMode);
+    if (this.convertToUtcBtn)
+      this.convertToUtcBtn.removeEventListener(
+        "click",
+        this.convertFromUnix("utc"),
+      );
+    if (this.convertToIsoBtn)
+      this.convertToIsoBtn.removeEventListener(
+        "click",
+        this.convertFromUnix("iso"),
+      );
+    if (this.convertToUnixBtn)
+      this.convertToUnixBtn.removeEventListener("click", this.convertToUnix);
+    if (this.copyBtn)
+      this.copyBtn.removeEventListener("click", this.copyToClipboard);
   }
 }
 
