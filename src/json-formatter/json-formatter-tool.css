@@ -1,0 +1,219 @@
+/* Container for the JSON Formatter tool */
+
+.tool-panel {
+  display: flex !important;
+  flex: 1;
+  width: 100%;
+  height: 90%;
+  margin: 20px auto;
+  background: var(--tool-bg-color); /* Light/Dark mode background */
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  overflow: auto;
+  flex-direction: column;
+}
+
+/* Header styling */
+.tool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--tool-bg-color); /* Dark mode background */
+  color: var(--text-color);
+  font-size: calc(var(--font-size-desktop) * 1.2);
+  font-weight: bold;
+  border-bottom: 1px solid black; /* Border color for light/dark mode */
+}
+
+/* Tool content styling */
+.tool-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: var(
+    --tool-bg-color
+  ); /* Light/Dark mode content background */
+  color: var(--inverse-color); /* Light/Dark mode text color */
+  gap: 20px;
+}
+
+/* Input and output text areas */
+.input-area,
+.output-area {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid black; /* Light/Dark mode border color */
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: calc(var(--font-size-desktop) * 1);
+  resize: none;
+  background-color: var(--tool-bg-color); /* Light/Dark mode background */
+  color: var(--inverse-color); /* Light/Dark mode text color */
+}
+
+/* Read-only style for output area */
+.output-area[readonly] {
+  background-color: var(
+    --tool-bg-color
+  ); /* Light/Dark mode read-only background */
+}
+
+.notification-wrapper {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  pointer-events: none;
+}
+
+.notification {
+  position: relative;
+  background-color: green;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.notification::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid green;
+}
+
+.notification.show {
+  opacity: 1;
+}
+
+.copy-btn-container,
+.download-btn-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Format button styling */
+.format-btn {
+  align-self: center;
+  padding: 10px 20px;
+  background-color: var(--button-bg); /* Light/Dark mode button background */
+  color: var(--text-color); /* Light/Dark mode button text color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: calc(var(--font-size-desktop) * 1);
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.format-btn:hover {
+  background-color: var(
+    --button-hover-bg
+  ); /* Light/Dark mode hover background */
+  color: var(--inverse-color);
+  transform: scale(1.05);
+}
+
+/* Upload button styling */
+.upload-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: var(--button-bg); /* Light/Dark mode button background */
+  color: var(--text-color); /* Light/Dark mode button text color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: calc(var(--font-size-desktop) * 1);
+  transition: background 0.3s ease;
+  min-width: 100px;
+  text-align: center;
+  max-width: 250px;
+}
+
+.upload-btn:hover {
+  background-color: var(
+    --button-hover-bg
+  ); /* Light/Dark mode hover background */
+  color: var(--inverse-color);
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.copy-btn,
+.download-btn {
+  align-self: center;
+  padding: 10px 30px;
+  background-color: var(--button-bg); /* Light/Dark mode button background */
+  color: var(--text-color); /* Light/Dark mode button text color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: calc(var(--font-size-desktop) * 1);
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.copy-btn:hover,
+.download-btn:hover {
+  background-color: var(
+    --button-hover-bg
+  ); /* Light/Dark mode hover background */
+  color: var(--inverse-color);
+  transform: scale(1.05);
+}
+
+.copy-btn:active,
+.download-btn:active {
+  transform: scale(0.98);
+}
+.copy-btn:disabled,
+.download-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+textarea::placeholder {
+  color: var(--text-color);
+}
+
+@media (max-width: 600px) {
+  .tool-panel {
+    font-size: var(--font-size-mobile); /* Mobile font size */
+  }
+
+  .tool-header {
+    font-size: var(--font-size-mobile); /* Mobile font size */
+  }
+
+  .button-group {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    gap: 10px; /* Adjust spacing for mobile view */
+  }
+
+  .notification {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

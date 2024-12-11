@@ -1,23 +1,27 @@
 ## Sprint 0 Review Meeting
+
 ### Date
+
 - **Date of Meeting:** 11/13/24
 
 ### Meeting Details
+
 - **Sprint Number:** 0
 - **Duration:** 30 minutes
 - **Attendees:** All team members
 
 ### Accomplishments
+
 - Sprint timeline:
   - Sprint 0 Nov 6 - 13
   - Sprint 1 Nov 13 - 20
   - Sprint 2 Nov 20 - 4 [Thanksgiving]
   - Sprint 3 Nov 4 - 8 [wrap-up]
 - Testing framework decision: Jest
-  - Briefly talked about: designing a tester  
+  - Briefly talked about: designing a tester
   - Briefly talked about: Architectural Decision Records (ADRs)
--  Sprint notes structure
-  - Two docs: LAUNCH (sprint objectives) and REVIEW (sprint retrospective notes)
+- Sprint notes structure
+- Two docs: LAUNCH (sprint objectives) and REVIEW (sprint retrospective notes)
 - Discussed what we have achieved:
   - CI/CD pipeline draft
     - folder structure [proposed by Yunhao]
@@ -30,10 +34,10 @@
   - IDE: VsCode
   - Linter: ESLint
   - Scrum master: Hailey (meeting notes, maintaining meeting structures, progress tracking)
- - File structure:
-      - Debated Samyak and Yunhao's design of the file structure
-      - Samyak: cohesive, React-like, fewer files to maintain, less setup
-      - Yunhao: modular, fits the project’s design of being modular, separation of tasks, Angular-like, might be more streamlined after proper (careful) setup
+- File structure:
+  - Debated Samyak and Yunhao's design of the file structure
+  - Samyak: cohesive, React-like, fewer files to maintain, less setup
+  - Yunhao: modular, fits the project’s design of being modular, separation of tasks, Angular-like, might be more streamlined after proper (careful) setup
 - Code quality
   - Every team member should work on a separate branch
     - Only one team member working on a single document at the same time
@@ -46,28 +50,28 @@
 - Design
   - Change Regex Generator to Regex Tester [low priority functionality]
 
-
-
-
 ### Design
+
 - [Mid-fidelity Figma wireframe](https://www.figma.com/design/KDKjlJwomQLX7ZEIHylx7a/Wireframe?node-id=4088-385&t=9MbCajT7BU3fpj1S-1)
   Demo:
   ![JSON Formatter   Validater](https://github.com/user-attachments/assets/a20e5148-6869-4293-bb76-cde2635e3a89)
   ![Landing Page - Windows Open - Supports Reorganizing Windows](https://github.com/user-attachments/assets/09fb0441-6814-415e-8e84-866d67041477
-  
+
 ### Demos and more design
-1. [Design](https://www.figma.com/design/3ih44WsGIx62IKSIrP5QG3/DashStack---Free-Admin-Dashboard-UI-Kit---Admin-%26-Dashboard-Ui-Kit---Admin-Dashboard-(Community)?node-id=0-1&t=nGnziJh8RQ1oRA2a-1)
+
+1. [Design](<https://www.figma.com/design/3ih44WsGIx62IKSIrP5QG3/DashStack---Free-Admin-Dashboard-UI-Kit---Admin-%26-Dashboard-Ui-Kit---Admin-Dashboard-(Community)?node-id=0-1&t=nGnziJh8RQ1oRA2a-1>)
    ![image](https://github.com/user-attachments/assets/5e9081d0-1af0-4c41-99c9-e4d2f7c16565)
    ![image](https://github.com/user-attachments/assets/25284470-7932-45ef-a65d-13383f8afa46)
    ![image](https://github.com/user-attachments/assets/3eb28820-d697-4c49-a9db-4f95f2e2e6e7)
 2. CI/CD Structure
    ![image](https://github.com/user-attachments/assets/c0a0038c-cb0c-48cf-8c74-7e0d777d6ac8)
 
-
 ### Preliminary UI/UX design
-[UI design first look](https://www.figma.com/design/3ih44WsGIx62IKSIrP5QG3/DashStack---Free-Admin-Dashboard-UI-Kit---Admin-%26-Dashboard-Ui-Kit---Admin-Dashboard-(Community)?node-id=0-1&node-type=canvas&t=TBWBzzjDW69nEbPV-0)
+
+[UI design first look](<https://www.figma.com/design/3ih44WsGIx62IKSIrP5QG3/DashStack---Free-Admin-Dashboard-UI-Kit---Admin-%26-Dashboard-Ui-Kit---Admin-Dashboard-(Community)?node-id=0-1&node-type=canvas&t=TBWBzzjDW69nEbPV-0>)
 
 ### Interim Notes
+
 1. 11/10/24 Major Interim Meeting
    - Attendees: Adrian, Laura, Nikhil, Tim, Anusha, Hailey
    - Tasks:
@@ -79,7 +83,7 @@
        - Linting
        - Doc Generation
        - Code Quality
-     - For later: e2e testing 
+     - For later: e2e testing
    - CI/CD:
      ![image](https://github.com/user-attachments/assets/6a3e357b-c14c-4d59-8543-e48c20d099e5)
    - Linting and code style enforcement (may happen in pipeline and/or in editor)
@@ -107,7 +111,7 @@
    - Packaging & Minification:
      - [Guideline] Optimize code for production with packaging and minification where appropriate.
 
-
 ### Key Takeaways/Backlog
+
 - CI/CD pipeline
 - update sprint meetings folder

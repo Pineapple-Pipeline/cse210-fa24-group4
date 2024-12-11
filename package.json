@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "start": "live-server --port=3000 --open=src/index.html",
+    "test": "jest --coverage",
+    "lint": "eslint src/** --config config/eslint.config.mjs",
+    "prettier": "prettier --write src/**",
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-jest": "^28.9.0",
+    "globals": "^15.12.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.4.2"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "/e2e-tests/"
+    ]
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

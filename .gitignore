@@ -1,1 +1,11 @@
-**/.DS_Store
+.DS_Store
+**/node_modules
+**/dist
+**/coverage
+package-lock.json
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.env

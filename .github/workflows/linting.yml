@@ -1,0 +1,64 @@
+name: Linting
+
+on:
+  push:
+    branches:
+      - main
+      - E2E-testing
+      - jwt-token-generator
+      - JSON-formatter
+      - complete-url-encoder-decoder
+      - unix-timestamp-converter
+      - frontend
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: src/
+          log_level: INFO
+
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+
+      - name: Initialize npm
+        run: npm init -y
+
+      - name: Install ESLint
+        run: npm install eslint
+
+      - name: ESLint
+        run: npx eslint src/** --config ./config/eslint.config.mjs --no-warn-ignored
+
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+
+      - name: Install Prettier
+        run: npm install prettier
+
+      - name: Prettier
+        run: npx prettier --check src/**

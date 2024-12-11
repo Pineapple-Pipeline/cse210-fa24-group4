@@ -1,0 +1,222 @@
+:root {
+  /* Font specifications */
+  --font-family-main: "Roboto", sans-serif;
+  --font-family-code: "Source Code Pro", "Roboto", sans-serif;
+  --font-size-desktop: 1em;
+  --font-size-mobile: 0.75em;
+
+  /* Light Theme */
+  --bg-color: #fafafa;
+  --text-color: #2e3047;
+  --sidebar-bg: #e4e5f1;
+  --button-bg: #9394a5;
+  --button-text: #1a202c;
+  --button-hover-bg: #cbd5e0;
+  --border-color: #e2e8f0;
+  --tool-bg-color: #e4e5f1;
+
+  /* Dark Theme */
+  --dark-bg-color: #1a202c;
+  --dark-text-color: #f7fafc;
+  --dark-sidebar-bg: #2d3748;
+  --dark-button-bg: #4a5568;
+  --dark-button-text: #f7fafc;
+  --dark-button-hover-bg: #718096;
+  --dark-border-color: #4a5568;
+  --dark-tool-bg-color: #2d3748;
+}
+
+[data-theme="dark"] {
+  --bg-color: var(--dark-bg-color);
+  --text-color: var(--dark-text-color);
+  --inverse-color: #ebe7e7;
+  --sidebar-bg: var(--dark-sidebar-bg);
+  --button-bg: var(--dark-button-bg);
+  --button-hover-bg: var(--dark-button-hover-bg);
+  --border-color: var(--dark-border-color);
+  --tool-bg-color: var(--dark-tool-bg-color);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Dashboard Container */
+.dashboard {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-base-background-main);
+  overflow-y: auto;
+}
+
+/* Sidebar */
+.sidebar {
+  position: relative;
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--sidebar-bg);
+  padding: 20px;
+  color: var(--color-base-foreground-main);
+  transition: all 0.3s ease;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--inverse-color);
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  right: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 35px;
+}
+
+.toggle-btn span {
+  width: 30px;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--text-color);
+  display: block;
+  margin-top: 4px;
+}
+
+/* Sidebar collapsed state */
+.sidebar.active {
+  width: 0;
+  padding: 0;
+}
+.sidebar.active .sidebar-content {
+  display: none;
+}
+
+.sidebar.active .toggle-btn {
+  left: 20px;
+}
+
+.sidebar-title {
+  color: var(--text-color);
+  font-size: calc(var(--font-size-desktop) * 1.2);
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: var(--text-color);
+  transition: transform 0.2s ease;
+  color: var(--text-color);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.2);
+}
+
+.sidebar-title:hover {
+  color: #0a5568;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.tool-button {
+  flex: 1;
+  max-height: 50px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: calc(var(--font-size-desktop) * 1);
+  transition: background-color 0.3s ease;
+}
+
+.tool-button:hover {
+  background-color: var(--button-hover-bg);
+  color: var(--inverse-color);
+}
+
+/* Content Area */
+.content-area {
+  flex-grow: 1; /* Take up the remaining space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  padding-inline: 50px;
+  transition: margin-left 0.3s ease;
+}
+
+.content-area > * {
+  width: 100%;
+  height: 100%;
+  flex: 1; /* Ensure child components stretch to fill the area */
+  display: flex; /* Allow child components to use flex layouts if needed */
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 800px) {
+  .tool-button {
+    font-size: calc(var(--font-size-mobile) * 1); /* Mobile font size */
+  }
+
+  .sidebar-title {
+    font-size: calc(var(--font-size-mobile) * 1.2); /* Mobile font size */
+  }
+  /* Sidebar collapsed state */
+  .sidebar.active {
+    width: 100%;
+    height: 0;
+  }
+
+  .dashboard {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: auto;
+    border-right: none;
+    border-bottom: 1mm solid var(--color-base-foreground-main);
+  }
+
+  .tool-button {
+    margin: 5px 0;
+  }
+  .toggle-btn span {
+    width: 20px;
+    height: 3px;
+    margin-top: 3px;
+  }
+  .theme-toggle {
+    font-size: calc(var(--font-size-mobile) * 1);
+    padding: 8px 15px;
+  }
+}
