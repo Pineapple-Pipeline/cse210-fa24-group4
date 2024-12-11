@@ -75,7 +75,7 @@ const initializeSidebarToggleButton = () => {
 /**
  * Initializes the theme toggle button by attaching an event listener that
  * toggles the document's "data-theme" attribute between "light" and "dark"
- * when clicked. The value of the attribute is also saved in localStorage.
+ * when clicked.
  */
 const initializeDarkMode = () => {
   const themeToggle = document.getElementById("theme-toggle");
@@ -152,8 +152,12 @@ const initializeApp = (featureComponents) => {
   // Initialize the sidebar toggle button
   initializeSidebarToggleButton();
 
-  // Initialize the dark mode bcoutton
+  // Initialize the dark mode button
   initializeDarkMode();
+
+  window.addEventListener("load", () => {
+    loadFeatureComponent("about-us", contentArea);
+  });
 };
 
 // Initialize the application when the DOM is fully loaded
