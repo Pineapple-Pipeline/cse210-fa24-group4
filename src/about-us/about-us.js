@@ -14,7 +14,7 @@ class AboutUs extends HTMLElement {
 			{ name: "Adrian Layer", role: "UX Designer" },
 			{ name: "Tim Kraemer", role: "Data Scientist" },
 			{ name: "Anusha Ravachandran", role: "QA Engineer" },
-			{ name: "Yunhao Ziang", role: "DevOps Engineer" },
+			{ name: "Yunhao Jiang", role: "DevOps Engineer" },
 			{ name: "Laura Tian", role: "Technical Writer" },
 			{ name: "Hailey Li", role: "Scrum Master" },
 		];
