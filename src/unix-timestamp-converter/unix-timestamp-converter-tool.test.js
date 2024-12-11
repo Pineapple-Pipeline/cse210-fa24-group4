@@ -103,19 +103,20 @@ describe("UnixTimestampConverterTool", () => {
   });
 
   // empty output copy alert test
-  test("should alert when nothing to copy", () => {
-    // Mock the showNotification method
-    const showNotificationMock = jest
-      .spyOn(unixTimestampConverterTool, "showNotification")
-      .mockImplementation(() => {});
+  test("should alert when copying nothing", async () => {
+    const showNotificationMock = jest.spyOn(
+      unixTimestampConverterTool,
+      "showNotification",
+    );
     outputArea.value = "";
     copyBtn.click();
-
-    // Assert that showNotification was called with the correct arguments
     expect(showNotificationMock).toHaveBeenCalledWith(
       unixTimestampConverterTool.copyNotification,
       "Nothing to copy!",
     );
+
+    // Wait for timeout to complete
+    await new Promise((resolve) => setTimeout(resolve, 1100));
   });
 
   test("should error out of UTC conversion when input is empty", () => {
