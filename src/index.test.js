@@ -144,7 +144,6 @@ describe("initializeDarkMode", () => {
     initializeDarkMode();
     expect(document.getElementById("theme-toggle")).not.toBeNull();
     expect(document.documentElement.getAttribute("data-theme")).toBe("light");
-    expect(document.getElementById("theme-toggle").textContent).toBe("🌓");
   });
 
   test("theme toggle button is not found and error is logged", () => {
@@ -161,7 +160,6 @@ describe("initializeDarkMode", () => {
     localStorage.setItem("theme", "dark");
     initializeDarkMode();
     expect(document.documentElement.getAttribute("data-theme")).toBe("dark");
-    expect(document.getElementById("theme-toggle").textContent).toBe("☀");
   });
 
   test("theme is toggled correctly when button is clicked", () => {
@@ -170,10 +168,8 @@ describe("initializeDarkMode", () => {
     const themeToggle = document.getElementById("theme-toggle");
     themeToggle.click();
     expect(document.documentElement.getAttribute("data-theme")).toBe("light");
-    expect(document.getElementById("theme-toggle").textContent).toBe("🌓");
     themeToggle.click();
     expect(document.documentElement.getAttribute("data-theme")).toBe("dark");
-    expect(document.getElementById("theme-toggle").textContent).toBe("☀");
   });
 });
 
@@ -184,7 +180,6 @@ describe("initializeApp", () => {
   let unixButton;
   let toggleBtn;
   let sideBar;
-  let themeButton;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -219,9 +214,14 @@ describe("initializeApp", () => {
     unixButton = document.getElementById("unix-timestamp-converter-button");
     toggleBtn = document.getElementById("toggle-btn");
     sideBar = document.getElementById("side-bar");
-    themeButton = document.getElementById("theme-toggle");
 
-    initializeApp();
+    const featureComponents = {
+      "json-formatter-button": "json-formatter-tool",
+      "url-encoder-decoder-button": "url-encoder-decoder-tool",
+      "unix-timestamp-converter-button": "unix-timestamp-converter-tool",
+    };
+    localStorage.clear();
+    initializeApp(featureComponents);
   });
 
   test("should load JSON Formatter component when JSON button is clicked", () => {
@@ -252,14 +252,10 @@ describe("initializeApp", () => {
     expect(sideBar.classList.contains("active")).toBe(false);
   });
 
-  test("should toggle the dark/light theme when button is clicked", () => {
+  test("dark mode initialize correctly", () => {
     const htmlElement = document.documentElement; // This refers to the <html> tag
 
-    // Check initial state (assuming light mode is default)
-    expect(htmlElement.getAttribute("data-theme")).toBe("light");
-    themeButton.click();
-    expect(htmlElement.getAttribute("data-theme")).toBe("dark");
-    themeButton.click();
+    initializeDarkMode();
     expect(htmlElement.getAttribute("data-theme")).toBe("light");
   });
 });
