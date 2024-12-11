@@ -19,7 +19,7 @@ class UUIDGeneratorTool extends HTMLElement {
                 <h3>UUID Generator</h3>
             </header>
             <section class="tool-content">
-                <textarea class="output-area" readonly></textarea>
+                <textarea class="output-area" placeholder="\n91ce19ea-0e4b-4064-a38a-6dcdde6b81fc" readonly></textarea>
                 <div align="center" class="button-group">
                     <button class="generate-btn">Generate UUID</button>
                     <div class="copy-btn-container">
