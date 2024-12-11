@@ -6,13 +6,13 @@ test.describe("Unix Timestamp Converter tool", () => {
       name: "Basic Unix Timestamp to UTC Conversion",
       function: "unix-utc",
       input: "1635744000",
-      expected: "Wed, 01 Dec 2021 00:00:00 GMT",
+      expected: "Mon, 01 Nov 2021 05:20:00 GMT",
     },
     {
       name: "Basic Unix Timestamp to ISO Conversion",
       function: "unix-iso",
       input: "1635744000",
-      expected: "2021-12-01T00:00:00.000Z",
+      expected: "2021-11-01T05:20:00.000Z",
     },
     {
       name: "Basic UTC to Unix Timestamp Conversion",
@@ -42,7 +42,7 @@ test.describe("Unix Timestamp Converter tool", () => {
       name: "Whitespace Unix Timestamp to UTC Conversion",
       function: "unix-utc",
       input: " 1635744000 ",
-      expected: "Wed, 01 Dec 2021 00:00:00 GMT",
+      expected: "Mon, 01 Nov 2021 05:20:00 GMT",
     },
   ];
 

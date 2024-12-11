@@ -171,22 +171,12 @@
   transform: scale(1.05);
 }
 
-.button-group {
-  display: flex;
-  justify-content: center;
-  gap: 15px; /* Adds space between buttons */
-}
-
 textarea::placeholder {
   color: var(--text-color);
 }
 
 @media (max-width: 600px) {
   .tool-panel {
-    font-size: var(--font-size-mobile); /* Mobile font size */
-  }
-
-  .tool-header {
     font-size: var(--font-size-mobile); /* Mobile font size */
   }
 
