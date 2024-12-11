@@ -9,6 +9,7 @@ class UnixTimestampConverterTool extends HTMLElement {
     this.copyBtn = null;
     this.inputArea = null;
     this.outputArea = null;
+    this.copyNotification = null;
   }
 
   connectedCallback() {
@@ -30,7 +31,14 @@ class UnixTimestampConverterTool extends HTMLElement {
           </div>
           <button class="convert-to-unix-btn">Convert TO UNIX</button>
           <textarea class="output-area" readonly></textarea>
-          <button class="copy-btn">Copy to Clipboard</button>
+          <div align="center" class="button-group">
+            <div class="copy-btn-container">
+              <div class="notification-wrapper">
+                <div class="notification">Copied to clipboard!</div>
+              </div>
+              <button class="copy-btn">Copy to Clipboard</button>
+            </div>
+          </div>
         </section>
       </section>
     `;
@@ -44,6 +52,9 @@ class UnixTimestampConverterTool extends HTMLElement {
     this.copyBtn = this.querySelector(".copy-btn");
     this.inputArea = this.querySelector(".input-area");
     this.outputArea = this.querySelector(".output-area");
+    this.copyNotification = this.querySelector(
+      ".copy-btn-container .notification"
+    );
 
     // Bind event listeners
     this.swapBtn.addEventListener("click", () => this.swapMode());
@@ -55,6 +66,16 @@ class UnixTimestampConverterTool extends HTMLElement {
     );
     this.convertToUnixBtn.addEventListener("click", () => this.convertToUnix());
     this.copyBtn.addEventListener("click", () => this.copyToClipboard());
+  }
+
+  showNotification(notification, message) {
+    notification.textContent = message;
+    notification.classList.add("show");
+
+    // Hide notification after 2 seconds
+    setTimeout(() => {
+      notification.classList.remove("show");
+    }, 1000);
   }
 
   swapMode = () => {
@@ -109,13 +130,15 @@ class UnixTimestampConverterTool extends HTMLElement {
 
   copyToClipboard() {
     const output = this.outputArea.value;
-
     if (output) {
       navigator.clipboard
         .writeText(output)
-        .then(() => alert("Timestamp copied to clipboard!"));
+        .then(() =>
+          this.showNotification(this.copyNotification, "Copied to clipboard!")
+        );
     } else {
-      alert("Nothing to copy!");
+      console.log("here");
+      this.showNotification(this.copyNotification, "Nothing to copy!");
     }
   }
 
