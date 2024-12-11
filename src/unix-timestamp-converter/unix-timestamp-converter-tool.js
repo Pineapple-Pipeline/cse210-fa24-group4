@@ -7,8 +7,14 @@ class UnixTimestampConverterTool extends HTMLElement {
     this.convertToIsoBtn = null;
     this.convertToUnixBtn = null;
     this.copyBtn = null;
+    this.swapBtn = null;
+    this.convertToUtcBtn = null;
+    this.convertToIsoBtn = null;
+    this.convertToUnixBtn = null;
+    this.copyBtn = null;
     this.inputArea = null;
     this.outputArea = null;
+    this.copyNotification = null;
     this.copyNotification = null;
   }
 
