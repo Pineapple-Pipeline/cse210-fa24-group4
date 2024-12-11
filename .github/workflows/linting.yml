@@ -45,7 +45,7 @@ jobs:
         run: npm install eslint
 
       - name: ESLint
-        run: npx eslint src/** --config ./config/eslint.config.mjs --no-warn-ignored --ignore-pattern "src/imgs/*.png" --ignore-pattern "src/imgs/*.jpg"
+        run: npx eslint src/** --config ./config/eslint.config.mjs --no-warn-ignored --ignore-pattern "*.png" --ignore-pattern "*.jpg"
 
   prettier:
     runs-on: ubuntu-latest
