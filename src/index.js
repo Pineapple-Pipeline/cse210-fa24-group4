@@ -8,7 +8,6 @@
  * @param {HTMLElement} contentArea - The DOM element where the custom element should be loaded.
  */
 const loadFeatureComponent = (componentName, contentArea) => {
-  console.log(componentName);
   // Clear any existing content in the content area
   try {
     // Clear any existing content in the content area

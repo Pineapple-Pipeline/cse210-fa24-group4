@@ -180,7 +180,6 @@ describe("initializeApp", () => {
   let unixButton;
   let toggleBtn;
   let sideBar;
-  let themeButton;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -215,7 +214,6 @@ describe("initializeApp", () => {
     unixButton = document.getElementById("unix-timestamp-converter-button");
     toggleBtn = document.getElementById("toggle-btn");
     sideBar = document.getElementById("side-bar");
-    themeButton = document.getElementById("theme-toggle");
 
     const featureComponents = {
       "json-formatter-button": "json-formatter-tool",

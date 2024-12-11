@@ -45,7 +45,7 @@ jobs:
         run: npm install eslint
 
       - name: ESLint
-        run: npx eslint src/** --config ./config/eslint.config.mjs --no-warn-ignored
+        run: npx eslint src --config ./config/eslint.config.mjs --no-warn-ignored
 
   prettier:
     runs-on: ubuntu-latest
