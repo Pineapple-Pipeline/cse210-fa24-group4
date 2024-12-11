@@ -63,12 +63,14 @@ const initializeDarkMode = () => {
   // Check for saved theme in localStorage
   const savedTheme = localStorage.getItem("theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
-  if (savedTheme === 'dark') {
-    themeToggle.innerHTML = '';
-    themeToggle.innerHTML = '<img src="imgs/light_mode.png" alt="Sun" style="width: 2rem; height: 2rem;">';
+  if (savedTheme === "dark") {
+    themeToggle.innerHTML = "";
+    themeToggle.innerHTML =
+      '<img src="imgs/light_mode.png" alt="Sun" style="width: 2rem; height: 2rem;">';
   } else {
-    themeToggle.innerHTML = '';
-    themeToggle.innerHTML = '<img src="imgs/dark_mode.png" alt="Moon" style="width: 2rem; height: 2rem;">';
+    themeToggle.innerHTML = "";
+    themeToggle.innerHTML =
+      '<img src="imgs/dark_mode.png" alt="Moon" style="width: 2rem; height: 2rem;">';
   }
 
   // Add click event listener to toggle theme
@@ -77,12 +79,14 @@ const initializeDarkMode = () => {
     const newTheme = currentTheme === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-    if (newTheme === 'dark') {
-      themeToggle.innerHTML = '';
-      themeToggle.innerHTML = '<img src="imgs/light_mode.png" alt="Sun" style="width: 2rem; height: 2rem;">';
+    if (newTheme === "dark") {
+      themeToggle.innerHTML = "";
+      themeToggle.innerHTML =
+        '<img src="imgs/light_mode.png" alt="Sun" style="width: 2rem; height: 2rem;">';
     } else {
-      themeToggle.innerHTML = '';
-      themeToggle.innerHTML = '<img src="imgs/dark_mode.png" alt="Moon" style="width: 2rem; height: 2rem;">';
+      themeToggle.innerHTML = "";
+      themeToggle.innerHTML =
+        '<img src="imgs/dark_mode.png" alt="Moon" style="width: 2rem; height: 2rem;">';
     }
   });
 };
