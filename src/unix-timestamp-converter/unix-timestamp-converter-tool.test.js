@@ -10,6 +10,7 @@ describe("UnixTimestampConverterTool", () => {
   let convertToUnixBtn;
   let swapBtn;
   let copyBtn;
+  let copyNotification;
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -18,22 +19,25 @@ describe("UnixTimestampConverterTool", () => {
 
     // Get references to elements inside the custom element
     unixTimestampConverterTool = document.querySelector(
-      "unix-timestamp-converter-tool"
+      "unix-timestamp-converter-tool",
     );
     toolPanel = unixTimestampConverterTool.querySelector(".tool-panel");
     inputArea = unixTimestampConverterTool.querySelector(".input-area");
     outputArea = unixTimestampConverterTool.querySelector(".output-area");
     convertToUtcBtn = unixTimestampConverterTool.querySelector(
-      ".convert-to-utc-btn"
+      ".convert-to-utc-btn",
     );
     convertToIsoBtn = unixTimestampConverterTool.querySelector(
-      ".convert-to-iso-btn"
+      ".convert-to-iso-btn",
     );
     convertToUnixBtn = unixTimestampConverterTool.querySelector(
-      ".convert-to-unix-btn"
+      ".convert-to-unix-btn",
     );
     swapBtn = unixTimestampConverterTool.querySelector(".swap-btn");
     copyBtn = unixTimestampConverterTool.querySelector(".copy-btn");
+    copyNotification = unixTimestampConverterTool.querySelector(
+      ".copy-btn-container .notification",
+    );
   });
 
   test("Should render the UNIX timestamp converter tool correctly", () => {
@@ -44,6 +48,7 @@ describe("UnixTimestampConverterTool", () => {
     expect(swapBtn).toBeTruthy();
     expect(copyBtn).toBeTruthy();
     expect(outputArea).toBeTruthy();
+    expect(copyNotification).toBeTruthy();
   });
 
   test("converts from UNIX to UTC", () => {
@@ -74,9 +79,11 @@ describe("UnixTimestampConverterTool", () => {
   });
 
   // successful copy button test
-  test("should alert a successful copy of timestamp", async () => {
+  test("should alert a successful copy", async () => {
     // Make the test async
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+    const showNotificationMock = jest
+      .spyOn(unixTimestampConverterTool, "showNotification")
+      .mockImplementation(() => {});
 
     // Successful copy to clipboard
     const clipboardMock = jest.fn().mockResolvedValue();
@@ -86,17 +93,30 @@ describe("UnixTimestampConverterTool", () => {
       },
       writable: true,
     });
-    outputArea.value = "999999";
+    outputArea.value = "99999";
     await copyBtn.click();
-    expect(clipboardMock).toHaveBeenCalledWith("999999");
-    expect(alertMock).toHaveBeenCalledWith("Timestamp copied to clipboard!");
+    expect(clipboardMock).toHaveBeenCalledWith("99999");
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      unixTimestampConverterTool.copyNotification,
+      "Copied to clipboard!",
+    );
   });
 
-  test("should alert when copying with nothing in input", () => {
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
+  // empty output copy alert test
+  test("should alert when copying nothing", async () => {
+    const showNotificationMock = jest.spyOn(
+      unixTimestampConverterTool,
+      "showNotification",
+    );
     outputArea.value = "";
     copyBtn.click();
-    expect(alertMock).toHaveBeenCalledWith("Nothing to copy!");
+    expect(showNotificationMock).toHaveBeenCalledWith(
+      unixTimestampConverterTool.copyNotification,
+      "Nothing to copy!",
+    );
+
+    // Wait for timeout to complete
+    await new Promise((resolve) => setTimeout(resolve, 1100));
   });
 
   test("should error out of UTC conversion when input is empty", () => {

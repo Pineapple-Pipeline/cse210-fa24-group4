@@ -48,7 +48,7 @@ test.describe("Unix Timestamp Converter tool", () => {
 
   for (const testCase of testCases) {
     test(`should convert ${testCase.name} correctly`, async ({ page }) => {
-      // Navigate to the page (https://cse210-fa24-group4.github.io/cse210-fa24-group4/)
+      // Navigate to the page
       await page.goto("./");
 
       // Wait for the Unix Timestamp Converter tool to be loaded
