@@ -52,6 +52,7 @@ body {
 /* Sidebar */
 .sidebar {
   position: relative;
+  flex-shrink: 0;
   width: 250px;
   height: 100%;
   display: flex;
@@ -194,6 +195,7 @@ body {
   }
   .sidebar {
     width: auto;
+    height: auto;
     border-right: none;
     border-bottom: 1mm solid var(--color-base-foreground-main);
   }
