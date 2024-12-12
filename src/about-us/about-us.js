@@ -35,9 +35,8 @@ class AboutUs extends HTMLElement {
       <section class="about-us">
         <section class="tool-header">
           <h1>About Us</h1>
-          <p>Welcome to our application! We are dedicated to providing the best tools for your needs.</p>
-          <p>Our team is composed of experienced developers who are passionate about creating useful and efficient software solutions.</p>
-          <p>Feel free to explore our features and tools. If you have any questions, don't hesitate to contact us.</p>
+          <p>Welcome to Backend Buddy! We are Pineapple Pipeline and we are dedicated to providing the best backend tools for your needs. Our team is composed of experienced developers who are passionate about creating useful and efficient software solutions.</p>
+          <p>Feel free to explore our features and tools and we hope you enjoy!</p>
         </section>
         <div class="team-grid">
           ${teamGrid}
