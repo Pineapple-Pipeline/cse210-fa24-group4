@@ -1,5 +1,11 @@
 # Landing Page
 
+
+
+https://github.com/user-attachments/assets/a71d2fa3-c742-49bf-9272-e0bbfdb85118
+
+
+
 ## Overview
 The landing page can be includes a sidebar panel and the tool display panel, following an intuitive, modern look with light and dark mode. The tool display panel opens with the "about us" page, and displays specific tools when clicked on the tool button through sidebar. 
 
