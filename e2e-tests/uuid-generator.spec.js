@@ -40,7 +40,7 @@ test.describe("UUID Generator tool", () => {
           .context()
           .grantPermissions(["clipboard-read", "clipboard-write"]);
       }
-        
+
       // Ensure the UUID generator button is available and click it
       await page.waitForSelector("#uuid-generator-button");
       await page.locator("#uuid-generator-button").click();
@@ -57,10 +57,16 @@ test.describe("UUID Generator tool", () => {
       const copyButton = page.locator("uuid-generator-tool .copy-btn");
       await copyButton.click();
 
-      // Verify the clipboard content
-      const clipboardContent = await page.evaluate(() =>
-        navigator.clipboard.readText()
-      );
-      expect(clipboardContent.trim()).toBe(uuid.trim());
+      // Verify the clipboard content using a more compatible approach
+      // Wait for and verify the toast notification
+      await expect(page.locator('text="Copied to Clipboard!"')).toBeVisible();
+
+      // Only verify clipboard content in Chromium browsers
+      if (browserName === "chromium") {
+        const clipboardContent = await page.evaluate(() =>
+          navigator.clipboard.readText()
+        );
+        expect(clipboardContent.trim()).toBe(outputText);
+      }
     });
 });

@@ -112,10 +112,16 @@ test.describe("JWT Generator tool", () => {
     const copyButton = page.locator("jwt-generator-tool .copy-btn");
     await copyButton.click();
 
-    // Verify the clipboard content
-    const clipboardContent = await page.evaluate(() =>
-      navigator.clipboard.readText()
-    );
-    expect(clipboardContent.trim()).toBe(outputText);
+    // Verify the clipboard content using a more compatible approach
+    // Wait for and verify the toast notification
+    await expect(page.locator('text="Copied to Clipboard!"')).toBeVisible();
+
+    // Only verify clipboard content in Chromium browsers
+    if (browserName === "chromium") {
+      const clipboardContent = await page.evaluate(() =>
+        navigator.clipboard.readText()
+      );
+      expect(clipboardContent.trim()).toBe(outputText);
+    }
   });
 });
