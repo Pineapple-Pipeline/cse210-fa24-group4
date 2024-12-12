@@ -80,31 +80,39 @@ const initializeSidebarToggleButton = () => {
 const initializeDarkMode = () => {
   const themeToggle = document.getElementById("theme-toggle");
 
-  if (!themeToggle) {
-    console.error("Theme toggle button not found.");
-    return;
-  }
+  if (themeToggle) {
+    // Check for saved theme in localStorage
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    if (savedTheme === "dark") {
+      themeToggle.innerHTML = "";
+      themeToggle.innerHTML =
+        '<img src="imgs/light_mode.png" alt="Sun" style="width: 2rem; height: 2rem;">';
+    } else {
+      themeToggle.innerHTML = "";
+      themeToggle.innerHTML =
+        '<img src="imgs/dark_mode.png" alt="Moon" style="width: 2rem; height: 2rem;">';
+    }
 
-  // Check for saved theme in localStorage
-  const savedTheme = localStorage.getItem("theme") || "light";
-
-  document.documentElement.setAttribute("data-theme", savedTheme);
-  themeToggle.textContent = savedTheme === "dark" ? "☀" : "🌓";
-
-  // Add click event listener to toggle theme
-  themeToggle.addEventListener("click", () => {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-    try {
+    // Add click event listener to toggle theme
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", newTheme);
       localStorage.setItem("theme", newTheme);
-      themeToggle.textContent = newTheme === "dark" ? "☀" : "🌓";
-    } catch {
-      console.error("Failed to toggle theme");
-    }
-  });
+      if (newTheme === "dark") {
+        themeToggle.innerHTML = "";
+        themeToggle.innerHTML =
+          '<img src="imgs/light_mode.png" alt="Sun" style="width: 2rem; height: 2rem;">';
+      } else {
+        themeToggle.innerHTML = "";
+        themeToggle.innerHTML =
+          '<img src="imgs/dark_mode.png" alt="Moon" style="width: 2rem; height: 2rem;">';
+      }
+    });
+  } else {
+    console.error("Theme toggle button not found.");
+  }
 };
 
 /**
