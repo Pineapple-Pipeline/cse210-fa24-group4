@@ -1,5 +1,8 @@
 # JSON Formatter
 
+<img src="images/json-formatter.png" width="1000" style="display: block; margin: auto;" />
+
+
 ## Overview
 The JSON Formatter restructures improperly formatted JSON into valid JSON. It includes features to download the formatted output as a `.json` file or copy it directly to the clipboard for easy use.
 
