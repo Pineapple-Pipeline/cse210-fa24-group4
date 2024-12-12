@@ -1,5 +1,7 @@
 # URL Encoder/Decoder
 
+https://github.com/user-attachments/assets/0a827cfc-a435-456f-b4e2-53852cde3ddb
+
 ## Overview
 
 The URL Encoder/Decoder tool allows users to encode or decode URLs seamlessly. This is particularly useful for developers working with web applications, APIs, or debugging URL-related issues. The tool is designed with a simple and intuitive interface to make encoding and decoding URLs quick and efficient.
