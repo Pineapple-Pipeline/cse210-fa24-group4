@@ -8,15 +8,15 @@ class AboutUs extends HTMLElement {
    */
   connectedCallback() {
     const teamMembers = [
-      { name: "Nikhil Gautam", role: "Project Manager" },
-      { name: "Samyak Mehta", role: "Frontend Developer" },
-      { name: "Jake Norbie", role: "Backend Developer" },
-      { name: "Adrian Layer", role: "UX Designer" },
-      { name: "Tim Kraemer", role: "Data Scientist" },
-      { name: "Anusha Ravachandran", role: "QA Engineer" },
-      { name: "Yunhao Jiang", role: "DevOps Engineer" },
-      { name: "Laura Tian", role: "Technical Writer" },
-      { name: "Hailey Li", role: "Scrum Master" },
+      { name: "Nikhil Gautam", role: "Chef de Cuisine" },
+      { name: "Samyak Mehta", role: "Chef de Cuisine" },
+      { name: "Jake Norbie", role: "Chef de Partie" },
+      { name: "Adrian Layer", role: "Chef de Partie" },
+      { name: "Tim Kraemer", role: "Chef de Partie" },
+      { name: "Anusha Ravichandran", role: "Chef de Partie" },
+      { name: "Yunhao Jiang", role: "Sous Chef" },
+      { name: "Laura Tian", role: "Décorateur" },
+      { name: "Hailey Li", role: "Aboyeur" },
     ];
 
     const teamGrid = teamMembers
