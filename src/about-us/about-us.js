@@ -8,15 +8,15 @@ class AboutUs extends HTMLElement {
    */
   connectedCallback() {
     const teamMembers = [
-      { name: "Nikhil Gautam", role: "Project Manager" },
-      { name: "Samyak Mehta", role: "Frontend Developer" },
-      { name: "Jake Norbie", role: "Backend Developer" },
-      { name: "Adrian Layer", role: "UX Designer" },
-      { name: "Tim Kraemer", role: "Data Scientist" },
-      { name: "Anusha Ravachandran", role: "QA Engineer" },
-      { name: "Yunhao Ziang", role: "DevOps Engineer" },
-      { name: "Laura Tian", role: "Technical Writer" },
-      { name: "Hailey Li", role: "Product Owner" },
+      { name: "Nikhil Gautam", role: "Chef de Cuisine" },
+      { name: "Samyak Mehta", role: "Chef de Cuisine" },
+      { name: "Jake Norbie", role: "Chef de Partie" },
+      { name: "Adrian Layer", role: "Chef de Partie" },
+      { name: "Tim Kraemer", role: "Chef de Partie" },
+      { name: "Anusha Ravichandran", role: "Chef de Partie" },
+      { name: "Yunhao Jiang", role: "Sous Chef" },
+      { name: "Laura Tian", role: "Décorateur" },
+      { name: "Hailey Li", role: "Aboyeur" },
     ];
 
     const teamGrid = teamMembers
@@ -31,52 +31,18 @@ class AboutUs extends HTMLElement {
       .join("");
 
     this.innerHTML = `
-      <style>
-        .about-us {
-          color: white;
-          background-color: #333;
-          padding: 20px;
-          border-radius: 8px;
-        }
-        .about-us h1 {
-          font-size: 2em;
-          margin-bottom: 20px;
-        }
-        .about-us p {
-          font-size: 1.2em;
-          line-height: 1.5;
-          margin-bottom: 20px;
-        }
-        .team-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
-          margin-top: 20px;
-        }
-        .team-member {
-          background-color: #444;
-          padding: 15px;
-          border-radius: 8px;
-          text-align: center;
-        }
-        .team-member h2 {
-          font-size: 1.5em;
-          margin-bottom: 10px;
-        }
-        .team-member p {
-          font-size: 1em;
-          margin: 0;
-        }
-      </style>
-      <div class="about-us">
-        <h1>About Us</h1>
-        <p>Welcome to our application! We are dedicated to providing the best tools for your needs.</p>
-        <p>Our team is composed of experienced developers who are passionate about creating useful and efficient software solutions.</p>
-        <p>Feel free to explore our features and tools. If you have any questions, don't hesitate to contact us.</p>
+      <link rel="stylesheet" href="about-us/about-us.css">
+      <section class="about-us">
+        <section class="tool-header">
+          <h1>About Us</h1>
+          <p>Welcome to Backend Buddy! </p>
+          <p>We, the chefs of the "Pineapple Pipeline" kitchen, are committed to delivering the finest backend tools to meet your needs.</p>
+          <p>Feel free to explore our menu and we hope you enjoy!</p>
+        </section>
         <div class="team-grid">
           ${teamGrid}
         </div>
-      </div>
+      </section>
     `;
   }
 }
