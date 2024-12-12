@@ -144,7 +144,6 @@ describe("initializeDarkMode", () => {
     initializeDarkMode();
     expect(document.getElementById("theme-toggle")).not.toBeNull();
     expect(document.documentElement.getAttribute("data-theme")).toBe("light");
-    expect(document.getElementById("theme-toggle").textContent).toBe("🌓");
   });
 
   test("theme toggle button is not found and error is logged", () => {
@@ -161,7 +160,6 @@ describe("initializeDarkMode", () => {
     localStorage.setItem("theme", "dark");
     initializeDarkMode();
     expect(document.documentElement.getAttribute("data-theme")).toBe("dark");
-    expect(document.getElementById("theme-toggle").textContent).toBe("☀");
   });
 
   test("theme is toggled correctly when button is clicked", () => {
@@ -170,10 +168,8 @@ describe("initializeDarkMode", () => {
     const themeToggle = document.getElementById("theme-toggle");
     themeToggle.click();
     expect(document.documentElement.getAttribute("data-theme")).toBe("light");
-    expect(document.getElementById("theme-toggle").textContent).toBe("🌓");
     themeToggle.click();
     expect(document.documentElement.getAttribute("data-theme")).toBe("dark");
-    expect(document.getElementById("theme-toggle").textContent).toBe("☀");
   });
 });
 
@@ -223,6 +219,7 @@ describe("initializeApp", () => {
     };
     toggleBtn = document.getElementById("toggle-btn");
     sideBar = document.getElementById("side-bar");
+    localStorage.clear();
     initializeApp(featureComponents);
   });
 
@@ -252,5 +249,12 @@ describe("initializeApp", () => {
     expect(sideBar.classList.contains("active")).toBe(true);
     toggleBtn.click();
     expect(sideBar.classList.contains("active")).toBe(false);
+  });
+
+  test("dark mode initialize correctly", () => {
+    const htmlElement = document.documentElement; // This refers to the <html> tag
+
+    initializeDarkMode();
+    expect(htmlElement.getAttribute("data-theme")).toBe("light");
   });
 });

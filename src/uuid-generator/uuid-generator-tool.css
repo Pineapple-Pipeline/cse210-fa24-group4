@@ -24,7 +24,7 @@
   color: var(--text-color);
   font-size: calc(var(--font-size-desktop) * 1.2);
   font-weight: bold;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* Tool content styling */
@@ -43,9 +43,9 @@
   text-align: center;
   flex: 1;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
-  font-family: monospace;
+  font-family: var(--font-family-code);
   font-size: calc(var(--font-size-desktop) * 1.5);
   resize: none;
   background-color: var(--tool-bg-color);
