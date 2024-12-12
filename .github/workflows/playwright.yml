@@ -29,7 +29,7 @@ jobs:
         run: echo "TEST_BASE_URL is $TEST_BASE_URL"
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --config config/playwright.config.js
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
