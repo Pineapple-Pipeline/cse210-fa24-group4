@@ -68,9 +68,11 @@ test.describe("JWT Generator tool", () => {
 
     const secretKey = "mySuperSecretKey123!";
 
-    await page
-      .context()
-      .grantPermissions(["clipboard-read", "clipboard-write"]);
+    if (browserName === "chromium") {
+      await page
+        .context()
+        .grantPermissions(["clipboard-read", "clipboard-write"]);
+    }
 
     await page.goto("./");
 

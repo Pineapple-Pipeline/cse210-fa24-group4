@@ -35,9 +35,11 @@ test.describe("UUID Generator tool", () => {
       // Navigate to the page
       await page.goto("./");
 
-      await page
-        .context()
-        .grantPermissions(["clipboard-read", "clipboard-write"]);
+      if (browserName === "chromium") {
+        await page
+          .context()
+          .grantPermissions(["clipboard-read", "clipboard-write"]);
+      }
         
       // Ensure the UUID generator button is available and click it
       await page.waitForSelector("#uuid-generator-button");
