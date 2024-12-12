@@ -1,11 +1,10 @@
 # JSON Formatter
 
-<div style="text-align: center;">
-  <video width="800" height="450" controls style="display: block; margin: auto;">
-    <source src="media/json-formatter.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+
+
+https://github.com/user-attachments/assets/a9e4004d-d735-4213-82ee-5abc06eb4635
+
+
 
 
 ## Overview
