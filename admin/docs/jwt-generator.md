@@ -1,9 +1,10 @@
-<div style="text-align: center;">
-  <video width="800" height="450" controls style="display: block; margin: auto;">
-    <source src="media/jwt-generator.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+# JWT Token Generator
+
+
+
+https://github.com/user-attachments/assets/5ac90417-ad3f-4a22-aa16-a8a96d91d615
+
+
 
 
 ## Overview
