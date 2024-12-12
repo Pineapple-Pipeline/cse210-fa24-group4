@@ -1,6 +1,11 @@
 # JSON Formatter
 
-<img src="images/json-formatter.png" width="1000" style="display: block; margin: auto;" />
+<div style="text-align: center;">
+  <video width="800" height="450" controls style="display: block; margin: auto;">
+    <source src="media/json-formatter.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 
 ## Overview
@@ -48,9 +53,7 @@ The JSON Formatter restructures improperly formatted JSON into valid JSON. It in
 ---
 
 ## Troubleshooting
-Address common issues and how to resolve them.
 
-**Example:**
 ### Common Errors
 - **Error:** "Error: Unexpected token '', "..." is not valid JSON"
   - **Solution:** Check that your JSON is properly formatted before passing it to the tool.
