@@ -79,8 +79,8 @@ class UnixTimestampConverterTool extends HTMLElement {
   /**
    * Shows the notification on top of target button
    *
-   * @param {${2:*}} notification
-   * @param {${3:*}} message
+   * @param notification - notification element
+   * @param message - message to display
    */
   showNotification(notification, message) {
     notification.textContent = message;
@@ -101,7 +101,7 @@ class UnixTimestampConverterTool extends HTMLElement {
    * Converts from unix timstamp to either iso or utc
    * formats depending on format parameter
    *
-   * @param {${2:*}} format
+   * @param format - either "utc" or "iso"
    */
   convertFromUnix = (format) => {
     try {
