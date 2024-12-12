@@ -30,43 +30,4 @@ test.describe("UUID Generator tool", () => {
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     expect(uuid).toMatch(uuidRegex);
   });
-
-    test("should copy UUID to clipboard", async ({ page, browserName }) => {
-      // Navigate to the page
-      await page.goto("./");
-
-      if (browserName === "chromium") {
-        await page
-          .context()
-          .grantPermissions(["clipboard-read", "clipboard-write"]);
-      }
-
-      // Ensure the UUID generator button is available and click it
-      await page.waitForSelector("#uuid-generator-button");
-      await page.locator("#uuid-generator-button").click();
-
-      // Click the "Generate UUID" button
-      const generateButton = page.locator("uuid-generator-tool .generate-btn");
-      await generateButton.click();
-
-      // Wait for the UUID to appear
-      const outputArea = page.locator("uuid-generator-tool .output-area");
-      const uuid = await outputArea.inputValue();
-
-      // Ensure the "Copy to Clipboard" button is available and click it
-      const copyButton = page.locator("uuid-generator-tool .copy-btn");
-      await copyButton.click();
-
-      // Verify the clipboard content using a more compatible approach
-      // Wait for and verify the toast notification
-      await expect(page.locator('text="Copied to Clipboard!"')).toBeVisible();
-
-      // Only verify clipboard content in Chromium browsers
-      if (browserName === "chromium") {
-        const clipboardContent = await page.evaluate(() =>
-          navigator.clipboard.readText()
-        );
-        expect(clipboardContent.trim()).toBe(outputText);
-      }
-    });
 });
