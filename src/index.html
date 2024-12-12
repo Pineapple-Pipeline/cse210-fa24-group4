@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Backend Buddy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+    />
+    <script type="module" src="index.js"></script>
+    <script type="module" src="about-us/about-us.js"></script>
+    <script type="module" src="json-formatter/json-formatter-tool.js"></script>
+    <script
+      type="module"
+      src="url-encoder-decoder/url-encoder-decoder-tool.js"
+    ></script>
+    <script
+      type="module"
+      src="unix-timestamp-converter/unix-timestamp-converter-tool.js"
+    ></script>
+    <script type="module" src="jwt-generator/jwt-generator-tool.js"></script>
+    <script type="module" src="uuid-generator/uuid-generator-tool.js"></script>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="imgs/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="imgs/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="imgs/favicon-16x16.png"
+    />
+    <link rel="manifest" href="imgs/site.webmanifest" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <div id="side-bar" class="sidebar">
+        <div class="sidebar-content">
+          <div id="home-button" class="sidebar-title">Backend Buddy</div>
+          <button id="theme-toggle" class="theme-toggle">☀︎</button>
+          <button id="json-formatter-button" class="tool-button">
+            JSON Formatter
+          </button>
+          <button id="url-encoder-decoder-button" class="tool-button">
+            URL Encoder/Decoder
+          </button>
+          <button id="unix-timestamp-converter-button" class="tool-button">
+            Unix Timestamp Converter
+          </button>
+          <button id="jwt-generator-button" class="tool-button">
+            JWT Token Generator
+          </button>
+          <button id="uuid-generator-button" class="tool-button">
+            UUID Generator
+          </button>
+        </div>
+      </div>
+      <div class="toggle-btn" id="toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="content-area"></div>
+    </div>
+  </body>
+</html>

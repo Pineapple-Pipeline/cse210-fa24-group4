@@ -1,0 +1,78 @@
+.about-us {
+  color: var(--text-color);
+  background-color: var(--sidebar-bg);
+  padding: 1.5em;
+  border-radius: 0.5em;
+  font-family: var(--font-family-main);
+  display: inline;
+  position: relative;
+}
+
+.about-us h1 {
+  font-size: 2em;
+  margin: 0.75em;
+  text-align: center;
+}
+
+.about-us p {
+  font-size: 1.2em;
+  line-height: 1.5em;
+  margin-bottom: 20px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  align-items: center;
+}
+
+.team-member {
+  background-color: var(--button-bg);
+  padding: 2em;
+  border-radius: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.team-member h2 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.team-member p {
+  font-size: 1em;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .about-us {
+    font-size: var(--font-size-mobile); /* Mobile font size */
+    width: 100%;
+  }
+
+  .about-us h1 {
+    font-size: var(--font-size-mobile); /* Mobile font size */
+  }
+
+  .about-us p {
+    font-size: var(--font-size-mobile); /* Mobile font size */
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-member {
+    padding: 1em;
+  }
+
+  .team-member h2 {
+    font-size: var(--font-size-mobile);
+  }
+
+  .team-member p {
+    font-size: var(--font-size-mobile);
+  }
+}

@@ -6,11 +6,11 @@ For the first iteration, we need github branches.
 
 ## Considered Options
 
-* Dev Branches
+- Dev Branches
   - Every dev gets their own branch to operate.
-* Feature Branches
+- Feature Branches
   - Every feature/modular component gets a branch. There would be a styling branch and a slider/homepage branch as well.
-* Minimum
+- Minimum
   - Just a playground branch so that we can build branches as needed.
 
 ## Decision Outcome
